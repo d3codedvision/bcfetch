@@ -20,6 +20,15 @@
         <!-- Header: wordmark left, quiet actions right. -->
         <Grid Grid.Row="0" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
             <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                <!-- Decorative: the name next to it says it, so screen readers skip it. -->
+                <Image
+                    Width="26"
+                    Height="26"
+                    Margin="0,0,2,0"
+                    VerticalAlignment="Center"
+                    AutomationProperties.AccessibilityView="Raw"
+                    RenderOptions.BitmapInterpolationMode="HighQuality"
+                    Source="avares://bcfetch/Assets/Cloud.png" />
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="22"
@@ -263,7 +272,8 @@
                 Padding="18,9"
                 Click="ButtonStop_Click"
                 Content="{x:Static p:Resources.buttonStop}"
-                IsEnabled="False" />
+                IsEnabled="False"
+                IsVisible="False" />
             <Button
                 x:Name="ButtonStart"
                 Grid.Column="2"

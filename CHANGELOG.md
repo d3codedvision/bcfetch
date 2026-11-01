@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+Main window: clearer idle, running and finished states.
+
+* Idle: the empty log area now shows three short steps (paste links, choose a folder, press Download), the link pattern and the discography hint, and the URL box placeholder is one line.
+* Running: the URL box is emptied when a run starts ("Paste more links to add them to the queue") so pressing "Add to queue" no longer queues the same links again; the links come back when the run ends. "Add to queue" is a quiet button, and Cancel appears only while a run is active.
+* Running: one readout shows tracks done, bytes, speed (MB/s above 1 MB/s) and the time left once the total size is known, for example "2 of 6 tracks · 11.3 / 24.0 MB · 812 kB/s · 16 s left".
+* Finished: failed tracks move to the top of the list and a strip above it shows "4 done · 2 skipped · 1 failed".
+* Success is green in the log as well as in the track list; the accent colour is for actions and progress. The app icon is shown next to the name.
+* The readout in the footer gives way to the buttons when the window is narrow (a long "Retry failed" label was cut off in German).
+
 ## 0.3.8
 
 Keyboard and screen-reader pass, and a correction to 0.3.7.

@@ -423,6 +423,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     private void SetDownloading(bool downloading)
     {
         ButtonBrowse.IsEnabled = !downloading;
+        ButtonStop.IsVisible = downloading; // nothing to cancel otherwise, so no disabled button
         ButtonStop.IsEnabled = downloading;
         CheckBoxDownloadDiscography.IsEnabled = !downloading;
         TextBoxDownloadsPath.IsReadOnly = downloading;
@@ -552,14 +553,14 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     }
 
     // Colours come from the theme tokens by level, so lines already written follow a theme switch.
+    // Success is green everywhere (log and track list); the accent colour stays for actions and progress.
     private void ColorLogLine(Avalonia.Controls.Documents.Run stamp, Avalonia.Controls.Documents.Run text, DownloadProgressChangedLevel level)
     {
         stamp.Foreground = this.Token("BcMuted");
         text.Foreground = this.Token(level switch
         {
             DownloadProgressChangedLevel.VerboseInfo => "BcMuted",
-            DownloadProgressChangedLevel.IntermediateSuccess => "BcAccent",
-            DownloadProgressChangedLevel.Success => "BcSuccess",
+            DownloadProgressChangedLevel.IntermediateSuccess or DownloadProgressChangedLevel.Success => "BcSuccess",
             DownloadProgressChangedLevel.Warning => "BcWarning",
             DownloadProgressChangedLevel.Error => "BcDanger",
             _ => "BcText",
