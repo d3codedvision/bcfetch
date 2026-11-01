@@ -17,6 +17,17 @@ A port of [Otiel/BandcampDownloader](https://github.com/Otiel/BandcampDownloader
 
 Not ported from the Windows version: taskbar progress, the "finished" sound, and live language switching (restart after changing the language).
 
+## Command line
+
+```
+bcfetch [options] <url>...
+  -o, --output <path>   download path template, e.g. "~/Music/{artist}/{album}"
+  -d, --discography     download the whole artist discography
+  -v, --verbose         show verbose log lines
+```
+
+Without arguments bcfetch opens the window. Other settings are read from `~/.config/bcfetch/bcfetch.ini`; `-o` and `-d` apply to that run only.
+
 ## Layout
 
 * `src/BcFetch.Core` – UI-independent logic (parsing, download, tagging, playlists, settings).
