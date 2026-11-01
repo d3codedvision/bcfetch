@@ -9,25 +9,26 @@ rm -rf dist && mkdir -p dist/publish
 
 # AppStream metadata (license, description, release notes) for software centres, with the CHANGELOG section of this version
 META=io.github.d3codedvision.bcfetch.metainfo.xml
+DESKTOP=io.github.d3codedvision.bcfetch.desktop
 python3 packaging/make-metainfo.py "$VERSION" "$(git log -1 --format=%cs 2>/dev/null || date +%F)" packaging/$META.in CHANGELOG.md dist/$META
 if command -v appstreamcli >/dev/null; then appstreamcli validate --no-net dist/$META; fi
-if command -v desktop-file-validate >/dev/null; then desktop-file-validate packaging/bcfetch.desktop; fi
+if command -v desktop-file-validate >/dev/null; then desktop-file-validate packaging/$DESKTOP; fi
 
 dotnet publish src/BcFetch.App -c Release -r linux-x64 --self-contained \
   -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None \
   -o dist/publish
 
 # tar.gz (asset name is what UpdatesService expects)
-cp packaging/bcfetch.desktop src/BcFetch.App/Assets/Cloud.png dist/publish/
-tar -C dist/publish -czf dist/bcfetch-linux-x64.tar.gz bcfetch bcfetch.desktop Cloud.png
-rm dist/publish/bcfetch.desktop dist/publish/Cloud.png
+cp packaging/$DESKTOP src/BcFetch.App/Assets/Cloud.png dist/publish/
+tar -C dist/publish -czf dist/bcfetch-linux-x64.tar.gz bcfetch $DESKTOP Cloud.png
+rm dist/publish/$DESKTOP dist/publish/Cloud.png
 
 # .deb: /opt/bcfetch + symlink in /usr/bin
 D=dist/deb
 mkdir -p $D/DEBIAN $D/opt/bcfetch $D/usr/bin $D/usr/share/applications $D/usr/share/metainfo $D/usr/share/doc/bcfetch $D/usr/share/icons/hicolor/512x512/apps
 cp dist/publish/bcfetch $D/opt/bcfetch/
 ln -s /opt/bcfetch/bcfetch $D/usr/bin/bcfetch
-cp packaging/bcfetch.desktop $D/usr/share/applications/
+cp packaging/$DESKTOP $D/usr/share/applications/
 cp dist/$META $D/usr/share/metainfo/
 cp packaging/copyright $D/usr/share/doc/bcfetch/copyright
 cp src/BcFetch.App/Assets/Cloud.png $D/usr/share/icons/hicolor/512x512/apps/bcfetch.png
@@ -70,7 +71,7 @@ fetch https://github.com/AppImage/type2-runtime/releases/download/20251108/runti
 A=dist/AppDir
 mkdir -p $A/usr/bin
 cp dist/publish/bcfetch $A/usr/bin/
-cp packaging/bcfetch.desktop $A/
+cp packaging/$DESKTOP $A/
 mkdir -p $A/usr/share/metainfo
 cp dist/$META $A/usr/share/metainfo/
 cp src/BcFetch.App/Assets/Cloud.png $A/bcfetch.png

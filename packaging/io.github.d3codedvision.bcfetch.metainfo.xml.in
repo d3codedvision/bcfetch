@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @RELEASES@ is filled in by make-metainfo.py from CHANGELOG.md when packaging. -->
+<!-- The release list is generated from CHANGELOG.md by make-metainfo.py when packaging. -->
 <component type="desktop-application">
   <id>io.github.d3codedvision.bcfetch</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -20,10 +20,11 @@
     </ul>
     <p>bcfetch is not affiliated with Bandcamp. Please respect the terms of the artists you download from.</p>
   </description>
-  <launchable type="desktop-id">bcfetch.desktop</launchable>
+  <launchable type="desktop-id">io.github.d3codedvision.bcfetch.desktop</launchable>
   <url type="homepage">https://github.com/d3codedvision/bcfetch</url>
   <url type="bugtracker">https://github.com/d3codedvision/bcfetch/issues</url>
   <url type="vcs-browser">https://github.com/d3codedvision/bcfetch</url>
+  <pkgname>bcfetch</pkgname>
   <provides>
     <binary>bcfetch</binary>
   </provides>

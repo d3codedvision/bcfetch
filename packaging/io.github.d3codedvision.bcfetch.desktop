@@ -7,4 +7,5 @@ Exec=bcfetch
 Icon=bcfetch
 Categories=AudioVideo;Audio;
 Keywords=Bandcamp;music;download;mp3;
+StartupWMClass=bcfetch
 Terminal=false
