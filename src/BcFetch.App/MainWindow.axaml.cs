@@ -27,6 +27,8 @@ internal sealed partial class MainWindow : Window
     private readonly List<(TrackFile File, ProgressBar Bar, TextBlock Status)> _rows = [];
     private CancellationTokenSource _downloadCts;
     private bool _activeDownloads;
+    private readonly Queue<string> _queue = new();
+    private string _retryInput;
     private long _lastTotalReceivedBytes;
     private DateTime _lastSpeedUpdate;
 
@@ -43,7 +45,11 @@ internal sealed partial class MainWindow : Window
         _timer.Tick += (_, _) => UpdateProgress();
         _rowsTimer.Tick += (_, _) => UpdateTrackRows();
 
-        TextBoxUrls.TextChanged += (_, _) => ButtonStart.Content = Res.buttonStart;
+        TextBoxUrls.TextChanged += (_, _) =>
+        {
+            if (!_activeDownloads) _retryInput = null;
+            UpdateStartLabel();
+        };
         CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
         TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
         TextBoxDownloadsPath.TextChanged += (_, _) => _userSettings.DownloadsPath = TextBoxDownloadsPath.Text;
@@ -76,15 +82,70 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     private async void ButtonStart_Click(object sender, RoutedEventArgs e)
     {
         var inputUrls = TextBoxUrls.Text;
+
+        // While a run is active the button adds the pasted URLs to the queue instead.
+        if (_activeDownloads)
+        {
+            if (string.IsNullOrWhiteSpace(inputUrls))
+            {
+                return;
+            }
+
+            _queue.Enqueue(inputUrls.Trim());
+            TextBoxUrls.Clear();
+            Log($"Queued {inputUrls.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Length} URL(s); {_queue.Count} batch(es) waiting", DownloadProgressChangedLevel.Info);
+            return;
+        }
+
+        // "Retry failed" re-runs the batches that had failures, whatever is in the box now.
+        inputUrls = _retryInput ?? inputUrls;
         if (string.IsNullOrWhiteSpace(inputUrls))
         {
             Log("Paste some albums URLs to be downloaded", DownloadProgressChangedLevel.Error);
             return;
         }
 
+        _retryInput = null;
         _downloadCts = new CancellationTokenSource();
         _activeDownloads = true;
         SetDownloading(true);
+        var totalFailed = 0;
+        var cancelled = false;
+
+        // Run the batch, then every batch queued meanwhile.
+        for (var batch = inputUrls; batch != null; batch = _queue.TryDequeue(out var next) ? next : null)
+        {
+            try
+            {
+                totalFailed += await RunBatchAsync(batch);
+            }
+            catch (OperationCanceledException)
+            {
+                Log("Downloads cancelled by user", DownloadProgressChangedLevel.Info);
+                cancelled = true;
+                break;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+                Log(ex.Message, DownloadProgressChangedLevel.Error);
+            }
+        }
+
+        _queue.Clear();
+        _activeDownloads = false;
+        SetDownloading(false);
+        if (!cancelled && _userSettings.NotifyOnFinish)
+        {
+            Notifier.Send("bcfetch", totalFailed > 0 ? $"Downloads finished, {totalFailed} track(s) failed" : "Downloads finished");
+        }
+    }
+
+    /// <summary>Downloads one batch of URLs and returns how many tracks failed.</summary>
+    private async Task<int> RunBatchAsync(string inputUrls)
+    {
+        ProgressBar.IsIndeterminate = true;
+        ProgressBar.Value = 0;
         _logger.Info($"Starting download with the following input URLs:{Environment.NewLine}{inputUrls}");
         Log("Starting download...", DownloadProgressChangedLevel.Info);
 
@@ -105,22 +166,14 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _timer.Start();
             _rowsTimer.Start();
             await _downloadManager.StartDownloadsAsync(_downloadCts.Token);
+
             var failed = _downloadManager.GetFailedTracksCount();
             if (failed > 0)
             {
                 Log($"{failed} track(s) failed. Press \"Retry failed\" to try them again; finished files are skipped.", DownloadProgressChangedLevel.Error);
+                _retryInput = _retryInput == null ? inputUrls : _retryInput + "\n" + inputUrls;
             }
-            ButtonStart.Content = failed > 0 ? "Retry failed" : Res.buttonStart;
-            if (_userSettings.NotifyOnFinish) Notifier.Send("bcfetch", failed > 0 ? $"Downloads finished, {failed} track(s) failed" : "Downloads finished");
-        }
-        catch (OperationCanceledException)
-        {
-            Log("Downloads cancelled by user", DownloadProgressChangedLevel.Info);
-        }
-        catch (Exception ex)
-        {
-            _logger.Error(ex);
-            Log(ex.Message, DownloadProgressChangedLevel.Error);
+            return failed;
         }
         finally
         {
@@ -128,8 +181,6 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _rowsTimer.Stop();
             UpdateTrackRows();
             UpdateProgress();
-            _activeDownloads = false;
-            SetDownloading(false);
         }
     }
 
@@ -141,17 +192,20 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         }
 
         ButtonStop.IsEnabled = false;
+        _queue.Clear();
         await _downloadCts.CancelAsync();
     }
+
+    // The one button is Start, Retry failed or (during a run) Add to queue.
+    private void UpdateStartLabel() => ButtonStart.Content = _activeDownloads ? "Add to queue" : _retryInput != null ? "Retry failed" : Res.buttonStart;
 
     private void SetDownloading(bool downloading)
     {
         ButtonBrowse.IsEnabled = !downloading;
-        ButtonStart.IsEnabled = !downloading;
         ButtonStop.IsEnabled = downloading;
         CheckBoxDownloadDiscography.IsEnabled = !downloading;
         TextBoxDownloadsPath.IsReadOnly = downloading;
-        TextBoxUrls.IsReadOnly = downloading;
+        UpdateStartLabel();
         ProgressBar.IsIndeterminate = downloading;
         ProgressBar.Value = 0;
         if (downloading)
@@ -170,6 +224,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void BuildTrackRows(IEnumerable<TrackFile> files)
     {
+        TrackList.Children.Clear();
+        _rows.Clear();
         var mono = (FontFamily)Avalonia.Application.Current!.FindResource("BcMono")!;
         foreach (var file in files)
         {

@@ -15,6 +15,7 @@ internal static class Cli
 
         Options:
           -o, --output <path>   download path template, e.g. "~/Music/{artist}/{album}"
+          -f, --file <path>     read URLs from a file, one per line ("-" for stdin; blank lines and # comments are skipped)
           -d, --discography     download the whole artist discography
           -v, --verbose         show verbose log lines
           -V, --version         print version
@@ -37,6 +38,18 @@ internal static class Cli
             {
                 case "-h" or "--help": Console.WriteLine(Usage); return 0;
                 case "-V" or "--version": Console.WriteLine($"bcfetch {Core.Constants.APP_VERSION_FORMATTED}"); return 0;
+                case "-f" or "--file":
+                    if (++i >= args.Length) return Fail("--file needs a path");
+                    try
+                    {
+                        var lines = args[i] == "-" ? Console.In.ReadToEnd().Split('\n') : File.ReadAllLines(args[i]);
+                        urls.AddRange(lines.Select(l => l.Trim()).Where(l => l.Length > 0 && !l.StartsWith('#')));
+                    }
+                    catch (IOException ex)
+                    {
+                        return Fail($"cannot read {args[i]}: {Clean(ex.Message)}");
+                    }
+                    break;
                 case "-d" or "--discography": discography = true; break;
                 case "-v" or "--verbose": verbose = true; break;
                 case "-o" or "--output":

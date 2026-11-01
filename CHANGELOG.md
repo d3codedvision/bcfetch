@@ -3,6 +3,8 @@
 ## Unreleased
 
 * Per-track progress list in the window: each track shows waiting, a live percentage, done, skipped or failed, with its own progress line. The window is a little taller to make room.
+* Download queue: while a run is active the Start button becomes "Add to queue" and the URL box stays editable. Queued URLs run as a new batch after the current one; Stop clears the queue. "Retry failed" now re-runs every batch that had failures, even after the box was cleared.
+* Command line: `-f/--file <path>` reads URLs from a file (or `-` for stdin), one per line; blank lines and `#` comments are skipped.
 
 ## 0.2.1
 

@@ -22,6 +22,7 @@ Not ported from the Windows version: taskbar progress, the "finished" sound, and
 ```
 bcfetch [options] <url>...
   -o, --output <path>   download path template, e.g. "~/Music/{artist}/{album}"
+  -f, --file <path>     read URLs from a file, one per line ("-" for stdin)
   -d, --discography     download the whole artist discography
   -v, --verbose         show verbose log lines
 ```
