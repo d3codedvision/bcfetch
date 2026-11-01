@@ -7,6 +7,12 @@ cd "$(dirname "$0")/.."
 VERSION=$(sed -n 's#.*<VersionPrefix>\(.*\)</VersionPrefix>.*#\1#p' Directory.Build.props)
 rm -rf dist && mkdir -p dist/publish
 
+# AppStream metadata (license, description, release notes) for software centres, with the CHANGELOG section of this version
+META=io.github.d3codedvision.bcfetch.metainfo.xml
+python3 packaging/make-metainfo.py "$VERSION" "$(git log -1 --format=%cs 2>/dev/null || date +%F)" packaging/$META.in CHANGELOG.md dist/$META
+if command -v appstreamcli >/dev/null; then appstreamcli validate --no-net dist/$META; fi
+if command -v desktop-file-validate >/dev/null; then desktop-file-validate packaging/bcfetch.desktop; fi
+
 dotnet publish src/BcFetch.App -c Release -r linux-x64 --self-contained \
   -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None \
   -o dist/publish
@@ -18,20 +24,29 @@ rm dist/publish/bcfetch.desktop dist/publish/Cloud.png
 
 # .deb: /opt/bcfetch + symlink in /usr/bin
 D=dist/deb
-mkdir -p $D/DEBIAN $D/opt/bcfetch $D/usr/bin $D/usr/share/applications $D/usr/share/icons/hicolor/512x512/apps
+mkdir -p $D/DEBIAN $D/opt/bcfetch $D/usr/bin $D/usr/share/applications $D/usr/share/metainfo $D/usr/share/doc/bcfetch $D/usr/share/icons/hicolor/512x512/apps
 cp dist/publish/bcfetch $D/opt/bcfetch/
 ln -s /opt/bcfetch/bcfetch $D/usr/bin/bcfetch
 cp packaging/bcfetch.desktop $D/usr/share/applications/
+cp dist/$META $D/usr/share/metainfo/
+cp packaging/copyright $D/usr/share/doc/bcfetch/copyright
 cp src/BcFetch.App/Assets/Cloud.png $D/usr/share/icons/hicolor/512x512/apps/bcfetch.png
 cat > $D/DEBIAN/control <<CTL
 Package: bcfetch
 Version: $VERSION
+Section: sound
+Priority: optional
 Architecture: amd64
 Maintainer: d3codedvision
+Homepage: https://github.com/d3codedvision/bcfetch
+Installed-Size: $(du -sk $D/opt $D/usr | awk '{s+=$1} END {print s}')
 Depends: libfontconfig1, libx11-6, libice6, libsm6
 Recommends: libnotify-bin
 Description: Download albums from Bandcamp
- Avalonia GUI port of BandcampDownloader.
+ bcfetch downloads Bandcamp albums and artist discographies as MP3 files
+ with tags and cover art. It has a graphical window and a command-line mode.
+ .
+ It is a Linux port of BandcampDownloader. Not affiliated with Bandcamp.
 CTL
 chmod -R go-w $D
 dpkg-deb --root-owner-group --build $D dist/bcfetch_${VERSION}_amd64.deb >/dev/null
@@ -56,11 +71,13 @@ A=dist/AppDir
 mkdir -p $A/usr/bin
 cp dist/publish/bcfetch $A/usr/bin/
 cp packaging/bcfetch.desktop $A/
+mkdir -p $A/usr/share/metainfo
+cp dist/$META $A/usr/share/metainfo/
 cp src/BcFetch.App/Assets/Cloud.png $A/bcfetch.png
 ln -s bcfetch.png $A/.DirIcon
 ln -s usr/bin/bcfetch $A/AppRun
 ARCH=x86_64 "$TOOL" --appimage-extract-and-run --runtime-file "$RUNTIME" $A dist/bcfetch-$VERSION-x86_64.AppImage >/dev/null
 
 (cd dist && sha256sum bcfetch-linux-x64.tar.gz bcfetch_*_amd64.deb bcfetch-*.AppImage > SHA256SUMS)
-rm -rf dist/deb dist/publish dist/AppDir
+rm -rf dist/deb dist/publish dist/AppDir dist/$META
 ls -lh dist

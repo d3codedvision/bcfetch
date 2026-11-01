@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @RELEASES@ is filled in by make-metainfo.py from CHANGELOG.md when packaging. -->
+<component type="desktop-application">
+  <id>io.github.d3codedvision.bcfetch</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>bcfetch</name>
+  <summary>Download albums from Bandcamp</summary>
+  <developer id="io.github.d3codedvision">
+    <name>d3codedvision</name>
+  </developer>
+  <description>
+    <p>bcfetch downloads Bandcamp albums and whole artist discographies as MP3 files with tags and cover art. It is a Linux port of BandcampDownloader, with a graphical window and a command-line mode.</p>
+    <ul>
+      <li>Paste album, track or artist links, or drop them on the window, and queue more while a download is running</li>
+      <li>Per-track progress, a retry button for failed tracks, and albums that are already downloaded are skipped</li>
+      <li>ID3 tags, cover art, playlists (M3U, PLS, WPL, ZPL) and naming templates for folders and files</li>
+      <li>Notification when downloads finish, tray icon, light and dark themes, many languages</li>
+      <li>Command line: run bcfetch --help</li>
+    </ul>
+    <p>bcfetch is not affiliated with Bandcamp. Please respect the terms of the artists you download from.</p>
+  </description>
+  <launchable type="desktop-id">bcfetch.desktop</launchable>
+  <url type="homepage">https://github.com/d3codedvision/bcfetch</url>
+  <url type="bugtracker">https://github.com/d3codedvision/bcfetch/issues</url>
+  <url type="vcs-browser">https://github.com/d3codedvision/bcfetch</url>
+  <provides>
+    <binary>bcfetch</binary>
+  </provides>
+  <keywords>
+    <keyword>Bandcamp</keyword>
+    <keyword>music</keyword>
+    <keyword>download</keyword>
+    <keyword>mp3</keyword>
+  </keywords>
+  <content_rating type="oars-1.1" />
+  <releases>
+@RELEASES@
+  </releases>
+</component>

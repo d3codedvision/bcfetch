@@ -1,8 +1,10 @@
 [Desktop Entry]
 Type=Application
 Name=bcfetch
+GenericName=Bandcamp downloader
 Comment=Download albums from Bandcamp
 Exec=bcfetch
 Icon=bcfetch
-Categories=AudioVideo;Audio;Network;
+Categories=AudioVideo;Audio;
+Keywords=Bandcamp;music;download;mp3;
 Terminal=false
