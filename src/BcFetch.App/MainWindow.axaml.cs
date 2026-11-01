@@ -41,6 +41,8 @@ internal sealed partial class MainWindow : Window
     private readonly CultureInfo _uiCulture = Res.Culture ?? CultureInfo.CurrentUICulture;
     private long _lastTotalReceivedBytes;
     private DateTime _lastSpeedUpdate;
+    private DateTime _batchStart;
+    private string _programmaticUrls; // text the code put into the URL box, so its change is not taken as typing
 
     // Required by the XAML loader / previewer.
     public MainWindow() => InitializeComponent();
@@ -58,6 +60,13 @@ internal sealed partial class MainWindow : Window
 
         TextBoxUrls.TextChanged += (_, _) =>
         {
+            // The change events arrive later than the assignment, so compare the text instead of using a flag
+            if (_programmaticUrls != null && (TextBoxUrls.Text ?? "") == _programmaticUrls)
+            {
+                _programmaticUrls = null;
+                return;
+            }
+
             if (!_activeDownloads) _retryInput = null;
             UpdateStartLabel();
         };
@@ -268,6 +277,10 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _downloadCts = new CancellationTokenSource();
         _activeDownloads = true;
         SetDownloading(true);
+
+        // The box is free for more links to queue during the run; what was started comes back afterwards.
+        var startedWith = inputUrls;
+        SetUrlsText("");
         var totalFailed = 0;
         var cancelled = false;
 
@@ -294,6 +307,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _queue.Clear();
         _activeDownloads = false;
         SetDownloading(false);
+        if (string.IsNullOrWhiteSpace(TextBoxUrls.Text))
+        {
+            SetUrlsText(startedWith);
+        }
+
         RefreshLanguage();
         if (!cancelled)
         {
@@ -333,7 +351,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             }
 
             _lastTotalReceivedBytes = 0;
-            _lastSpeedUpdate = DateTime.Now;
+            _lastSpeedUpdate = _batchStart = DateTime.Now;
             BuildTrackRows(_downloadManager.GetTrackFiles());
             _timer.Start();
             _rowsTimer.Start();
@@ -376,7 +394,25 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     }
 
     // The one button is Start, Retry failed or (during a run) Add to queue.
-    private void UpdateStartLabel() => ButtonStart.Content = _activeDownloads ? Tr.Get("buttonAddToQueue") : _retryInput != null ? Tr.Get("buttonRetryFailed") : Res.buttonStart;
+    private void SetUrlsText(string text)
+    {
+        if ((TextBoxUrls.Text ?? "") == text)
+        {
+            return; // no change event will follow, so there is nothing to mark
+        }
+
+        _programmaticUrls = text;
+        TextBoxUrls.Text = text;
+    }
+
+    private void UpdateStartLabel()
+    {
+        ButtonStart.Content = _activeDownloads ? Tr.Get("buttonAddToQueue") : _retryInput != null ? Tr.Get("buttonRetryFailed") : Res.buttonStart;
+
+        // During a run the button only queues more links: a quiet button, so no filled primary competes with Cancel
+        ButtonStart.Classes.Set("primary", !_activeDownloads);
+        TextBoxUrls.PlaceholderText = _activeDownloads ? Tr.Get("urlsPlaceholderQueue") : Res.urlsPlaceholder;
+    }
 
     private void SetDownloading(bool downloading)
     {
@@ -435,24 +471,36 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void UpdateProgress()
     {
+        const double MB = 1024.0 * 1024;
         var received = _downloadManager.GetTotalBytesReceived();
+        var total = _userSettings.RetrieveFilesSize ? _downloadManager.GetTotalBytesToDownload() : 0;
         var now = DateTime.Now;
         var seconds = (now - _lastSpeedUpdate).TotalSeconds;
-        if (seconds > 0)
-        {
-            LabelDownloadSpeed.Text = ((received - _lastTotalReceivedBytes) / seconds / 1024).ToString("0.0") + " kB/s";
-        }
+        var kbPerSecond = seconds > 0 ? (received - _lastTotalReceivedBytes) / seconds / 1024 : 0;
         _lastTotalReceivedBytes = received;
         _lastSpeedUpdate = now;
 
+        // Time left at the average speed of this batch, steadier than the last second; only when the total is known
+        string left = null;
+        var elapsed = (now - _batchStart).TotalSeconds;
+        if (total > 0 && received > 0 && received < total && elapsed >= 3)
+        {
+            var remaining = (total - received) / (received / elapsed);
+            left = remaining < 90 ? Tr.Get("progressTimeLeftSeconds", (int)Math.Ceiling(remaining)) : Tr.Get("progressTimeLeftMinutes", (int)Math.Ceiling(remaining / 60));
+        }
+
+        var speed = kbPerSecond >= 1024 ? $"{kbPerSecond / 1024:0.0} MB/s" : $"{kbPerSecond:0} kB/s";
+        LabelDownloadSpeed.Text = left == null ? speed : $"{speed} · {left}";
+
+        // One readout for the whole run: tracks settled, then bytes
+        var size = total > 0 ? $"{received / MB:0.0} / {total / MB:0.0} MB" : $"{received / MB:0.0} MB";
+        LabelProgress.Text = _trackRows.Count > 0 ? $"{Tr.Get("progressTracks", _trackRows.Count(r => r.Settled), _trackRows.Count)} · {size}" : size;
+
+        ProgressBar.Value = _userSettings.RetrieveFilesSize ? received : _downloadManager.GetTotalFilesCountReceived();
         if (!ProgressBar.IsIndeterminate && ProgressBar.Maximum > 0)
         {
             _tray.ToolTipText = $"bcfetch {ProgressBar.Value * 100 / ProgressBar.Maximum:0}%";
         }
-
-        LabelProgress.Text = (received / (1024.0 * 1024)).ToString("0.00") + " MB" +
-                             (_userSettings.RetrieveFilesSize ? " / " + (_downloadManager.GetTotalBytesToDownload() / (1024.0 * 1024)).ToString("0.00") + " MB" : "");
-        ProgressBar.Value = _userSettings.RetrieveFilesSize ? received : _downloadManager.GetTotalFilesCountReceived();
     }
 
     // Colours come from the theme tokens by level, so lines already written follow a theme switch.

@@ -28,6 +28,9 @@ internal sealed class TrackRowViewModel : INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
 
     public string Name => _file.Name;
+    public bool Settled => _file.State is TrackFileState.Done or TrackFileState.Skipped or TrackFileState.Failed;
+    public bool Failed => _file.State == TrackFileState.Failed;
+    public TrackFileState State => _file.State;
     public double Maximum { get; }
     public double Value { get => _value; private set => Set(ref _value, value); }
     public bool Indeterminate { get => _indeterminate; private set => Set(ref _indeterminate, value); }
