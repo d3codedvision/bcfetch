@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.9
 
 Main window: clearer idle, running and finished states.
 
