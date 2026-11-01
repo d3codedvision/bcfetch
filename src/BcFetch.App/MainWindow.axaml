@@ -130,55 +130,63 @@
                 Background="{DynamicResource BcPanel}"
                 BorderThickness="1"
                 CornerRadius="4">
-                <ItemsControl x:Name="TrackList" AutomationProperties.Name="{x:Static p:Resources.labelTracks}">
-                    <ItemsControl.Template>
-                        <ControlTemplate>
-                            <ScrollViewer
-                                Name="PART_TrackScroll"
-                                AutomationProperties.Name="{x:Static p:Resources.labelTracks}"
-                                Focusable="True"
-                                IsTabStop="True">
-                                <ItemsPresenter Margin="12,8" ItemsPanel="{TemplateBinding ItemsPanel}" />
-                            </ScrollViewer>
-                        </ControlTemplate>
-                    </ItemsControl.Template>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate x:DataType="local:TrackRowViewModel">
-                            <Grid Margin="0,3" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
-                                <TextBlock
-                                    VerticalAlignment="Center"
-                                    Text="{Binding Name}"
-                                    TextTrimming="CharacterEllipsis"
-                                    ToolTip.Tip="{Binding Name}" />
-                                <ProgressBar
-                                    Grid.Column="1"
-                                    Width="120"
-                                    VerticalAlignment="Center"
-                                    AutomationProperties.Name="{Binding Name}"
-                                    Classes="line"
-                                    IsIndeterminate="{Binding Indeterminate}"
-                                    Maximum="{Binding Maximum}"
-                                    Minimum="0"
-                                    ShowProgressText="False"
-                                    Value="{Binding Value}" />
-                                <TextBlock
-                                    Grid.Column="2"
-                                    Width="104"
-                                    VerticalAlignment="Center"
-                                    FontFamily="{StaticResource BcMono}"
-                                    FontSize="12"
-                                    Foreground="{Binding StatusBrush}"
-                                    Text="{Binding Status}"
-                                    TextAlignment="Right" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Grid RowDefinitions="Auto,*">
+                    <!-- Result of the batch, shown when it ends: how many are done, skipped and failed. -->
+                    <TextBlock
+                        x:Name="TrackSummary"
+                        Margin="12,8,12,0"
+                        FontSize="12.5"
+                        IsVisible="False" />
+                    <ItemsControl x:Name="TrackList" Grid.Row="1" AutomationProperties.Name="{x:Static p:Resources.labelTracks}">
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <ScrollViewer
+                                    Name="PART_TrackScroll"
+                                    AutomationProperties.Name="{x:Static p:Resources.labelTracks}"
+                                    Focusable="True"
+                                    IsTabStop="True">
+                                    <ItemsPresenter Margin="12,8" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="local:TrackRowViewModel">
+                                <Grid Margin="0,3" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Name}"
+                                        TextTrimming="CharacterEllipsis"
+                                        ToolTip.Tip="{Binding Name}" />
+                                    <ProgressBar
+                                        Grid.Column="1"
+                                        Width="120"
+                                        VerticalAlignment="Center"
+                                        AutomationProperties.Name="{Binding Name}"
+                                        Classes="line"
+                                        IsIndeterminate="{Binding Indeterminate}"
+                                        Maximum="{Binding Maximum}"
+                                        Minimum="0"
+                                        ShowProgressText="False"
+                                        Value="{Binding Value}" />
+                                    <TextBlock
+                                        Grid.Column="2"
+                                        Width="104"
+                                        VerticalAlignment="Center"
+                                        FontFamily="{StaticResource BcMono}"
+                                        FontSize="12"
+                                        Foreground="{Binding StatusBrush}"
+                                        Text="{Binding Status}"
+                                        TextAlignment="Right" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
             </Border>
 
             <Border
@@ -230,20 +238,27 @@
                 </Grid>
             </Border>
         </Grid>
-        <!-- Footer: readouts left, actions right. -->
-        <Grid Grid.Row="3" Margin="20,12,20,18" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
-            <TextBlock x:Name="LabelProgress" Grid.Column="0" VerticalAlignment="Center" FontFamily="{StaticResource BcMono}" FontSize="13" />
-            <TextBlock
-                x:Name="LabelDownloadSpeed"
-                Grid.Column="1"
-                Margin="16,0,0,0"
-                VerticalAlignment="Center"
-                FontFamily="{StaticResource BcMono}"
-                FontSize="13"
-                Foreground="{DynamicResource BcMuted}" />
+        <!-- Footer: readouts left (they give way first when the window is narrow), actions right. -->
+        <Grid Grid.Row="3" Margin="20,12,20,18" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+            <Grid Grid.Column="0" ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                <TextBlock
+                    x:Name="LabelProgress"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource BcMono}"
+                    FontSize="13"
+                    TextTrimming="CharacterEllipsis" />
+                <TextBlock
+                    x:Name="LabelDownloadSpeed"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    FontFamily="{StaticResource BcMono}"
+                    FontSize="13"
+                    Foreground="{DynamicResource BcMuted}"
+                    TextTrimming="CharacterEllipsis" />
+            </Grid>
             <Button
                 x:Name="ButtonStop"
-                Grid.Column="3"
+                Grid.Column="1"
                 Classes="danger"
                 Padding="18,9"
                 Click="ButtonStop_Click"
@@ -251,7 +266,7 @@
                 IsEnabled="False" />
             <Button
                 x:Name="ButtonStart"
-                Grid.Column="4"
+                Grid.Column="2"
                 Classes="primary"
                 Click="ButtonStart_Click"
                 Content="{x:Static p:Resources.buttonStart}" />

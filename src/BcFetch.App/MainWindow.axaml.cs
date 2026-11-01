@@ -112,6 +112,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             }
 
             UpdateTrackRows(force: true);
+            RefreshTrackSummary();
         };
 
         // AllowDrop is inherited, so one setting on the window makes the whole window a drop target; the events
@@ -370,6 +371,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _timer.Stop();
             _rowsTimer.Stop();
             UpdateTrackRows();
+            if (_trackRows.Count > 0)
+            {
+                FinishTrackList();
+            }
+
             UpdateProgress();
         }
     }
@@ -439,6 +445,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void BuildTrackRows(IEnumerable<TrackFile> files)
     {
+        TrackSummary.IsVisible = false;
         _trackRows = files.Select(f => new TrackRowViewModel(f)).ToList();
         TrackList.ItemsSource = _trackRows;
         ShowTrackPanel(_trackRows.Count > 0);
@@ -453,12 +460,53 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _trackRows = [];
         }
 
+        TrackSummary.IsVisible = false;
+
         // The track list takes its share of the height only while it is shown; the log keeps its minimum either way.
         var row = ContentGrid.RowDefinitions[2];
         row.MinHeight = show ? 64 : 0;
         row.MaxHeight = show ? 240 : double.PositiveInfinity;
         row.Height = show ? new GridLength(2, GridUnitType.Star) : new GridLength(0);
         TrackPanel.IsVisible = show;
+    }
+
+    /// <summary>
+    /// At the end of a batch: failed tracks move to the top, so they are never hidden below the fold of a long
+    /// list (the sort is stable), and a one-line result strip shows the counts.
+    /// </summary>
+    private void FinishTrackList()
+    {
+        _trackRows = _trackRows.OrderBy(r => r.Failed ? 0 : 1).ToList();
+        TrackList.ItemsSource = _trackRows;
+        TrackSummary.IsVisible = true;
+        RefreshTrackSummary();
+    }
+
+    private void RefreshTrackSummary()
+    {
+        if (!TrackSummary.IsVisible)
+        {
+            return;
+        }
+
+        var inlines = TrackSummary.Inlines!;
+        inlines.Clear();
+        void Part(string text, string token)
+        {
+            if (inlines.Count > 0)
+            {
+                inlines.Add(new Avalonia.Controls.Documents.Run(" · ") { Foreground = this.Token("BcMuted") });
+            }
+
+            inlines.Add(new Avalonia.Controls.Documents.Run(text) { Foreground = this.Token(token) });
+        }
+
+        var done = _trackRows.Count(r => r.State == TrackFileState.Done);
+        var skipped = _trackRows.Count(r => r.State == TrackFileState.Skipped);
+        var failed = _trackRows.Count(r => r.Failed);
+        if (done > 0) Part(Tr.Get("summaryDone", done), "BcSuccess");
+        if (skipped > 0) Part(Tr.Get("summarySkipped", skipped), "BcMuted");
+        if (failed > 0) Part(Tr.Get("summaryFailed", failed), "BcDanger");
     }
 
     private void UpdateTrackRows(bool force = false)
