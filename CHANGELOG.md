@@ -6,6 +6,7 @@
 * Desktop notification when all downloads finish (via `notify-send`; the `.deb` recommends `libnotify-bin`). Turn it off in Settings > General.
 * Failed tracks are counted. When a run ends with failures, the window logs the count and the Start button becomes "Retry failed"; the command line prints the count and exits 1. Retrying re-runs the same URLs and skips files that already finished.
 * Network errors other than HTTP 429 (timeouts, dropped connections, server errors) and tag-saving failures on a corrupt download now count as a failed try instead of aborting the whole run. Cover art downloads get the same handling.
+* AppImage release asset (`bcfetch-<version>-x86_64.AppImage`), listed in `SHA256SUMS`.
 
 ## 0.1.1
 

@@ -42,10 +42,12 @@ Download from the [releases page](https://github.com/d3codedvision/bcfetch/relea
 ```sh
 sudo apt install ./bcfetch_<version>_amd64.deb      # Debian / Ubuntu / Zorin
 # or
+chmod +x bcfetch-<version>-x86_64.AppImage && ./bcfetch-<version>-x86_64.AppImage   # any x64 distro, no install
+# or
 tar -xzf bcfetch-linux-x64.tar.gz && ./bcfetch      # any x64 distro
 ```
 
-Maintainers: `packaging/build.sh` builds both and the checksums into `dist/`. Pushing a `v*` tag runs the same script in CI and publishes the release.
+Maintainers: `packaging/build.sh` builds the tarball, `.deb`, AppImage and checksums into `dist/`. The AppImage step downloads a pinned `appimagetool` (checksum-verified) into `~/.cache/bcfetch-build/`. Pushing a `v*` tag runs the same script in CI and publishes the release.
 
 Settings and the log live in `~/.config/bcfetch/`.
 
