@@ -81,8 +81,8 @@
                 x:Name="ButtonOpenSettingsWindow"
                 Grid.Column="5"
                 MinWidth="100"
+                Click="ButtonOpenSettingsWindow_Click"
                 Content="{x:Static p:Resources.buttonOpenSettingsWindow}"
-                IsEnabled="False"
                 ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
         </Grid>
     </Grid>

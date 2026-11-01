@@ -17,6 +17,7 @@ namespace BcFetch.App;
 
 internal sealed partial class MainWindow : Window
 {
+    private readonly ISettingsService _settingsService;
     private readonly IUserSettings _userSettings;
     private readonly IDownloadManager _downloadManager;
     private readonly IUpdatesService _updatesService;
@@ -32,6 +33,7 @@ internal sealed partial class MainWindow : Window
 
     internal MainWindow(ISettingsService settingsService, IDownloadManager downloadManager, IUpdatesService updatesService) : this()
     {
+        _settingsService = settingsService;
         _userSettings = settingsService.GetUserSettings();
         _downloadManager = downloadManager;
         _updatesService = updatesService;
@@ -54,6 +56,14 @@ internal sealed partial class MainWindow : Window
         {
             TextBoxDownloadsPath.Text = Path.Combine(path, "{artist}", "{album}");
         }
+    }
+
+    private async void ButtonOpenSettingsWindow_Click(object sender, RoutedEventArgs e)
+    {
+        await new SettingsWindow(_settingsService, _activeDownloads).ShowDialog(this);
+        // The window edits the same settings object; refresh the controls shown on this window.
+        TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
+        CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
     }
 
     private async void ButtonStart_Click(object sender, RoutedEventArgs e)
