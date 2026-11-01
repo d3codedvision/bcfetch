@@ -4,19 +4,24 @@ Linux-native Bandcamp album downloader with an [Avalonia](https://avaloniaui.net
 
 A port of [Otiel/BandcampDownloader](https://github.com/Otiel/BandcampDownloader) (WPF, Windows-only) to .NET + Avalonia. It downloads the 128 kbps MP3 files Bandcamp streams freely on its site. Nothing more.
 
-> **Status:** work in progress. Core split first, GUI port next.
+> **Status:** first release (0.1.0). Main window, settings and About page are ported. Linux x64 only; not yet tested on Wayland-only or non-Debian systems.
 
-## Features (target)
+## Features
 
 * Download from album, track and artist pages.
 * ID3 tags (album, artist, title, track number, year, lyrics) and cover art.
 * Playlist files: m3u, pls, wpl, zpl.
 * Configurable download path template, e.g. `~/Music/{artist}/{album}`.
+* Settings window: tags, cover art, playlist, proxy, retries, dark/light theme, language.
+* Update notice and an About page with the changelog.
 
-## Layout (planned)
+Not ported from the Windows version: taskbar progress, the "finished" sound, and live language switching (restart after changing the language).
+
+## Layout
 
 * `src/BcFetch.Core` – UI-independent logic (parsing, download, tagging, playlists, settings).
-* `src/BcFetch.App` – Avalonia GUI.
+* `src/BcFetch.App` – Avalonia GUI (main window, settings, About).
+* `packaging/` – `build.sh` for the `.deb` and tarball, `.desktop` file.
 * `tests/BcFetch.Core.Tests` – NUnit tests.
 
 ## Install
@@ -30,6 +35,8 @@ tar -xzf bcfetch-linux-x64.tar.gz && ./bcfetch      # any x64 distro
 ```
 
 Maintainers: `packaging/build.sh` builds both and the checksums into `dist/`. Pushing a `v*` tag runs the same script in CI and publishes the release.
+
+Settings and the log live in `~/.config/bcfetch/`.
 
 ## Build
 
