@@ -9,7 +9,12 @@ internal static class Notifier
     {
         try
         {
-            var psi = new ProcessStartInfo("notify-send") { UseShellExecute = false };
+            // Resolve against absolute PATH entries only: a bare name would also be looked up next to the app and in the current directory.
+            var exe = (Environment.GetEnvironmentVariable("PATH") ?? "").Split(':')
+                .Where(Path.IsPathRooted).Select(d => Path.Combine(d, "notify-send")).FirstOrDefault(File.Exists);
+            if (exe == null) return;
+
+            var psi = new ProcessStartInfo(exe) { UseShellExecute = false };
             psi.ArgumentList.Add("--app-name=bcfetch");
             psi.ArgumentList.Add("--icon=bcfetch");
             psi.ArgumentList.Add(title);
