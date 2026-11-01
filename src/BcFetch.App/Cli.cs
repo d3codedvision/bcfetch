@@ -68,7 +68,7 @@ internal static class Cli
         {
             if (e.Level == DownloadProgressChangedLevel.Error) failed = true;
             if (e.Level is DownloadProgressChangedLevel.VerboseInfo or DownloadProgressChangedLevel.Warning && !verbose && !settings.ShowVerboseLog) return;
-            (e.Level == DownloadProgressChangedLevel.Error ? Console.Error : Console.Out).WriteLine(e.Message);
+            (e.Level == DownloadProgressChangedLevel.Error ? Console.Error : Console.Out).WriteLine(Clean(e.Message));
         };
 
         using var cts = new CancellationTokenSource();
@@ -87,7 +87,7 @@ internal static class Cli
         }
         catch (Exception ex)
         {
-            Console.Error.WriteLine(ex.Message);
+            Console.Error.WriteLine(Clean(ex.Message));
             return 1;
         }
         finally
@@ -96,6 +96,9 @@ internal static class Cli
             settings.DownloadArtistDiscography = oldDiscography;
         }
     }
+
+    // Titles come from Bandcamp pages; strip control chars (ESC, CR, 0x9B...) so they cannot drive the terminal.
+    private static string Clean(string text) => string.Concat(text.Select(c => char.IsControl(c) ? '?' : c));
 
     private static int Fail(string message)
     {
