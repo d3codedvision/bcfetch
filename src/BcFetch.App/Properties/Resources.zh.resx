@@ -577,4 +577,43 @@ Bandcamp的链接如下所示：http://[艺术家名称].bandcamp.com/album/[alb
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>文件名格式必须以 .mp3 结尾。</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>在上方粘贴专辑、曲目或艺术家链接，每行一个。</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>选择保存位置。</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>点击“{0}”。</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>链接的格式如：{0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>要下载完整唱片目录，请粘贴艺术家页面并开启“{0}”。</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>在此粘贴专辑或艺术家链接，每行一个</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>粘贴更多链接以加入队列</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>第 {0} 首，共 {1} 首</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>还剩 {0} 秒</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>还剩 {0} 分钟</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} 已完成</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} 已跳过</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} 失败</value>
+  </data>
 </root>

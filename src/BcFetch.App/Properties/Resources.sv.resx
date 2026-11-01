@@ -577,4 +577,43 @@ Rekommenderat värde = 7</value>
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Filnamnsformatet måste sluta på .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Klistra in länkar till album, spår eller artister ovan, en per rad.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Välj var de ska sparas.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Klicka på ”{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>En länk ser ut så här: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>För en hel diskografi, klistra in artistsidan och slå på ”{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Klistra in länkar till album eller artister här, en per rad</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Klistra in fler länkar för att lägga till dem i kön</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} av {1} spår</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>{0} s kvar</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>{0} min kvar</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} klara</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} överhoppade</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} misslyckade</value>
+  </data>
 </root>

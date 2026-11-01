@@ -176,4 +176,43 @@
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>ファイル名の形式は .mp3 で終わる必要があります。</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>上にアルバム、トラック、アーティストのリンクを1行に1つずつ貼り付けます。</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>保存先を選びます。</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>「{0}」を押します。</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>リンクは次のような形式です: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>ディスコグラフィ全体は、アーティストのページを貼り付けて「{0}」をオンにします。</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>アルバムまたはアーティストのリンクを1行に1つずつここに貼り付けます</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>さらにリンクを貼り付けるとキューに追加されます</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{1} 曲中 {0} 曲</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>残り {0} 秒</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>残り {0} 分</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} 完了</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} スキップ</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} 失敗</value>
+  </data>
 </root>

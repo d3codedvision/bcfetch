@@ -577,4 +577,43 @@ Colar páginas de artistas: http://[artista]/.bandcamp.com e marque “☑ Baixa
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>O formato do nome do arquivo deve terminar em .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Cole acima links de álbuns, faixas ou artistas, um por linha.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Escolha onde salvá-los.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Clique em “{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Um link tem este formato: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Para uma discografia completa, cole a página do artista e ative “{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Cole aqui links de álbuns ou artistas, um por linha</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Cole mais links para adicioná-los à fila</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} de {1} faixas</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>faltam {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>faltam {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} concluídas</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} ignoradas</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} com falha</value>
+  </data>
 </root>

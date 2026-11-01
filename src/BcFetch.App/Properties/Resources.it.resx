@@ -636,4 +636,43 @@ Incolla l'URL di una pagina artista http://[artista].bandcamp.com e spunta «☑
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Il formato del nome file deve terminare con .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Incolla qui sopra link di album, brani o artisti, uno per riga.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Scegli dove salvarli.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Premi «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Un link ha questo aspetto: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Per un'intera discografia, incolla la pagina dell'artista e attiva «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Incolla qui link di album o artisti, uno per riga</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Incolla altri link per aggiungerli alla coda</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} di {1} brani</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>mancano {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>mancano {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} completati</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} saltati</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} non riusciti</value>
+  </data>
 </root>

@@ -1244,5 +1244,13 @@ namespace BcFetch.App.Properties {
                 return ResourceManager.GetString("labelLog", resourceCulture);
             }
         }
+            /// <summary>
+        ///   Looks up a localized string similar to Paste album or artist links here, one per line.
+        /// </summary>
+        public static string urlsPlaceholder {
+            get {
+                return ResourceManager.GetString("urlsPlaceholder", resourceCulture);
+            }
+        }
     }
 }

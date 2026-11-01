@@ -627,4 +627,43 @@
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Η μορφή ονόματος αρχείου πρέπει να τελειώνει σε .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Επικολλήστε παραπάνω συνδέσμους άλμπουμ, κομματιών ή καλλιτεχνών, έναν ανά γραμμή.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Επιλέξτε πού θα αποθηκευτούν.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Πατήστε «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Ένας σύνδεσμος μοιάζει έτσι: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Για ολόκληρη τη δισκογραφία, επικολλήστε τη σελίδα του καλλιτέχνη και ενεργοποιήστε το «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Επικολλήστε εδώ συνδέσμους άλμπουμ ή καλλιτεχνών, έναν ανά γραμμή</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Επικολλήστε κι άλλους συνδέσμους για να μπουν στην ουρά</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} από {1} κομμάτια</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>απομένουν {0} δ</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>απομένουν {0} λ</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} έτοιμα</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} παραλείφθηκαν</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} απέτυχαν</value>
+  </data>
 </root>

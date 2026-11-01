@@ -72,6 +72,14 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         // The TextBox template fades its placeholder to 50% on the element itself, which a style cannot override and
         // which halves its contrast (2:1); the placeholder colour token is already the quiet tone.
+        // Empty state of the log panel; shown until the first line is logged
+        var discography = Res.checkBoxDownloadDiscography.Replace("_", "");
+        EmptyStep1.Text = Tr.Get("emptyStep1");
+        EmptyStep2.Text = Tr.Get("emptyStep2");
+        EmptyStep3.Text = Tr.Get("emptyStep3", Res.buttonStart.Replace("_", ""));
+        EmptyExample.Text = Tr.Get("emptyExample", "https://artist.bandcamp.com/album/name");
+        EmptyDiscography.Text = Tr.Get("emptyDiscography", discography);
+
         KeyboardScrolling.Enable(LogScroll);
         TrackList.TemplateApplied += (_, e) =>
         {
@@ -476,6 +484,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LogText.Inlines.Add(stamp);
         LogText.Inlines.Add(text);
         _logLines.Add((stamp, text, level));
+        EmptyState.IsVisible = false;
         ColorLogLine(stamp, text, level);
 
         // Re-laying out a long log on every line gets slower as it grows (3,000 lines took 11 s), so the window keeps

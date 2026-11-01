@@ -577,4 +577,43 @@ Umetni stranice izvođača: http://[artist].bandcamp.com i označi „☑ Preuzm
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Format naziva datoteke mora završavati s .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Zalijepite gore poveznice na albume, pjesme ili izvođače, jednu po retku.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Odaberite gdje ih spremiti.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Kliknite „{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Poveznica izgleda ovako: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Za cijelu diskografiju zalijepite stranicu izvođača i uključite „{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Zalijepite ovdje poveznice na albume ili izvođače, jednu po retku</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Zalijepite još poveznica da ih dodate u red</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} od {1} pjesama</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>preostalo {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>preostalo {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>gotovo: {0}</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>preskočeno: {0}</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>neuspjelo: {0}</value>
+  </data>
 </root>

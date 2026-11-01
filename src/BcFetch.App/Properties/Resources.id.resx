@@ -564,4 +564,43 @@ Tempel halaman artis: http://[artis].bandcamp.com dan centang "☑ Unduh diskogr
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Format nama berkas harus diakhiri dengan .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Tempel tautan album, lagu, atau artis di atas, satu per baris.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Pilih tempat menyimpannya.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Tekan “{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Tautan terlihat seperti ini: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Untuk seluruh diskografi, tempel halaman artis dan aktifkan “{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Tempel tautan album atau artis di sini, satu per baris</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Tempel lebih banyak tautan untuk menambahkannya ke antrean</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} dari {1} lagu</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>sisa {0} dtk</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>sisa {0} mnt</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} selesai</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} dilewati</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} gagal</value>
+  </data>
 </root>

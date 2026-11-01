@@ -286,4 +286,43 @@
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Formatul numelui de fișier trebuie să se termine cu .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Lipește mai sus linkuri către albume, piese sau artiști, câte unul pe rând.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Alege unde să fie salvate.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Apasă „{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Un link arată așa: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Pentru o discografie întreagă, lipește pagina artistului și activează „{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Lipește aici linkuri către albume sau artiști, câte unul pe rând</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Lipește mai multe linkuri pentru a le adăuga în coadă</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} din {1} piese</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>mai sunt {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>mai sunt {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} terminate</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} omise</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} eșuate</value>
+  </data>
 </root>

@@ -620,4 +620,43 @@ Lim inn artistsider: https://[artist].bandcamp.com og velg "☑ Last ned artistd
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Filnavnformatet må slutte på .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Lim inn lenker til album, spor eller artister ovenfor, én per linje.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Velg hvor de skal lagres.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Trykk «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>En lenke ser slik ut: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>For en hel diskografi, lim inn artistsiden og slå på «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Lim inn lenker til album eller artister her, én per linje</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Lim inn flere lenker for å legge dem i køen</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} av {1} spor</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>{0} s igjen</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>{0} min igjen</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} ferdige</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} hoppet over</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} mislyktes</value>
+  </data>
 </root>

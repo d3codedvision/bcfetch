@@ -576,4 +576,43 @@ Zalecana wartość = 0.2</value>
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Format nazwy pliku musi kończyć się na .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Wklej powyżej linki do albumów, utworów lub wykonawców, po jednym w wierszu.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Wybierz, gdzie je zapisać.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Kliknij „{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Link wygląda tak: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Aby pobrać całą dyskografię, wklej stronę wykonawcy i włącz „{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Wklej tutaj linki do albumów lub wykonawców, po jednym w wierszu</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Wklej więcej linków, aby dodać je do kolejki</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} z {1} utworów</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>jeszcze {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>jeszcze {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>gotowe: {0}</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>pominięte: {0}</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>nieudane: {0}</value>
+  </data>
 </root>

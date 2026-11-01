@@ -578,4 +578,43 @@ http://[artist].bandcamp.com/track/[track]
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Формат имени файла должен заканчиваться на .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Вставьте выше ссылки на альбомы, треки или исполнителей, по одной в строке.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Выберите, куда их сохранить.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Нажмите «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Ссылка выглядит так: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Для всей дискографии вставьте страницу исполнителя и включите «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Вставьте сюда ссылки на альбомы или исполнителей, по одной в строке</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Вставьте ещё ссылки, чтобы добавить их в очередь</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} из {1} треков</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>осталось {0} с</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>осталось {0} мин</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>готово: {0}</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>пропущено: {0}</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>не удалось: {0}</value>
+  </data>
 </root>

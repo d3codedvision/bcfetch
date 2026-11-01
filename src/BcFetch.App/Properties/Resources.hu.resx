@@ -577,4 +577,43 @@ Ajánlott érték = 4</value>
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>A fájlnévformátumnak .mp3-ra kell végződnie.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Illessz be fent albumok, számok vagy előadók hivatkozásait, soronként egyet.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Válaszd ki, hová mentse őket.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Kattints a(z) „{0}” gombra.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Egy hivatkozás így néz ki: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Egy teljes diszkográfiához illeszd be az előadó oldalát, és kapcsold be a(z) „{0}” beállítást.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Illessz ide album- vagy előadói hivatkozásokat, soronként egyet</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Illessz be további hivatkozásokat a sorhoz adáshoz</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0}/{1} szám</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>{0} mp van hátra</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>{0} perc van hátra</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} kész</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} kihagyva</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} sikertelen</value>
+  </data>
 </root>

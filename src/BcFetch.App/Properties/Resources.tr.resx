@@ -570,4 +570,43 @@ Sanatçı sayfalarını yapıştırın: http://[sanatçı].bandcamp.com ve tüm 
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Dosya adı biçimi .mp3 ile bitmelidir.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Yukarıya albüm, parça veya sanatçı bağlantılarını satır başına bir tane olacak şekilde yapıştırın.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Nereye kaydedileceğini seçin.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>“{0}” düğmesine basın.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Bir bağlantı şöyle görünür: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Tüm diskografi için sanatçı sayfasını yapıştırın ve “{0}” seçeneğini açın.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Albüm veya sanatçı bağlantılarını buraya satır başına bir tane yapıştırın</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Kuyruğa eklemek için daha fazla bağlantı yapıştırın</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} / {1} parça</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>{0} sn kaldı</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>{0} dk kaldı</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} bitti</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} atlandı</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} başarısız</value>
+  </data>
 </root>

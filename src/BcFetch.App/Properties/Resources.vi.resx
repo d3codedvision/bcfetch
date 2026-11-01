@@ -511,4 +511,43 @@ Nếu không, một số băng thông/thời gian sẽ được tiết kiệm.</
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Định dạng tên tệp phải kết thúc bằng .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Dán liên kết album, bài hát hoặc nghệ sĩ vào phía trên, mỗi dòng một liên kết.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Chọn nơi lưu chúng.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Nhấn “{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Một liên kết trông như sau: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Để tải toàn bộ đĩa nhạc, dán trang của nghệ sĩ và bật “{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Dán liên kết album hoặc nghệ sĩ vào đây, mỗi dòng một liên kết</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Dán thêm liên kết để thêm vào hàng đợi</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0}/{1} bài</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>còn {0} giây</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>còn {0} phút</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} xong</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} bỏ qua</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} lỗi</value>
+  </data>
 </root>

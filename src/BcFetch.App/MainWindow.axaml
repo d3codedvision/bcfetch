@@ -94,7 +94,7 @@
                 AutomationProperties.Name="{x:Static p:Resources.labelUrls}"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 TextWrapping="Wrap"
-                PlaceholderText="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
+                PlaceholderText="{x:Static p:Resources.urlsPlaceholder}" />
 
             <StackPanel Grid.Row="1" Margin="0,0,0,12" Spacing="8">
                 <Label
@@ -187,15 +187,47 @@
                 Background="{DynamicResource BcPanel}"
                 BorderThickness="1"
                 CornerRadius="4">
-                <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
-                    <SelectableTextBlock
-                        x:Name="LogText"
-                        Margin="12,10"
-                        AutomationProperties.Name="{x:Static p:Resources.labelLog}"
-                        FontFamily="{StaticResource BcMono}"
-                        FontSize="12.5"
-                        LineHeight="20" />
-                </ScrollViewer>
+                <Grid>
+                    <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
+                        <SelectableTextBlock
+                            x:Name="LogText"
+                            Margin="12,10"
+                            AutomationProperties.Name="{x:Static p:Resources.labelLog}"
+                            FontFamily="{StaticResource BcMono}"
+                            FontSize="12.5"
+                            LineHeight="20" />
+                    </ScrollViewer>
+                    <!-- Empty state: what to do first, until the first line is logged. -->
+                    <StackPanel
+                        x:Name="EmptyState"
+                        Margin="16,14"
+                        IsHitTestVisible="False"
+                        Spacing="8">
+                        <Grid ColumnDefinitions="24,*">
+                            <TextBlock Foreground="{DynamicResource BcMuted}" FontFamily="{StaticResource BcMono}" FontSize="12" Text="1" />
+                            <TextBlock x:Name="EmptyStep1" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnDefinitions="24,*">
+                            <TextBlock Foreground="{DynamicResource BcMuted}" FontFamily="{StaticResource BcMono}" FontSize="12" Text="2" />
+                            <TextBlock x:Name="EmptyStep2" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnDefinitions="24,*">
+                            <TextBlock Foreground="{DynamicResource BcMuted}" FontFamily="{StaticResource BcMono}" FontSize="12" Text="3" />
+                            <TextBlock x:Name="EmptyStep3" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <TextBlock
+                            x:Name="EmptyExample"
+                            Margin="0,10,0,0"
+                            FontSize="12.5"
+                            Foreground="{DynamicResource BcMuted}"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="EmptyDiscography"
+                            FontSize="12.5"
+                            Foreground="{DynamicResource BcMuted}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </Grid>
             </Border>
         </Grid>
         <!-- Footer: readouts left, actions right. -->

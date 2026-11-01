@@ -636,4 +636,43 @@ Pegue páginas de artista: http://[artista].bandcamp.com y cheque «☑ Descarga
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>El formato del nombre de archivo debe terminar en .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Pega arriba enlaces de álbumes, pistas o artistas, uno por línea.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Elige dónde guardarlos.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Pulsa «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Un enlace tiene este aspecto: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Para una discografía completa, pega la página del artista y activa «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Pega aquí enlaces de álbumes o artistas, uno por línea</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Pega más enlaces para añadirlos a la cola</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} de {1} pistas</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>faltan {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>faltan {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} hechas</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} omitidas</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} fallidas</value>
+  </data>
 </root>

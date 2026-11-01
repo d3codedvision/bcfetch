@@ -637,4 +637,43 @@ herunterzuladen.</value>
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Das Dateinamenformat muss auf .mp3 enden.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Füge oben Album-, Titel- oder Interpretenlinks ein, einen pro Zeile.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Wähle, wo sie gespeichert werden sollen.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Klicke auf „{0}“.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Ein Link sieht so aus: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Für eine ganze Diskographie füge die Interpretenseite ein und aktiviere „{0}“.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Füge hier Album- oder Interpretenlinks ein, einen pro Zeile</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Füge weitere Links ein, um sie zur Warteschlange hinzuzufügen</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} von {1} Titeln</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>noch {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>noch {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} fertig</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} übersprungen</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} fehlgeschlagen</value>
+  </data>
 </root>

@@ -637,4 +637,43 @@ de leurs albums.</value>
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Le format du nom de fichier doit se terminer par .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Collez ci-dessus des liens d’albums, de pistes ou d’artistes, un par ligne.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Choisissez où les enregistrer.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Cliquez sur « {0} ».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Un lien ressemble à {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Pour toute une discographie, collez la page de l’artiste et activez « {0} ».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Collez ici des liens d’albums ou d’artistes, un par ligne</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Collez d’autres liens pour les ajouter à la file d’attente</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} sur {1} pistes</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>{0} s restantes</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>{0} min restantes</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} terminé(s)</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} ignoré(s)</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} en échec</value>
+  </data>
 </root>

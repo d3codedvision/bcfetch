@@ -254,4 +254,43 @@
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>La formato de dosiernomo devas fini per .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Algluu supre ligilojn al albumoj, pecoj aŭ artistoj, unu po linio.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Elektu kie konservi ilin.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Premu “{0}”.</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Ligilo aspektas tiel: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Por tuta diskografio, algluu la artistan paĝon kaj ŝaltu “{0}”.</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Algluu ĉi tie ligilojn al albumoj aŭ artistoj, unu po linio</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Algluu pliajn ligilojn por aldoni ilin al la vico</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} el {1} pecoj</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>restas {0} s</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>restas {0} min</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>{0} finita(j)</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>{0} preterlasita(j)</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>{0} malsukcesinta(j)</value>
+  </data>
 </root>

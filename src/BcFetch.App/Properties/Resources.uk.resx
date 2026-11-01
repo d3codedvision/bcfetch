@@ -623,4 +623,43 @@ URL-адреса Bandcamp виглядає так: http: // [artist] .bandcamp.c
   <data name="settingsInvalidFileName" xml:space="preserve">
     <value>Формат імені файлу має закінчуватися на .mp3.</value>
   </data>
+  <data name="emptyStep1" xml:space="preserve">
+    <value>Вставте вище посилання на альбоми, треки чи виконавців, по одному в рядку.</value>
+  </data>
+  <data name="emptyStep2" xml:space="preserve">
+    <value>Виберіть, куди їх зберегти.</value>
+  </data>
+  <data name="emptyStep3" xml:space="preserve">
+    <value>Натисніть «{0}».</value>
+  </data>
+  <data name="emptyExample" xml:space="preserve">
+    <value>Посилання виглядає так: {0}</value>
+  </data>
+  <data name="emptyDiscography" xml:space="preserve">
+    <value>Для всієї дискографії вставте сторінку виконавця й увімкніть «{0}».</value>
+  </data>
+  <data name="urlsPlaceholder" xml:space="preserve">
+    <value>Вставте сюди посилання на альбоми чи виконавців, по одному в рядку</value>
+  </data>
+  <data name="urlsPlaceholderQueue" xml:space="preserve">
+    <value>Вставте ще посилання, щоб додати їх до черги</value>
+  </data>
+  <data name="progressTracks" xml:space="preserve">
+    <value>{0} з {1} треків</value>
+  </data>
+  <data name="progressTimeLeftSeconds" xml:space="preserve">
+    <value>залишилось {0} с</value>
+  </data>
+  <data name="progressTimeLeftMinutes" xml:space="preserve">
+    <value>залишилось {0} хв</value>
+  </data>
+  <data name="summaryDone" xml:space="preserve">
+    <value>готово: {0}</value>
+  </data>
+  <data name="summarySkipped" xml:space="preserve">
+    <value>пропущено: {0}</value>
+  </data>
+  <data name="summaryFailed" xml:space="preserve">
+    <value>не вдалося: {0}</value>
+  </data>
 </root>
