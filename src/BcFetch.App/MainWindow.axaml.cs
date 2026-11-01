@@ -46,6 +46,7 @@ internal sealed partial class MainWindow : Window
     {
         _settingsService = settingsService;
         _userSettings = settingsService.GetUserSettings();
+        LabelAppVersion.Text = Constants.APP_VERSION_FORMATTED;
         _downloadManager = downloadManager;
         _updatesService = updatesService;
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));

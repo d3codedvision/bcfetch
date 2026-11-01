@@ -15,12 +15,19 @@
     <DockPanel Background="Transparent">
         <!-- Header: wordmark left, quiet actions right. -->
         <Grid DockPanel.Dock="Top" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
-            <TextBlock
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                FontSize="22"
-                FontWeight="Bold"
-                Text="bcfetch" />
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Text="bcfetch" />
+                <TextBlock
+                    x:Name="LabelAppVersion"
+                    Margin="0,0,0,3"
+                    VerticalAlignment="Bottom"
+                    FontSize="12"
+                    Foreground="{DynamicResource BcMuted}" />
+            </StackPanel>
             <TextBlock
                 x:Name="LabelNewVersion"
                 Grid.Column="1"
