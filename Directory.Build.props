@@ -4,7 +4,7 @@
     <AppendPlatformToOutputPath>false</AppendPlatformToOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
-    <VersionPrefix>0.3.7</VersionPrefix>
+    <VersionPrefix>0.3.8</VersionPrefix>
     <Configurations>Debug;Release</Configurations>
     <Platforms>x64</Platforms>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>

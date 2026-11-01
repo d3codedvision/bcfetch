@@ -1,7 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.3.8
 
+Keyboard and screen-reader pass, and a correction to 0.3.7.
+
+* Tab follows the screen: About, Settings, URL box, folder field, Browse, discography switch, track list, log, then Cancel/Download. Before, Download came right after Settings.
+* The track list and the log can be scrolled with the keyboard (arrow keys, Page Up/Down, Home, End) and show an accent border while they have focus.
+* A run's end is announced to screen readers ("Downloads finished", or how many tracks failed). Not tested with a real screen reader.
+* The window's minimum height is 520 (was 480) and the log keeps at least four lines at that size. The Settings window can be resized (minimum 720 x 440); its content scrolls.
 * The URL box help text is now really readable. 0.3.7 changed its colour, but the TextBox template still faded the text to 50%, so it stayed at about 2:1; it now measures 5.4:1 in the light theme and 6.5:1 in the dark theme.
 
 ## 0.3.7
