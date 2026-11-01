@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BcFetch.Net;
+using BcFetch.Core;
 
 namespace BcFetch.Core.Updates;
 
@@ -16,7 +17,7 @@ internal sealed class UpdatesService : IUpdatesService
 {
     private readonly IHttpService _httpService;
 
-    private const string LATEST_RELEASE_URL = "https://api.github.com/repos/d3codedvision/bcfetch/releases/latest";
+    private const string LATEST_RELEASE_URL = $"https://api.github.com/repos/{Constants.GITHUB_REPO}/releases/latest";
     private const string RELEASE_ASSET_NAME = "BcFetch.zip";
 
     public UpdatesService(IHttpService httpService)

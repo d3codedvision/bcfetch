@@ -1,10 +1,13 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 namespace BcFetch.Core;
 
 internal static class Constants
 {
+    /// <summary>GitHub "owner/name" of the project. Every URL below derives from it.</summary>
+    public const string GITHUB_REPO = "d3codedvision/bcfetch";
+
     /// <summary>
     /// The version of BcFetch.
     /// </summary>
@@ -18,25 +21,25 @@ internal static class Constants
     /// <summary>
     /// The URL redirecting to the help page on translating the app on GitHub.
     /// </summary>
-    public const string URL_HELP_TRANSLATE = "https://github.com/Otiel/BcFetch/blob/main/docs/help-translate.md";
+    public const string URL_HELP_TRANSLATE = $"https://github.com/{GITHUB_REPO}/blob/main/docs/help-translate.md";
 
     /// <summary>
     /// The URL redirecting to the issues page on GitHub.
     /// </summary>
-    public const string URL_ISSUES = "https://github.com/Otiel/BcFetch/issues";
+    public const string URL_ISSUES = $"https://github.com/{GITHUB_REPO}/issues";
 
     /// <summary>
     /// The URL redirecting to the latest release on GitHub.
     /// </summary>
-    public const string URL_LATEST_RELEASE = "https://github.com/Otiel/BcFetch/releases/latest";
+    public const string URL_LATEST_RELEASE = $"https://github.com/{GITHUB_REPO}/releases/latest";
 
     /// <summary>
     /// The URL redirecting to the releases page on GitHub.
     /// </summary>
-    public const string URL_RELEASES = "https://github.com/Otiel/BcFetch/releases";
+    public const string URL_RELEASES = $"https://github.com/{GITHUB_REPO}/releases";
 
     /// <summary>
     /// The website URL of BcFetch.
     /// </summary>
-    public const string URL_WEBSITE = "https://github.com/Otiel/BcFetch";
+    public const string URL_WEBSITE = $"https://github.com/{GITHUB_REPO}";
 }
