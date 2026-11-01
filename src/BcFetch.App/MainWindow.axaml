@@ -11,7 +11,8 @@
     MinHeight="440"
     Icon="/Assets/Cloud.png"
     WindowStartupLocation="CenterScreen">
-    <DockPanel>
+    <!-- Transparent background: empty gaps must be hit-testable, or drops over them are ignored. -->
+    <DockPanel Background="Transparent">
         <!-- Header: wordmark left, quiet actions right. -->
         <Grid DockPanel.Dock="Top" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
             <TextBlock
