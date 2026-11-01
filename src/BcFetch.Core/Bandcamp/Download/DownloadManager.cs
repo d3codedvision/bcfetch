@@ -302,9 +302,9 @@ internal sealed class DownloadManager : IDownloadManager
                 trackDownloaded = true;
                 DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{track.Title}\" from url: {track.Mp3Url}", DownloadProgressChangedLevel.VerboseInfo));
             }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.TooManyRequests)
+            catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
             {
-                // Connection closed probably because no response from Bandcamp
+                // Any network or IO failure (429, timeout, dropped connection...) counts as a failed try; cancellation still propagates
                 _logger.Error(ex);
 
                 if (tries + 1 < _userSettings.DownloadMaxTries)
@@ -322,13 +322,26 @@ internal sealed class DownloadManager : IDownloadManager
                 if (_userSettings.ModifyTags ||
                     (_userSettings.SaveCoverArtInTags && artwork != null))
                 {
-                    _tagService.SaveTagsInTrack(track, album, artwork, cancellationToken);
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Tags saved for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.VerboseInfo));
+                    try
+                    {
+                        _tagService.SaveTagsInTrack(track, album, artwork, cancellationToken);
+                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Tags saved for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.VerboseInfo));
+                    }
+                    catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
+                    {
+                        // A corrupt download counts as a failed try instead of aborting every album
+                        _logger.Error(ex);
+                        trackDownloaded = false;
+                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to save tags for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\": {ex.Message}", DownloadProgressChangedLevel.Warning));
+                    }
                 }
 
-                // Note the file as downloaded
-                currentFile.Downloaded = true;
-                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
+                if (trackDownloaded)
+                {
+                    // Note the file as downloaded
+                    currentFile.Downloaded = true;
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
+                }
             }
 
             tries++;
@@ -392,9 +405,9 @@ internal sealed class DownloadManager : IDownloadManager
                 artwork = await artworkStream.ToArrayAsync(cancellationToken).ConfigureAwait(false);
                 artworkDownloaded = true;
             }
-            catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.TooManyRequests)
+            catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
             {
-                // Connection closed probably because no response from Bandcamp
+                // Any network or IO failure (429, timeout, dropped connection...) counts as a failed try; cancellation still propagates
                 _logger.Error(ex);
 
                 if (tries < _userSettings.DownloadMaxTries)
