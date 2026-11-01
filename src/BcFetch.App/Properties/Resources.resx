@@ -241,6 +241,12 @@ If not, some bandwidth/time is saved.</value>
   <data name="checkBoxSaveCoverArtInTags_ToolTip" xml:space="preserve">
     <value>Saves cover art in the track tags.</value>
   </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Show a notification when _downloads finish</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Sends a desktop notification when all downloads are done. Needs notify-send (libnotify-bin).</value>
+  </data>
   <data name="checkBoxVerboseLog" xml:space="preserve">
     <value>Show _verbose log</value>
   </data>

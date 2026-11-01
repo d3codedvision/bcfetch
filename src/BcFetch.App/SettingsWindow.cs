@@ -21,6 +21,7 @@ internal sealed class SettingsWindow : Window
     [
         ("General", [
             ("CheckForUpdates", "checkBoxCheckForUpdates", null),
+            ("NotifyOnFinish", "checkBoxNotifyOnFinish", "checkBoxNotifyOnFinish_ToolTip"),
             ("ShowVerboseLog", "checkBoxVerboseLog", "checkBoxVerboseLog_ToolTip"),
             ("Language", "labelLanguage", null),
             ("Theme", "labelTheme", null),

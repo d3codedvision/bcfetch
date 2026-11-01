@@ -99,6 +99,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _lastSpeedUpdate = DateTime.Now;
             _timer.Start();
             await _downloadManager.StartDownloadsAsync(_downloadCts.Token);
+            if (_userSettings.NotifyOnFinish) Notifier.Send("bcfetch", "Downloads finished");
         }
         catch (OperationCanceledException)
         {

@@ -29,6 +29,7 @@ Version: $VERSION
 Architecture: amd64
 Maintainer: d3codedvision
 Depends: libfontconfig1, libx11-6, libice6, libsm6
+Recommends: libnotify-bin
 Description: Download albums from Bandcamp
  Avalonia GUI port of BandcampDownloader.
 CTL

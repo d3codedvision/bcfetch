@@ -224,6 +224,9 @@ public interface IUserSettings
     [Option(DefaultValue = true)]
     bool RetrieveFilesSize { get; set; }
 
+    [Option(DefaultValue = true)]
+    bool NotifyOnFinish { get; set; }
+
     [Option(DefaultValue = false)]
     bool SaveCoverArtInFolder { get; set; }
 
