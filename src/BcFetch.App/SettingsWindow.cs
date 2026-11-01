@@ -22,7 +22,6 @@ internal sealed class SettingsWindow : Window
         ("General", [
             ("CheckForUpdates", "checkBoxCheckForUpdates", null),
             ("ShowVerboseLog", "checkBoxVerboseLog", "checkBoxVerboseLog_ToolTip"),
-            ("EnableApplicationSounds", "checkBoxEnableApplicationSounds", "checkBoxEnableApplicationSounds_ToolTip"),
             ("Language", "labelLanguage", null),
             ("Theme", "labelTheme", null),
         ]),
@@ -94,22 +93,22 @@ internal sealed class SettingsWindow : Window
     private readonly Dictionary<string, object> _values = new();
     private readonly Dictionary<string, Control> _controls = new();
     private readonly HashSet<string> _invalid = new();
-    private readonly Button _saveButton = new() { Content = T("buttonSave"), MinWidth = 90, IsDefault = true };
+    private readonly Button _saveButton = new() { Content = T("buttonSave"), MinWidth = 90, IsDefault = true, Classes = { "primary" } };
     private bool _loading;
 
     public SettingsWindow(ISettingsService settingsService, bool activeDownloads)
     {
         _settingsService = settingsService;
         Title = T("windowSettings_Title");
-        Width = 520;
-        Height = 480;
+        Width = 720;
+        Height = 540;
         CanResize = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-        var tabs = new TabControl();
+        var tabs = new TabControl { TabStripPlacement = Dock.Left };
         foreach (var (tab, rows) in Tabs)
         {
-            var panel = new StackPanel { Margin = new(12), Spacing = 8 };
+            var panel = new StackPanel { Margin = new(24, 12, 24, 12), Spacing = 12 };
             foreach (var (prop, label, tip) in rows)
             {
                 panel.Children.Add(BuildRow(prop, label, tip));
@@ -138,13 +137,13 @@ internal sealed class SettingsWindow : Window
         cancel.Click += (_, _) => Close();
         _saveButton.Click += (_, _) => { Save(); Close(); };
 
-        var footer = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Right, Margin = new(12, 0, 12, 12), Children = { reset, _saveButton, cancel } };
+        var footer = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Right, Margin = new(20, 8, 20, 18), Children = { reset, _saveButton, cancel } };
         var root = new DockPanel();
         DockPanel.SetDock(footer, Dock.Bottom);
         root.Children.Add(footer);
         if (activeDownloads)
         {
-            var info = new TextBlock { Text = T("labelSettingsInfo"), Margin = new(12, 6), Foreground = Brushes.Gray };
+            var info = new TextBlock { Text = T("labelSettingsInfo"), Margin = new(24, 6), Foreground = Brushes.Gray };
             DockPanel.SetDock(info, Dock.Bottom);
             root.Children.Add(info);
         }

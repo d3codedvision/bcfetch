@@ -49,7 +49,7 @@ dotnet test
 
 ## Credits and license
 
-Based on BandcampDownloader by Otiel, MIT licensed. See [LICENSE](LICENSE).
+Based on BandcampDownloader by Otiel, MIT licensed. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Known issues
 

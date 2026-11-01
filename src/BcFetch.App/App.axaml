@@ -3,7 +3,103 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     RequestedThemeVariant="Default">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="BcMuted" Color="#5E6D6B" />
+                    <SolidColorBrush x:Key="BcLine" Color="#CBD4D2" />
+                    <SolidColorBrush x:Key="BcPanel" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="BcAccent" Color="#0E7C86" />
+                    <SolidColorBrush x:Key="BcOnAccent" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="BcDanger" Color="#B5392B" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="BcMuted" Color="#8A9A97" />
+                    <SolidColorBrush x:Key="BcLine" Color="#2C373D" />
+                    <SolidColorBrush x:Key="BcPanel" Color="#0D1114" />
+                    <SolidColorBrush x:Key="BcAccent" Color="#3FB8C4" />
+                    <SolidColorBrush x:Key="BcOnAccent" Color="#0A1B1D" />
+                    <SolidColorBrush x:Key="BcDanger" Color="#FF7A6B" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <FontFamily x:Key="BcMono">avares://bcfetch/Assets/Fonts#JetBrains Mono</FontFamily>
+        </ResourceDictionary>
+    </Application.Resources>
+
     <Application.Styles>
-        <FluentTheme />
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources x:Key="Light" Accent="#0E7C86" RegionColor="#F1F4F3" />
+                <ColorPaletteResources x:Key="Dark" Accent="#3FB8C4" RegionColor="#141A1E" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+
+        <Style Selector="Window">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <!-- Inputs: flat, one hairline, no inner glow. -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="{DynamicResource BcPanel}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BcLine}" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+        <Style Selector="TextBox.mono">
+            <Setter Property="FontFamily" Value="{StaticResource BcMono}" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <!-- Quiet text buttons for header actions. -->
+        <Style Selector="Button.quiet">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="{DynamicResource BcMuted}" />
+            <Setter Property="Padding" Value="10,6" />
+        </Style>
+        <Style Selector="Button.quiet:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource BcAccent}" />
+        </Style>
+
+        <!-- The one filled button. -->
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{DynamicResource BcAccent}" />
+            <Setter Property="Foreground" Value="{DynamicResource BcOnAccent}" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="22,9" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+        <Style Selector="Button.primary:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource BcAccent}" />
+            <Setter Property="Foreground" Value="{DynamicResource BcOnAccent}" />
+            <Setter Property="Opacity" Value="0.88" />
+        </Style>
+        <Style Selector="Button.primary:disabled /template/ ContentPresenter">
+            <Setter Property="Background" Value="{DynamicResource BcLine}" />
+            <Setter Property="Foreground" Value="{DynamicResource BcMuted}" />
+        </Style>
+        <Style Selector="Button.danger:not(:disabled)">
+            <Setter Property="Foreground" Value="{DynamicResource BcDanger}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BcDanger}" />
+        </Style>
+
+        <!-- Progress line under the header: thin, flat, accent. -->
+        <Style Selector="ProgressBar.line">
+            <Setter Property="MinHeight" Value="3" />
+            <Setter Property="Height" Value="3" />
+            <Setter Property="Background" Value="{DynamicResource BcLine}" />
+            <Setter Property="Foreground" Value="{DynamicResource BcAccent}" />
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="ProgressBar.line /template/ Border#PART_Indicator">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+
+        <Style Selector="TabItem">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="14,8" />
+        </Style>
     </Application.Styles>
 </Application>

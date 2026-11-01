@@ -5,90 +5,119 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:p="using:BcFetch.App.Properties"
     Title="bcfetch"
-    Width="815"
-    Height="440"
-    MinWidth="600"
-    MinHeight="400"
+    Width="860"
+    Height="560"
+    MinWidth="640"
+    MinHeight="440"
     Icon="/Assets/Cloud.png"
     WindowStartupLocation="CenterScreen">
-    <Grid Margin="10" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="6">
-        <Grid Grid.Row="0" Height="111">
-            <TextBox
-                x:Name="TextBoxUrls"
-                AcceptsReturn="True"
-                Watermark="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
-        </Grid>
-
-        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="5">
+    <DockPanel>
+        <!-- Header: wordmark left, quiet actions right. -->
+        <Grid DockPanel.Dock="Top" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
             <TextBlock
                 Grid.Column="0"
                 VerticalAlignment="Center"
-                Text="{x:Static p:Resources.labelDownloadsPath}" />
-            <TextBox
-                x:Name="TextBoxDownloadsPath"
-                Grid.Column="1"
-                ToolTip.Tip="{x:Static p:Resources.textBoxDownloadsPath_ToolTip}" />
-            <Button
-                x:Name="ButtonBrowse"
-                Grid.Column="2"
-                Click="ButtonBrowse_Click"
-                Content="{x:Static p:Resources.buttonBrowse}"
-                ToolTip.Tip="{x:Static p:Resources.buttonBrowse_ToolTip}" />
-        </Grid>
-
-        <CheckBox
-            x:Name="CheckBoxDownloadDiscography"
-            Grid.Row="2"
-            Content="{x:Static p:Resources.checkBoxDownloadDiscography}"
-            ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
-
-        <ProgressBar x:Name="ProgressBar" Grid.Row="3" Height="18" ShowProgressText="False" />
-
-        <Border
-            Grid.Row="4"
-            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
-            BorderThickness="1">
-            <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
-                <SelectableTextBlock x:Name="LogText" Margin="4" FontFamily="monospace" />
-            </ScrollViewer>
-        </Border>
-
-        <Grid Grid.Row="5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="5">
+                FontSize="22"
+                FontWeight="Bold"
+                Text="bcfetch" />
             <TextBlock
                 x:Name="LabelNewVersion"
-                Grid.Column="0"
+                Grid.Column="1"
+                Margin="16,0,0,0"
                 VerticalAlignment="Center"
                 Cursor="Hand"
-                Foreground="OrangeRed"
+                Foreground="{DynamicResource BcAccent}"
                 IsVisible="False"
-                PointerPressed="LabelNewVersion_PointerPressed" />
-            <TextBlock x:Name="LabelDownloadSpeed" Grid.Column="1" VerticalAlignment="Center" />
-            <TextBlock x:Name="LabelProgress" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" />
+                PointerPressed="LabelNewVersion_PointerPressed"
+                TextDecorations="Underline" />
             <Button
-                x:Name="ButtonStart"
                 Grid.Column="3"
-                MinWidth="100"
-                Click="ButtonStart_Click"
-                Content="{x:Static p:Resources.buttonStart}" />
+                Classes="quiet"
+                Click="ButtonAbout_Click"
+                Content="{x:Static p:Resources.labelListBoxItemAbout}" />
+            <Button
+                x:Name="ButtonOpenSettingsWindow"
+                Grid.Column="4"
+                Classes="quiet"
+                Click="ButtonOpenSettingsWindow_Click"
+                Content="{x:Static p:Resources.buttonOpenSettingsWindow}"
+                ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
+        </Grid>
+
+        <ProgressBar x:Name="ProgressBar" Classes="line" DockPanel.Dock="Top" ShowProgressText="False" />
+
+        <!-- Footer: readouts left, actions right. -->
+        <Grid DockPanel.Dock="Bottom" Margin="20,12,20,18" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
+            <TextBlock x:Name="LabelProgress" Grid.Column="0" VerticalAlignment="Center" FontFamily="{StaticResource BcMono}" FontSize="13" />
+            <TextBlock
+                x:Name="LabelDownloadSpeed"
+                Grid.Column="1"
+                Margin="16,0,0,0"
+                VerticalAlignment="Center"
+                FontFamily="{StaticResource BcMono}"
+                FontSize="13"
+                Foreground="{DynamicResource BcMuted}" />
             <Button
                 x:Name="ButtonStop"
-                Grid.Column="4"
-                MinWidth="100"
+                Grid.Column="3"
+                Classes="danger"
+                Padding="18,9"
                 Click="ButtonStop_Click"
                 Content="{x:Static p:Resources.buttonStop}"
                 IsEnabled="False" />
             <Button
-                x:Name="ButtonOpenSettingsWindow"
-                Grid.Column="5"
-                MinWidth="100"
-                Click="ButtonOpenSettingsWindow_Click"
-                Content="{x:Static p:Resources.buttonOpenSettingsWindow}"
-                ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
-            <Button
-                Grid.Column="6"
-                MinWidth="80"
-                Click="ButtonAbout_Click"
-                Content="{x:Static p:Resources.labelListBoxItemAbout}" />
+                x:Name="ButtonStart"
+                Grid.Column="4"
+                Classes="primary"
+                Click="ButtonStart_Click"
+                Content="{x:Static p:Resources.buttonStart}" />
         </Grid>
-    </Grid>
+
+        <Grid Margin="20,16,20,0" RowDefinitions="Auto,Auto,*" RowSpacing="12">
+            <TextBox
+                x:Name="TextBoxUrls"
+                Grid.Row="0"
+                Classes="mono"
+                Height="120"
+                AcceptsReturn="True"
+                Watermark="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
+
+            <StackPanel Grid.Row="1" Spacing="8">
+                <AccessText Foreground="{DynamicResource BcMuted}" Text="{x:Static p:Resources.labelDownloadsPath}" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                    <TextBox
+                        x:Name="TextBoxDownloadsPath"
+                        Grid.Column="0"
+                        Classes="mono"
+                        ToolTip.Tip="{x:Static p:Resources.textBoxDownloadsPath_ToolTip}" />
+                    <Button
+                        x:Name="ButtonBrowse"
+                        Grid.Column="1"
+                        Click="ButtonBrowse_Click"
+                        Content="{x:Static p:Resources.buttonBrowse}"
+                        ToolTip.Tip="{x:Static p:Resources.buttonBrowse_ToolTip}" />
+                </Grid>
+                <ToggleSwitch
+                    x:Name="CheckBoxDownloadDiscography"
+                    ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
+            </StackPanel>
+
+            <Border
+                Grid.Row="2"
+                Margin="0,0,0,0"
+                Background="{DynamicResource BcPanel}"
+                BorderBrush="{DynamicResource BcLine}"
+                BorderThickness="1"
+                CornerRadius="4">
+                <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
+                    <SelectableTextBlock
+                        x:Name="LogText"
+                        Margin="12,10"
+                        FontFamily="{StaticResource BcMono}"
+                        FontSize="12.5"
+                        LineHeight="20" />
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </DockPanel>
 </Window>

@@ -40,12 +40,13 @@ internal sealed partial class MainWindow : Window
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
         _timer.Tick += (_, _) => UpdateProgress();
 
+        CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
         TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
         TextBoxDownloadsPath.TextChanged += (_, _) => _userSettings.DownloadsPath = TextBoxDownloadsPath.Text;
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         CheckBoxDownloadDiscography.IsCheckedChanged += (_, _) => _userSettings.DownloadArtistDiscography = CheckBoxDownloadDiscography.IsChecked == true;
 
-        Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
+Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
     }
 
@@ -176,16 +177,18 @@ internal sealed partial class MainWindow : Window
         }
 
         var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        var color = level switch
+        var color = Color.Parse(level switch
         {
-            DownloadProgressChangedLevel.VerboseInfo or DownloadProgressChangedLevel.IntermediateSuccess => dark ? Colors.LightSkyBlue : Colors.MediumBlue,
-            DownloadProgressChangedLevel.Success => dark ? Colors.Lime : Colors.Green,
-            DownloadProgressChangedLevel.Warning => dark ? Colors.Orange : Colors.OrangeRed,
-            DownloadProgressChangedLevel.Error => Colors.Red,
-            _ => dark ? Colors.WhiteSmoke : Colors.Black,
-        };
+            DownloadProgressChangedLevel.VerboseInfo => dark ? "#8A9A97" : "#5E6D6B",
+            DownloadProgressChangedLevel.IntermediateSuccess => dark ? "#3FB8C4" : "#0E7C86",
+            DownloadProgressChangedLevel.Success => dark ? "#5CCB8A" : "#2E7D4F",
+            DownloadProgressChangedLevel.Warning => dark ? "#E3B341" : "#A86B00",
+            DownloadProgressChangedLevel.Error => dark ? "#FF7A6B" : "#B5392B",
+            _ => dark ? "#E3EAE8" : "#14201F",
+        });
+        var muted = Color.Parse(dark ? "#8A9A97" : "#5E6D6B");
 
-        LogText.Inlines.Add(new Avalonia.Controls.Documents.Run(DateTime.Now.ToString("HH:mm:ss") + " ") { Foreground = Brushes.Gray });
+        LogText.Inlines.Add(new Avalonia.Controls.Documents.Run(DateTime.Now.ToString("HH:mm:ss") + "  ") { Foreground = new SolidColorBrush(muted) });
         LogText.Inlines.Add(new Avalonia.Controls.Documents.Run(message + Environment.NewLine) { Foreground = new SolidColorBrush(color) });
         LogScroll.ScrollToEnd();
     }
