@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+* The AppImage runtime used by the build is now pinned and checksum-verified. The 0.2.0 AppImage was packed with an unpinned runtime; use 0.2.1.
+
 ## 0.2.0
 
 * Command-line mode: `bcfetch <url>...` downloads without opening a window. Options `-o/--output`, `-d/--discography`, `-v/--verbose`; exit code 0 on success, 1 on errors, 130 when cancelled. Run without arguments to open the window as before.
