@@ -37,6 +37,9 @@ public enum Language
     [Description("German (Deutsch)")]
     de,
 
+    [Description("Greek (Ελληνικά)")]
+    el,
+
     [Description("Hungarian (Magyar)")]
     hu,
 

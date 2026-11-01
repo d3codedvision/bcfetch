@@ -76,6 +76,18 @@ internal sealed class SettingsWindow : Window
         ]),
     ];
 
+    // Resource key of each tab title; the English tab name above stays the identifier.
+    private static readonly Dictionary<string, string> TabTitleKeys = new()
+    {
+        ["General"] = "labelListBoxItemGeneral",
+        ["Downloads"] = "labelListBoxItemDownloads",
+        ["Tags"] = "labelListBoxItemTags",
+        ["Cover art"] = "labelListBoxItemCoverArt",
+        ["Playlist"] = "labelListBoxItemPlaylist",
+        ["Network"] = "labelListBoxItemNetwork",
+        ["Advanced"] = "labelListBoxItemAdvanced",
+    };
+
     // A row is enabled only when all these bool properties are true (Proxy is handled separately).
     private static readonly Dictionary<string, string[]> EnabledWhen = new()
     {
@@ -120,7 +132,7 @@ internal sealed class SettingsWindow : Window
             }
 
             // Only General can change while downloading.
-            tabs.Items.Add(new TabItem { Header = tab, Content = new ScrollViewer { Content = panel }, IsEnabled = !activeDownloads || tab == "General" });
+            tabs.Items.Add(new TabItem { Header = T(TabTitleKeys[tab]) ?? tab, Content = new ScrollViewer { Content = panel }, IsEnabled = !activeDownloads || tab == "General" });
         }
 
         var reset = new Button { Content = T("labelButtonResetSettings") };

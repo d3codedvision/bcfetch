@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Greek (Ελληνικά) added to the languages: a full translation of the window, settings, dialogs, tooltips and messages. Like the other new translations it has not been reviewed by a native speaker, so corrections are welcome.
+* The tab names in Settings (General, Downloads, Tags, ...) now follow the selected language; they were English in every language.
 * Translations for the strings added since 0.2.0: the queue and retry buttons, log and notification messages, tray menu, track statuses and the settings for tray icon, finish notification and skipping finished albums. Covered: ar, ca, de, eo, es, fi, fr, hr, hu, id, it, ja, ko, nb-NO, nl, pl, pt, pt-BR, ro, ru, sv, tr, uk, vi, zh (arz stays English; it has only a few strings). These are my own translations and have not been reviewed by native speakers, so corrections are welcome. The command line and the Core log messages stay in English.
 
 ## 0.3.1

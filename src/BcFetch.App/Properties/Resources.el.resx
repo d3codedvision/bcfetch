@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="buttonBrowse_ToolTip" xml:space="preserve">
+    <value>Επιλογή φακέλου</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>_Ακύρωση</value>
+  </data>
+  <data name="buttonCheckForUpdates" xml:space="preserve">
+    <value>Έλεγχος _τώρα</value>
+  </data>
+  <data name="buttonDownloadUpdate" xml:space="preserve">
+    <value>_Λήψη νέας έκδοσης</value>
+  </data>
+  <data name="buttonOpenSettingsWindow" xml:space="preserve">
+    <value>_Ρυθμίσεις</value>
+  </data>
+  <data name="buttonOpenSettingsWindow_ToolTip" xml:space="preserve">
+    <value>Άνοιγμα ρυθμίσεων</value>
+  </data>
+  <data name="buttonResetSettings_ToolTip" xml:space="preserve">
+    <value>Επαναφορά των ρυθμίσεων στις προεπιλογές</value>
+  </data>
+  <data name="buttonSave" xml:space="preserve">
+    <value>_Αποθήκευση</value>
+  </data>
+  <data name="buttonStart" xml:space="preserve">
+    <value>_Λήψη</value>
+  </data>
+  <data name="buttonStop" xml:space="preserve">
+    <value>_Ακύρωση</value>
+  </data>
+  <data name="buttonViewChangelog" xml:space="preserve">
+    <value>_Προβολή</value>
+  </data>
+  <data name="changelogDownloadError" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η λήψη του ιστορικού αλλαγών από {0}</value>
+  </data>
+  <data name="checkBoxCheckForUpdates" xml:space="preserve">
+    <value>Έλεγχος για ενημερώσεις κατά την εκκίνηση</value>
+  </data>
+  <data name="checkBoxCheckForUpdates_ToolTip_Part" xml:space="preserve">
+    <value>Ερωτάται η ακόλουθη διεύθυνση κατά την εκκίνηση της εφαρμογής:</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg" xml:space="preserve">
+    <value>Μετατροπή σε JPG</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Μετατρέπει το εξώφυλλο σε JPG με συμπίεση 90 (εξαιρετικός συμβιβασμός μεταξύ μεγέθους και ποιότητας).</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize" xml:space="preserve">
+    <value>Περιορισμός μέγιστου πλάτους/ύψους</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize_ToolTip" xml:space="preserve">
+    <value>Αλλάζει το μέγεθος του εξωφύλλου στο καθορισμένο μέγιστο πλάτος/ύψος.</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg" xml:space="preserve">
+    <value>Μετατροπή σε JPG</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Μετατρέπει το εξώφυλλο σε JPG με συμπίεση 90 (εξαιρετικός συμβιβασμός μεταξύ μεγέθους και ποιότητας).</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize" xml:space="preserve">
+    <value>Περιορισμός μέγιστου πλάτους/ύψους</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize_ToolTip" xml:space="preserve">
+    <value>Αλλάζει το μέγεθος του εξωφύλλου στο καθορισμένο μέγιστο πλάτος/ύψος.</value>
+  </data>
+  <data name="checkBoxCreatePlaylist" xml:space="preserve">
+    <value>Δημιουργία λίστας αναπαραγωγής για κάθε άλμπουμ</value>
+  </data>
+  <data name="checkBoxCreatePlaylist_ToolTip" xml:space="preserve">
+    <value>Δημιουργεί ένα αρχείο λίστας κομματιών για κάθε άλμπουμ που λαμβάνεται.</value>
+  </data>
+  <data name="checkBoxDownloadDiscography" xml:space="preserve">
+    <value>Λήψη δισκογραφίας καλλιτέχνη</value>
+  </data>
+  <data name="checkBoxDownloadDiscography_ToolTip" xml:space="preserve">
+    <value>Κατεβάζει ολόκληρη τη δισκογραφία του καλλιτέχνη.</value>
+  </data>
+  <data name="checkBoxM3uExtended" xml:space="preserve">
+    <value>Χρήση εκτεταμένης μορφής (μόνο για M3U)</value>
+  </data>
+  <data name="checkBoxM3uExtended_ToolTip" xml:space="preserve">
+    <value>Λίστες M3U σε εκτεταμένη μορφή (οδηγίες που ξεκινούν με τον χαρακτήρα #).</value>
+  </data>
+  <data name="checkBoxModifyTags" xml:space="preserve">
+    <value>Τροποποίηση ετικετών των κομματιών (ID3)</value>
+  </data>
+  <data name="checkBoxModifyTags_ToolTip" xml:space="preserve">
+    <value>Τροποποιεί κάθε ετικέτα όπως ορίζεται παρακάτω.
+
+Αν είναι απενεργοποιημένο, καμία ετικέτα δεν αλλάζει, σαν να έχει οριστεί «Να μην τροποποιηθεί» για κάθε ετικέτα.</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize" xml:space="preserve">
+    <value>Ανάκτηση μεγέθους αρχείου πριν τη λήψη των κομματιών</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize_ToolTip" xml:space="preserve">
+    <value>Ανακτά το μέγεθος των αρχείων για να εμφανίζεται ακριβής πρόοδος.
+Αν είναι απενεργοποιημένο, εξοικονομείται εύρος ζώνης/χρόνος.</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder" xml:space="preserve">
+    <value>Αποθήκευση στον φάκελο</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder_ToolTip" xml:space="preserve">
+    <value>Κατεβάζει το εξώφυλλο στον φάκελο του άλμπουμ.</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags" xml:space="preserve">
+    <value>Αποθήκευση στις ετικέτες</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags_ToolTip" xml:space="preserve">
+    <value>Αποθηκεύει το εξώφυλλο στις ετικέτες των κομματιών.</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Εμφάνιση εικονιδίου στην περιοχή ειδοποιήσεων</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Εμφανίζει ένα εικονίδιο στην περιοχή ειδοποιήσεων με μενού για εμφάνιση ή έξοδο από το bcfetch και την πρόοδο της λήψης ως συμβουλή εργαλείου. Απαιτεί επιφάνεια εργασίας που εμφανίζει εικονίδια περιοχής ειδοποιήσεων (το GNOME χρειάζεται την επέκταση AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Το κλείσιμο του παραθύρου αφήνει το bcfetch ενεργό στην περιοχή ειδοποιήσεων</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Το κλείσιμο του παραθύρου το αποκρύπτει και οι λήψεις συνεχίζονται. Χρησιμοποιήστε το μενού του εικονιδίου για να το εμφανίσετε ξανά ή να κάνετε έξοδο. Αφήστε το απενεργοποιημένο αν η επιφάνεια εργασίας σας δεν εμφανίζει εικονίδια περιοχής ειδοποιήσεων.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Εμφάνιση ειδοποίησης όταν ολοκληρωθούν οι λήψεις</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Στέλνει ειδοποίηση επιφάνειας εργασίας όταν ολοκληρωθούν όλες οι λήψεις. Απαιτεί το notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Παράλειψη άλμπουμ που έχουν ήδη ληφθεί</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Παραλείπει ένα άλμπουμ του οποίου όλα τα κομμάτια λήφθηκαν σε προηγούμενη εκτέλεση, χωρίς έλεγχο του μεγέθους των αρχείων. Αναγνωρίζεται από ένα κρυφό αρχείο .bcfetch-done στον φάκελο του άλμπουμ, οπότε αν διαγράψετε ένα κομμάτι ή αυτό το αρχείο, το άλμπουμ λαμβάνεται ξανά.</value>
+  </data>
+  <data name="checkBoxVerboseLog" xml:space="preserve">
+    <value>Αναλυτικό ημερολόγιο</value>
+  </data>
+  <data name="checkBoxVerboseLog_ToolTip" xml:space="preserve">
+    <value>Εμφανίζει περισσότερες πληροφορίες στο ημερολόγιο.</value>
+  </data>
+  <data name="labelAdvancedSettingsWarning" xml:space="preserve">
+    <value>Αλλάξτε αυτές τις ρυθμίσεις με δική σας ευθύνη.</value>
+  </data>
+  <data name="labelAlbumArtist" xml:space="preserve">
+    <value>Καλλιτέχνης άλμπουμ</value>
+  </data>
+  <data name="labelAlbumTitle" xml:space="preserve">
+    <value>Όνομα άλμπουμ</value>
+  </data>
+  <data name="labelAllowedFileSizeDifference" xml:space="preserve">
+    <value>Επιτρεπόμενη διαφορά μεγέθους αρχείου (%)</value>
+  </data>
+  <data name="labelArtist" xml:space="preserve">
+    <value>Καλλιτέχνης</value>
+  </data>
+  <data name="labelButtonResetSettings" xml:space="preserve">
+    <value>Επαναφορά ρυθμίσεων</value>
+  </data>
+  <data name="labelChangelog" xml:space="preserve">
+    <value>Ιστορικό αλλαγών</value>
+  </data>
+  <data name="labelChangelogTitle" xml:space="preserve">
+    <value>Ιστορικό αλλαγών</value>
+  </data>
+  <data name="labelComments" xml:space="preserve">
+    <value>Σχόλια</value>
+  </data>
+  <data name="labelCoverArtFileNameFormat" xml:space="preserve">
+    <value>Μορφή ονόματος αρχείου</value>
+  </data>
+  <data name="labelCoverArtInFolderMaxSize" xml:space="preserve">
+    <value>Μέγιστο μέγεθος (px)</value>
+  </data>
+  <data name="labelCoverArtInTagsMaxSize" xml:space="preserve">
+    <value>Μέγιστο μέγεθος (px)</value>
+  </data>
+  <data name="labelCurrentVersion" xml:space="preserve">
+    <value>Τρέχουσα έκδοση:</value>
+  </data>
+  <data name="labelDownloadMaxTries" xml:space="preserve">
+    <value>Μέγιστες προσπάθειες λήψης</value>
+  </data>
+  <data name="labelDownloadRetryCooldown" xml:space="preserve">
+    <value>Αναμονή επανάληψης (δευτ.)</value>
+  </data>
+  <data name="labelDownloadRetryExponent" xml:space="preserve">
+    <value>Εκθέτης επανάληψης</value>
+  </data>
+  <data name="labelDownloadsPath" xml:space="preserve">
+    <value>_Αποθήκευση άλμπουμ στο</value>
+  </data>
+  <data name="labelFileNameFormat" xml:space="preserve">
+    <value>Μορφή ονόματος αρχείου:</value>
+  </data>
+  <data name="labelHttp" xml:space="preserve">
+    <value>Διακομιστής μεσολάβησης HTTP(S)</value>
+  </data>
+  <data name="labelHttpPort" xml:space="preserve">
+    <value>Θύρα</value>
+  </data>
+  <data name="labelIssues" xml:space="preserve">
+    <value>Αναφορά σφάλματος</value>
+  </data>
+  <data name="labelLanguage" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="labelListBoxItemAbout" xml:space="preserve">
+    <value>Σχετικά</value>
+  </data>
+  <data name="labelListBoxItemAdvanced" xml:space="preserve">
+    <value>Σύνθετες ρυθμίσεις</value>
+  </data>
+  <data name="labelListBoxItemCoverArt" xml:space="preserve">
+    <value>Εξώφυλλο</value>
+  </data>
+  <data name="labelListBoxItemDownloads" xml:space="preserve">
+    <value>Λήψεις</value>
+  </data>
+  <data name="labelListBoxItemGeneral" xml:space="preserve">
+    <value>Γενικά</value>
+  </data>
+  <data name="labelListBoxItemNetwork" xml:space="preserve">
+    <value>Δίκτυο</value>
+  </data>
+  <data name="labelListBoxItemPlaylist" xml:space="preserve">
+    <value>Λίστα αναπαραγωγής</value>
+  </data>
+  <data name="labelListBoxItemTags" xml:space="preserve">
+    <value>Ονομασία και ετικέτες</value>
+  </data>
+  <data name="labelLyrics" xml:space="preserve">
+    <value>Στίχοι</value>
+  </data>
+  <data name="labelPlaylistFileNameFormat" xml:space="preserve">
+    <value>Μορφή ονόματος αρχείου</value>
+  </data>
+  <data name="labelPlaylistFormat" xml:space="preserve">
+    <value>Μορφή λίστας αναπαραγωγής</value>
+  </data>
+  <data name="labelSettingsInfo" xml:space="preserve">
+    <value>Ορισμένες ρυθμίσεις δεν μπορούν να αλλάξουν ενώ γίνεται λήψη κομματιών.</value>
+  </data>
+  <data name="labelTheme" xml:space="preserve">
+    <value>Θέμα</value>
+  </data>
+  <data name="labelTrackNumber" xml:space="preserve">
+    <value>Αριθμός κομματιού</value>
+  </data>
+  <data name="labelTrackTitle" xml:space="preserve">
+    <value>Τίτλος</value>
+  </data>
+  <data name="labelVerboseLogInfo" xml:space="preserve">
+    <value>(το αρχείο ημερολογίου είναι πάντα αναλυτικό)</value>
+  </data>
+  <data name="labelVersion" xml:space="preserve">
+    <value>Έκδοση</value>
+  </data>
+  <data name="labelVersionError" xml:space="preserve">
+    <value>Δεν ήταν δυνατός ο έλεγχος για ενημερώσεις</value>
+  </data>
+  <data name="labelVersionNewUpdateAvailable" xml:space="preserve">
+    <value>Διαθέσιμη νέα έκδοση</value>
+  </data>
+  <data name="labelWebsite" xml:space="preserve">
+    <value>Ιστότοπος</value>
+  </data>
+  <data name="labelYear" xml:space="preserve">
+    <value>Έτος κυκλοφορίας άλμπουμ</value>
+  </data>
+  <data name="messageBoxButtonCancel" xml:space="preserve">
+    <value>_Ακύρωση</value>
+  </data>
+  <data name="messageBoxButtonNo" xml:space="preserve">
+    <value>_Όχι</value>
+  </data>
+  <data name="messageBoxButtonOK" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="messageBoxButtonYes" xml:space="preserve">
+    <value>_Ναι</value>
+  </data>
+  <data name="messageBoxCancelDownloadsText" xml:space="preserve">
+    <value>Ακύρωση όλων των λήψεων;</value>
+  </data>
+  <data name="messageBoxCheckForUpdatesError" xml:space="preserve">
+    <value>Παρουσιάστηκε σφάλμα κατά τον έλεγχο για ενημερώσεις. Δοκιμάστε ξανά αργότερα.</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingButtonOk" xml:space="preserve">
+    <value>_Κλείσιμο εφαρμογής</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingText" xml:space="preserve">
+    <value>Υπάρχουν ενεργές λήψεις. Θέλετε σίγουρα να κλείσετε την εφαρμογή και να διακόψετε όλες τις λήψεις;</value>
+  </data>
+  <data name="messageBoxCouldNotOpenUrlError" xml:space="preserve">
+    <value>Δεν ήταν δυνατό το άνοιγμα του ακόλουθου συνδέσμου:
+{0}</value>
+  </data>
+  <data name="messageBoxNoUpdateAvailable" xml:space="preserve">
+    <value>Έχετε ήδη την τελευταία έκδοση ({0}).</value>
+  </data>
+  <data name="messageBoxResetSettingsButtonOk" xml:space="preserve">
+    <value>_Επαναφορά ρυθμίσεων</value>
+  </data>
+  <data name="messageBoxResetSettingsText" xml:space="preserve">
+    <value>Επαναφορά όλων των ρυθμίσεων στις προεπιλεγμένες τιμές;
+Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.</value>
+  </data>
+  <data name="messageBoxUnhandledException" xml:space="preserve">
+    <value>Παρουσιάστηκε μη διαχειρίσιμο σφάλμα. Η εφαρμογή θα κλείσει τώρα.
+
+Ανοίξτε ένα νέο ζήτημα με το περιεχόμενο του αρχείου ημερολογίου στο
+{0}</value>
+  </data>
+  <data name="radioButtonManualProxy" xml:space="preserve">
+    <value>Μη αυτόματη ρύθμιση</value>
+  </data>
+  <data name="radioButtonNoProxy" xml:space="preserve">
+    <value>Κανένας</value>
+  </data>
+  <data name="radioButtonSystemProxy" xml:space="preserve">
+    <value>Σύστημα</value>
+  </data>
+  <data name="saveFileDialogTitle" xml:space="preserve">
+    <value>Αποθήκευση ως</value>
+  </data>
+  <data name="Skin_Dark" xml:space="preserve">
+    <value>Σκούρο</value>
+  </data>
+  <data name="Skin_Light" xml:space="preserve">
+    <value>Ανοιχτό</value>
+  </data>
+  <data name="TagEditAction_DoNotModify" xml:space="preserve">
+    <value>Να μην τροποποιηθεί</value>
+  </data>
+  <data name="TagEditAction_Empty" xml:space="preserve">
+    <value>Εκκαθάριση ετικέτας</value>
+  </data>
+  <data name="TagEditAction_Modify" xml:space="preserve">
+    <value>Αποθήκευση στην ετικέτα</value>
+  </data>
+  <data name="TagRemoveAction_DoNotModify" xml:space="preserve">
+    <value>Να μην τροποποιηθεί</value>
+  </data>
+  <data name="TagRemoveAction_Empty" xml:space="preserve">
+    <value>Εκκαθάριση ετικέτας</value>
+  </data>
+  <data name="textBlockReleasesWebsite" xml:space="preserve">
+    <value>Ιστορικό εκδόσεων</value>
+  </data>
+  <data name="textBlockTranslationHelp" xml:space="preserve">
+    <value>Βοηθήστε στη μετάφραση</value>
+  </data>
+  <data name="textBoxAllowedFileSizeDifference_ToolTip" xml:space="preserve">
+    <value>Κατά τη λήψη ενός κομματιού, αν υπάρχει ήδη αρχείο με το ίδιο όνομα, ελέγχεται σε σχέση με το κομμάτι που θα ληφθεί.
+Αν το μέγεθος των δύο αρχείων διαφέρει λιγότερο από αυτή την τιμή (σε ποσοστό), η λήψη του κομματιού παραλείπεται.
+Ορίστε την τιμή 0 για να λαμβάνονται πάντα τα κομμάτια, ακόμη κι αν υπάρχουν ήδη στον δίσκο.
+
+Προτεινόμενη τιμή = 5</value>
+  </data>
+  <data name="textBoxCoverArtFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Μπορείτε να χρησιμοποιήσετε σύμβολα αντικατάστασης για να προσαρμόσετε το όνομα του αρχείου:
+- το {artist} θα αντικατασταθεί από τον καλλιτέχνη του άλμπουμ
+- το {album} θα αντικατασταθεί από το όνομα του άλμπουμ
+- τα {year}, {month} και {day} θα αντικατασταθούν από την ημερομηνία κυκλοφορίας του άλμπουμ</value>
+  </data>
+  <data name="textBoxDownloadMaxTries_ToolTip" xml:space="preserve">
+    <value>Μέγιστος αριθμός προσπαθειών λήψης ενός κομματιού όταν αυτή αποτυγχάνει.
+Μόλις επιτευχθεί αυτός ο αριθμός (για κάθε κομμάτι), η λήψη του κομματιού παραλείπεται.
+
+Προτεινόμενη τιμή = 7</value>
+  </data>
+  <data name="textBoxDownloadRetryCooldown_ToolTip" xml:space="preserve">
+    <value>Χρησιμοποιείται για τον έλεγχο του μηχανισμού εκθετικής υποχώρησης.
+Μετά από κάθε αποτυχία λήψης ενός κομματιού, το BandcampDownloader μπορεί να περιμένει συγκεκριμένο χρόνο πριν ξαναδοκιμάσει
+να κατεβάσει το κομμάτι, ώστε να μην ενεργοποιηθεί το φίλτρο anti-spam του Bandcamp.
+Ο τύπος για τον υπολογισμό του χρόνου αναμονής πριν από νέα προσπάθεια είναι ο εξής:
+χρόνος = αναμονή * (εκθέτης ^ αριθμός-προσπαθειών)
+
+Προτεινόμενη τιμή = 0.2</value>
+  </data>
+  <data name="textBoxDownloadRetryExponent_ToolTip" xml:space="preserve">
+    <value>Χρησιμοποιείται για τον έλεγχο του μηχανισμού εκθετικής υποχώρησης.
+Μετά από κάθε αποτυχία λήψης ενός κομματιού, το BandcampDownloader μπορεί να περιμένει συγκεκριμένο χρόνο πριν ξαναδοκιμάσει
+να κατεβάσει το κομμάτι, ώστε να μην ενεργοποιηθεί το φίλτρο anti-spam του Bandcamp.
+Ο τύπος για τον υπολογισμό του χρόνου αναμονής πριν από νέα προσπάθεια είναι ο εξής:
+χρόνος = αναμονή * (εκθέτης ^ αριθμός-προσπαθειών)
+
+Προτεινόμενη τιμή = 4</value>
+  </data>
+  <data name="textBoxDownloadsPath_ToolTip" xml:space="preserve">
+    <value>Μπορείτε να χρησιμοποιήσετε σύμβολα αντικατάστασης για να προσαρμόσετε τον φάκελο λήψης ανάλογα με το άλμπουμ:
+- το {artist} θα αντικατασταθεί από τον καλλιτέχνη του άλμπουμ
+- το {album} θα αντικατασταθεί από το όνομα του άλμπουμ
+- τα {year}, {month} και {day} θα αντικατασταθούν από την ημερομηνία κυκλοφορίας του άλμπουμ</value>
+  </data>
+  <data name="textBoxFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Μπορείτε να χρησιμοποιήσετε σύμβολα αντικατάστασης για να προσαρμόσετε το όνομα του αρχείου:
+- το {artist} θα αντικατασταθεί από τον καλλιτέχνη του άλμπουμ
+- το {title} θα αντικατασταθεί από το όνομα του κομματιού
+- το {tracknum} θα αντικατασταθεί από τον αριθμό του κομματιού
+- το {album} θα αντικατασταθεί από το όνομα του άλμπουμ
+- τα {year}, {month} και {day} θα αντικατασταθούν από την ημερομηνία κυκλοφορίας του άλμπουμ</value>
+  </data>
+  <data name="textBoxPlaylistFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Μπορείτε να χρησιμοποιήσετε σύμβολα αντικατάστασης για να προσαρμόσετε το όνομα του αρχείου:
+- το {artist} θα αντικατασταθεί από τον καλλιτέχνη του άλμπουμ
+- το {album} θα αντικατασταθεί από το όνομα του άλμπουμ
+- τα {year}, {month} και {day} θα αντικατασταθούν από την ημερομηνία κυκλοφορίας του άλμπουμ</value>
+  </data>
+  <data name="textBoxUrlsPlaceholder" xml:space="preserve">
+    <value>Επικολλήστε εδώ τα URL των άλμπουμ που θέλετε να κατεβάσετε. Μπορείτε να δώσετε πολλά URL γράφοντας ένα ανά γραμμή.
+
+Ένα URL του Bandcamp μοιάζει με: http://[artist].bandcamp.com/album/[album] ή http://[artist].bandcamp.com/track/[track]
+Επικολλήστε σελίδες καλλιτεχνών: http://[artist].bandcamp.com και επιλέξτε «☑ Λήψη δισκογραφίας καλλιτέχνη» για να κατεβάσετε όλα τα άλμπουμ τους.</value>
+  </data>
+  <data name="windowSettings_Title" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="windowUpdate_Title" xml:space="preserve">
+    <value>Ενημέρωση</value>
+  </data>
+  <data name="labelProxy" xml:space="preserve">
+    <value>Διακομιστής μεσολάβησης</value>
+  </data>
+  <data name="labelMaxConcurrentAlbumsDownloads" xml:space="preserve">
+    <value>Μέγιστες ταυτόχρονες λήψεις άλμπουμ</value>
+  </data>
+  <data name="labelMaxConcurrentTracksDownloads" xml:space="preserve">
+    <value>Μέγιστες ταυτόχρονες λήψεις κομματιών</value>
+  </data>
+  <data name="textBoxMaxConcurrentAlbumsDownloads_ToolTip" xml:space="preserve">
+    <value>Ο μέγιστος αριθμός άλμπουμ που μπορούν να ληφθούν ταυτόχρονα</value>
+  </data>
+  <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
+    <value>Ο μέγιστος αριθμός κομματιών (εντός του ίδιου άλμπουμ) που μπορούν να ληφθούν ταυτόχρονα</value>
+  </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Προσθήκη στην ουρά</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Επανάληψη αποτυχημένων</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>Στην ουρά μπήκαν {0} URL· αναμένουν {1} παρτίδες</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>Απέτυχαν {0} κομμάτια. Πατήστε «{1}» για να τα ξαναδοκιμάσετε· τα ολοκληρωμένα αρχεία παραλείπονται.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Η γλώσσα θα αλλάξει όταν τελειώσει αυτή η εκτέλεση</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Δεν αφέθηκε τίποτα που να μοιάζει με URL</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Οι λήψεις ολοκληρώθηκαν</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Οι λήψεις ολοκληρώθηκαν, απέτυχαν {0} κομμάτια</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Εμφάνιση του bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>αναμονή</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>έτοιμο</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>παραλείφθηκε</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>απέτυχε</value>
+  </data>
+</root>
