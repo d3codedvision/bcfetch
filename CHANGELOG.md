@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.6
 
 * Optional download log: Settings > Downloads > "Write a log file in each album folder" (off by default) adds `bcfetch-download.log` to every album folder. Each run appends which tracks were downloaded, skipped or failed (with the reason), a one-line result, and a line when a finished album is skipped. It works from the window and the command line.
 * A track whose download delivers no file (for example an HTTP 500 from the server) now counts as failed. Before, with tag writing off, it was reported as downloaded and only a half-written `.download` file remained.
