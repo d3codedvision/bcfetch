@@ -72,6 +72,14 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         // The TextBox template fades its placeholder to 50% on the element itself, which a style cannot override and
         // which halves its contrast (2:1); the placeholder colour token is already the quiet tone.
+        KeyboardScrolling.Enable(LogScroll);
+        TrackList.TemplateApplied += (_, e) =>
+        {
+            if (e.NameScope.Find<ScrollViewer>("PART_TrackScroll") is { } trackScroll)
+            {
+                KeyboardScrolling.Enable(trackScroll);
+            }
+        };
         TextBoxUrls.TemplateApplied += (_, e) =>
         {
             if (e.NameScope.Find<TextBlock>("PART_Placeholder") is { } placeholder)
@@ -279,6 +287,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _activeDownloads = false;
         SetDownloading(false);
         RefreshLanguage();
+        if (!cancelled)
+        {
+            Announce(totalFailed > 0 ? Tr.Get("notifyFinishedFailures", totalFailed) : Tr.Get("notifyFinished"));
+        }
+
         if (!cancelled && _userSettings.NotifyOnFinish)
         {
             Notifier.Send("bcfetch", totalFailed > 0 ? Tr.Get("notifyFinishedFailures", totalFailed) : Tr.Get("notifyFinished"));
@@ -345,6 +358,13 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         ButtonStop.IsEnabled = false;
         _queue.Clear();
         await _downloadCts.CancelAsync();
+    }
+
+    /// <summary>Has screen readers read a message (the element is a live region, invisible on screen).</summary>
+    private void Announce(string message)
+    {
+        LabelAnnouncement.Text = ""; // changing the text is what triggers the announcement, so repeat messages need a reset
+        LabelAnnouncement.Text = message;
     }
 
     // The one button is Start, Retry failed or (during a run) Add to queue.

@@ -9,13 +9,16 @@
     Width="860"
     Height="640"
     MinWidth="640"
-    MinHeight="480"
+    MinHeight="520"
     Icon="/Assets/Cloud.png"
     WindowStartupLocation="CenterScreen">
-    <!-- Transparent background: empty gaps must be hit-testable, or drops over them are ignored. -->
-    <DockPanel Background="Transparent">
+    <!--
+        Rows are declared in screen order (header, progress line, content, footer), so Tab follows the screen.
+        Transparent background: empty gaps must be hit-testable, or drops over them are ignored.
+    -->
+    <Grid Background="Transparent" RowDefinitions="Auto,Auto,*,Auto">
         <!-- Header: wordmark left, quiet actions right. -->
-        <Grid DockPanel.Dock="Top" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+        <Grid Grid.Row="0" Margin="20,10,10,8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
             <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
                 <TextBlock
                     VerticalAlignment="Center"
@@ -56,48 +59,32 @@
         <ProgressBar
             x:Name="ProgressBar"
             AutomationProperties.Name="{x:Static p:Resources.progressOverall}"
+            Grid.Row="1"
             Classes="line"
-            DockPanel.Dock="Top"
             ShowProgressText="False" />
-
-        <!-- Footer: readouts left, actions right. -->
-        <Grid DockPanel.Dock="Bottom" Margin="20,12,20,18" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
-            <TextBlock x:Name="LabelProgress" Grid.Column="0" VerticalAlignment="Center" FontFamily="{StaticResource BcMono}" FontSize="13" />
-            <TextBlock
-                x:Name="LabelDownloadSpeed"
-                Grid.Column="1"
-                Margin="16,0,0,0"
-                VerticalAlignment="Center"
-                FontFamily="{StaticResource BcMono}"
-                FontSize="13"
-                Foreground="{DynamicResource BcMuted}" />
-            <Button
-                x:Name="ButtonStop"
-                Grid.Column="3"
-                Classes="danger"
-                Padding="18,9"
-                Click="ButtonStop_Click"
-                Content="{x:Static p:Resources.buttonStop}"
-                IsEnabled="False" />
-            <Button
-                x:Name="ButtonStart"
-                Grid.Column="4"
-                Classes="primary"
-                Click="ButtonStart_Click"
-                Content="{x:Static p:Resources.buttonStart}" />
-        </Grid>
 
         <!--
             The content rows share the height that is left: the URL box and the log flex between a minimum and
             a maximum, the track list takes its row only while a run shows it, and the footer always stays reachable.
         -->
-        <Grid x:Name="ContentGrid" Margin="20,16,20,0">
+        <Grid x:Name="ContentGrid" Grid.Row="2" Margin="20,16,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="64" MaxHeight="140" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="0" />
-                <RowDefinition Height="2*" MinHeight="72" />
+                <RowDefinition Height="2*" MinHeight="88" />
             </Grid.RowDefinitions>
+            <!-- Read out by screen readers when a run ends; invisible on screen. -->
+            <TextBlock
+                x:Name="LabelAnnouncement"
+                Grid.Row="0"
+                Width="1"
+                Height="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                AutomationProperties.LiveSetting="Polite"
+                IsHitTestVisible="False"
+                Opacity="0" />
             <TextBox
                 x:Name="TextBoxUrls"
                 Grid.Row="0"
@@ -137,16 +124,20 @@
             <Border
                 x:Name="TrackPanel"
                 Grid.Row="2"
+                Classes="region"
                 Margin="0,0,0,12"
                 IsVisible="False"
                 Background="{DynamicResource BcPanel}"
-                BorderBrush="{DynamicResource BcLine}"
                 BorderThickness="1"
                 CornerRadius="4">
                 <ItemsControl x:Name="TrackList" AutomationProperties.Name="{x:Static p:Resources.labelTracks}">
                     <ItemsControl.Template>
                         <ControlTemplate>
-                            <ScrollViewer>
+                            <ScrollViewer
+                                Name="PART_TrackScroll"
+                                AutomationProperties.Name="{x:Static p:Resources.labelTracks}"
+                                Focusable="True"
+                                IsTabStop="True">
                                 <ItemsPresenter Margin="12,8" ItemsPanel="{TemplateBinding ItemsPanel}" />
                             </ScrollViewer>
                         </ControlTemplate>
@@ -192,8 +183,8 @@
 
             <Border
                 Grid.Row="3"
+                Classes="region"
                 Background="{DynamicResource BcPanel}"
-                BorderBrush="{DynamicResource BcLine}"
                 BorderThickness="1"
                 CornerRadius="4">
                 <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
@@ -207,5 +198,31 @@
                 </ScrollViewer>
             </Border>
         </Grid>
-    </DockPanel>
+        <!-- Footer: readouts left, actions right. -->
+        <Grid Grid.Row="3" Margin="20,12,20,18" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
+            <TextBlock x:Name="LabelProgress" Grid.Column="0" VerticalAlignment="Center" FontFamily="{StaticResource BcMono}" FontSize="13" />
+            <TextBlock
+                x:Name="LabelDownloadSpeed"
+                Grid.Column="1"
+                Margin="16,0,0,0"
+                VerticalAlignment="Center"
+                FontFamily="{StaticResource BcMono}"
+                FontSize="13"
+                Foreground="{DynamicResource BcMuted}" />
+            <Button
+                x:Name="ButtonStop"
+                Grid.Column="3"
+                Classes="danger"
+                Padding="18,9"
+                Click="ButtonStop_Click"
+                Content="{x:Static p:Resources.buttonStop}"
+                IsEnabled="False" />
+            <Button
+                x:Name="ButtonStart"
+                Grid.Column="4"
+                Classes="primary"
+                Click="ButtonStart_Click"
+                Content="{x:Static p:Resources.buttonStart}" />
+        </Grid>
+    </Grid>
 </Window>

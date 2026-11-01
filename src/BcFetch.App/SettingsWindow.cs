@@ -125,7 +125,8 @@ internal sealed class SettingsWindow : Window
         Title = T("windowSettings_Title");
         Width = 720;
         Height = 540;
-        CanResize = false;
+        MinWidth = 720; // the label and field columns need this width
+        MinHeight = 440;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
         var tabs = new TabControl { TabStripPlacement = Dock.Left };

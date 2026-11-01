@@ -62,6 +62,13 @@
             <Setter Property="BorderBrush" Value="{DynamicResource BcInputBorder}" />
             <Setter Property="CornerRadius" Value="4" />
         </Style>
+        <!-- A scrollable region shows keyboard focus with the accent border. -->
+        <Style Selector="Border.region">
+            <Setter Property="BorderBrush" Value="{DynamicResource BcLine}" />
+        </Style>
+        <Style Selector="Border.region:focus-within">
+            <Setter Property="BorderBrush" Value="{DynamicResource BcAccent}" />
+        </Style>
         <Style Selector="ComboBox">
             <Setter Property="BorderBrush" Value="{DynamicResource BcInputBorder}" />
         </Style>
