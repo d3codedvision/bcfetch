@@ -35,7 +35,7 @@ public sealed class App : Application
         base.OnFrameworkInitializationCompleted();
     }
 
-    private static void ApplyLanguage(Language language)
+    internal static void ApplyLanguage(Language language)
     {
         // Enum names mirror culture names, with '_' for '-' (e.g. pt_BR).
         var culture = new CultureInfo(language.ToString().Replace('_', '-'));

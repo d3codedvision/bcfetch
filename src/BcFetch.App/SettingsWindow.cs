@@ -301,6 +301,8 @@ internal sealed class SettingsWindow : Window
             app.RequestedThemeVariant = settings.Theme == Skin.Dark ? ThemeVariant.Dark : ThemeVariant.Light;
         }
 
+        App.ApplyLanguage(settings.Language);
+
         NLog.LogManager.GetCurrentClassLogger().Info($"Settings saved: {_settingsService.GetUserSettingsInJson()}");
     }
 

@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Globalization;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -32,6 +34,7 @@ internal sealed partial class MainWindow : Window
     private string _retryInput;
     private TrayIcon _tray;
     private bool _quitting;
+    private readonly CultureInfo _uiCulture = Res.Culture ?? CultureInfo.CurrentUICulture;
     private long _lastTotalReceivedBytes;
     private DateTime _lastSpeedUpdate;
 
@@ -158,6 +161,41 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         _tray.IsVisible = _userSettings.ShowTrayIcon;
+        if (_activeDownloads && !Equals(Res.Culture, _uiCulture))
+        {
+            Log("The language changes when this run ends", DownloadProgressChangedLevel.Info);
+        }
+        RefreshLanguage();
+    }
+
+    /// <summary>
+    /// Window texts are resolved when a window is built, so a new language means a new main window with the
+    /// same URLs, size and position. Not during a run, and not while "Retry failed" is pending: that state
+    /// lives in this window. Settings, About and dialogs are built on demand and follow immediately.
+    /// </summary>
+    private void RefreshLanguage()
+    {
+        if (_activeDownloads || _retryInput != null || Equals(Res.Culture, _uiCulture))
+        {
+            return;
+        }
+
+        var next = new MainWindow(_settingsService, _downloadManager, _updatesService)
+        {
+            Position = Position,
+            Width = Width,
+            Height = Height,
+            WindowState = WindowState,
+        };
+        next.TextBoxUrls.Text = TextBoxUrls.Text;
+        if (Avalonia.Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            desktop.MainWindow = next;
+        }
+
+        _quitting = true; // a plain close: no hiding to the tray
+        next.Show();
+        Close();
     }
 
     private async void ButtonStart_Click(object sender, RoutedEventArgs e)
@@ -214,6 +252,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _queue.Clear();
         _activeDownloads = false;
         SetDownloading(false);
+        RefreshLanguage();
         if (!cancelled && _userSettings.NotifyOnFinish)
         {
             Notifier.Send("bcfetch", totalFailed > 0 ? $"Downloads finished, {totalFailed} track(s) failed" : "Downloads finished");
