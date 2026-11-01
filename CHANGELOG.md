@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.3.1
 
 * Long names: the Windows limits (folder path cut at 247 characters, file names squeezed to 11 characters past 260) are gone. Each folder and file name is now shortened only when it exceeds the Linux limit of 255 bytes, cut at a character boundary and with the extension kept. Previously two albums with long names could end up in the same folder.
 * Live language switch: saving a new language in Settings applies it at once. The main window is rebuilt in the new language and keeps its URLs, size and position; Settings, About and dialogs follow immediately. During a run it waits until the run ends, and it also waits while "Retry failed" is pending, because that state lives in the window.
+* Log colours follow a theme switch: lines already in the log are recoloured instead of keeping the previous theme's palette.
 ## 0.3.0
 
 * Per-track progress list in the window: each track shows waiting, a live percentage, done, skipped or failed, with its own progress line. The window is a little taller to make room.

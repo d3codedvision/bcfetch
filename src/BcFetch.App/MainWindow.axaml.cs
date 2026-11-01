@@ -34,6 +34,7 @@ internal sealed partial class MainWindow : Window
     private string _retryInput;
     private TrayIcon _tray;
     private bool _quitting;
+    private readonly List<(Avalonia.Controls.Documents.Run Stamp, Avalonia.Controls.Documents.Run Text, DownloadProgressChangedLevel Level)> _logLines = [];
     private readonly CultureInfo _uiCulture = Res.Culture ?? CultureInfo.CurrentUICulture;
     private long _lastTotalReceivedBytes;
     private DateTime _lastSpeedUpdate;
@@ -64,6 +65,15 @@ internal sealed partial class MainWindow : Window
 
 Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
+        ActualThemeVariantChanged += (_, _) =>
+        {
+            foreach (var (stamp, text, level) in _logLines)
+            {
+                ColorLogLine(stamp, text, level);
+            }
+
+            UpdateTrackRows();
+        };
 
         DragDrop.SetAllowDrop(this, true);
         AddHandler(DragDrop.DragOverEvent, OnDragOver, RoutingStrategies.Tunnel);
@@ -336,6 +346,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         if (downloading)
         {
             LogText.Inlines.Clear();
+            _logLines.Clear();
             TrackList.Children.Clear();
             _rows.Clear();
             TrackPanel.IsVisible = false;
@@ -428,6 +439,22 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         ProgressBar.Value = _userSettings.RetrieveFilesSize ? received : _downloadManager.GetTotalFilesCountReceived();
     }
 
+    // Colours are resolved from the level, so lines already written follow a theme switch.
+    private void ColorLogLine(Avalonia.Controls.Documents.Run stamp, Avalonia.Controls.Documents.Run text, DownloadProgressChangedLevel level)
+    {
+        var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
+        stamp.Foreground = new SolidColorBrush(Color.Parse(dark ? "#8A9A97" : "#5E6D6B"));
+        text.Foreground = new SolidColorBrush(Color.Parse(level switch
+        {
+            DownloadProgressChangedLevel.VerboseInfo => dark ? "#8A9A97" : "#5E6D6B",
+            DownloadProgressChangedLevel.IntermediateSuccess => dark ? "#3FB8C4" : "#0E7C86",
+            DownloadProgressChangedLevel.Success => dark ? "#5CCB8A" : "#2E7D4F",
+            DownloadProgressChangedLevel.Warning => dark ? "#E3B341" : "#A86B00",
+            DownloadProgressChangedLevel.Error => dark ? "#FF7A6B" : "#B5392B",
+            _ => dark ? "#E3EAE8" : "#14201F",
+        }));
+    }
+
     private void Log(string message, DownloadProgressChangedLevel level)
     {
         _logger.Log(level.ToNLogLevel(), message);
@@ -437,20 +464,12 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             return;
         }
 
-        var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        var color = Color.Parse(level switch
-        {
-            DownloadProgressChangedLevel.VerboseInfo => dark ? "#8A9A97" : "#5E6D6B",
-            DownloadProgressChangedLevel.IntermediateSuccess => dark ? "#3FB8C4" : "#0E7C86",
-            DownloadProgressChangedLevel.Success => dark ? "#5CCB8A" : "#2E7D4F",
-            DownloadProgressChangedLevel.Warning => dark ? "#E3B341" : "#A86B00",
-            DownloadProgressChangedLevel.Error => dark ? "#FF7A6B" : "#B5392B",
-            _ => dark ? "#E3EAE8" : "#14201F",
-        });
-        var muted = Color.Parse(dark ? "#8A9A97" : "#5E6D6B");
-
-        LogText.Inlines.Add(new Avalonia.Controls.Documents.Run(DateTime.Now.ToString("HH:mm:ss") + "  ") { Foreground = new SolidColorBrush(muted) });
-        LogText.Inlines.Add(new Avalonia.Controls.Documents.Run(message + Environment.NewLine) { Foreground = new SolidColorBrush(color) });
+        var stamp = new Avalonia.Controls.Documents.Run(DateTime.Now.ToString("HH:mm:ss") + "  ");
+        var text = new Avalonia.Controls.Documents.Run(message + Environment.NewLine);
+        LogText.Inlines.Add(stamp);
+        LogText.Inlines.Add(text);
+        _logLines.Add((stamp, text, level));
+        ColorLogLine(stamp, text, level);
         LogScroll.ScrollToEnd();
     }
 
