@@ -2,8 +2,6 @@ using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using BcFetch.Core;
-using BcFetch.Net;
-using NLog;
 using Res = BcFetch.App.Properties.Resources;
 
 namespace BcFetch.App;
@@ -11,16 +9,14 @@ namespace BcFetch.App;
 /// <summary>Version, project links and the changelog (plain text, fetched from the repository).</summary>
 internal sealed class AboutWindow : Window
 {
-    private const string ChangelogUrl = $"https://raw.githubusercontent.com/{Constants.GITHUB_REPO}/main/CHANGELOG.md";
-
-    public AboutWindow(IHttpService httpService)
+    public AboutWindow()
     {
         Title = Res.labelListBoxItemAbout.Replace("_", "");
         Width = 600;
         Height = 480;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-        var changelog = new TextBox { IsReadOnly = true, AcceptsReturn = true, FontFamily = "monospace", Text = "…" };
+        var changelog = new TextBox { IsReadOnly = true, AcceptsReturn = true, FontFamily = "monospace", Text = ReadChangelog() };
         var links = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8 };
         foreach (var (text, url) in new[] { (Constants.URL_WEBSITE, Constants.URL_WEBSITE), (Res.labelIssues, Constants.URL_ISSUES), (Res.textBlockReleasesWebsite, Constants.URL_RELEASES) })
         {
@@ -41,18 +37,12 @@ internal sealed class AboutWindow : Window
         changelog.Margin = new(12, 0, 12, 12);
         root.Children.Add(changelog);
         Content = root;
+    }
 
-        Opened += async (_, _) =>
-        {
-            try
-            {
-                changelog.Text = await httpService.CreateHttpClient().GetStringAsync(ChangelogUrl);
-            }
-            catch (Exception ex)
-            {
-                LogManager.GetCurrentClassLogger().Error(ex);
-                changelog.Text = string.Format(Res.changelogDownloadError, ChangelogUrl);
-            }
-        };
+    /// <summary>CHANGELOG.md is embedded at build time (the repository may be private).</summary>
+    private static string ReadChangelog()
+    {
+        using var stream = typeof(AboutWindow).Assembly.GetManifestResourceStream("CHANGELOG.md");
+        return stream == null ? "" : new StreamReader(stream).ReadToEnd();
     }
 }

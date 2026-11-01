@@ -9,7 +9,6 @@ using BcFetch.Bandcamp.Download;
 using BcFetch.Core.Logging;
 using BcFetch.Core;
 using BcFetch.Core.Updates;
-using BcFetch.Net;
 using BcFetch.Settings;
 using NLog;
 using Res = BcFetch.App.Properties.Resources;
@@ -22,7 +21,6 @@ internal sealed partial class MainWindow : Window
     private readonly IUserSettings _userSettings;
     private readonly IDownloadManager _downloadManager;
     private readonly IUpdatesService _updatesService;
-    private readonly IHttpService _httpService;
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
     private CancellationTokenSource _downloadCts;
@@ -33,13 +31,12 @@ internal sealed partial class MainWindow : Window
     // Required by the XAML loader / previewer.
     public MainWindow() => InitializeComponent();
 
-    internal MainWindow(ISettingsService settingsService, IDownloadManager downloadManager, IUpdatesService updatesService, IHttpService httpService) : this()
+    internal MainWindow(ISettingsService settingsService, IDownloadManager downloadManager, IUpdatesService updatesService) : this()
     {
         _settingsService = settingsService;
         _userSettings = settingsService.GetUserSettings();
         _downloadManager = downloadManager;
         _updatesService = updatesService;
-        _httpService = httpService;
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
         _timer.Tick += (_, _) => UpdateProgress();
 
@@ -61,7 +58,7 @@ internal sealed partial class MainWindow : Window
         }
     }
 
-    private void ButtonAbout_Click(object sender, RoutedEventArgs e) => new AboutWindow(_httpService).ShowDialog(this);
+    private void ButtonAbout_Click(object sender, RoutedEventArgs e) => new AboutWindow().ShowDialog(this);
 
     private async void ButtonOpenSettingsWindow_Click(object sender, RoutedEventArgs e)
     {

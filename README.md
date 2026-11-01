@@ -19,6 +19,18 @@ A port of [Otiel/BandcampDownloader](https://github.com/Otiel/BandcampDownloader
 * `src/BcFetch.App` – Avalonia GUI.
 * `tests/BcFetch.Core.Tests` – NUnit tests.
 
+## Install
+
+Download from the [releases page](https://github.com/d3codedvision/bcfetch/releases) and check `SHA256SUMS`:
+
+```sh
+sudo apt install ./bcfetch_<version>_amd64.deb      # Debian / Ubuntu / Zorin
+# or
+tar -xzf bcfetch-linux-x64.tar.gz && ./bcfetch      # any x64 distro
+```
+
+Maintainers: `packaging/build.sh` builds both and the checksums into `dist/`. Pushing a `v*` tag runs the same script in CI and publishes the release.
+
 ## Build
 
 Requires the .NET 10 SDK.

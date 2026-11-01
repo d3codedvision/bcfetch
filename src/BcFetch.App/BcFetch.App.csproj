@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BcFetch.Core\BcFetch.Core.csproj" />
     <AvaloniaResource Include="Assets\**" />
+    <EmbeddedResource Include="..\..\CHANGELOG.md" LogicalName="CHANGELOG.md" />
   </ItemGroup>
 
 </Project>
