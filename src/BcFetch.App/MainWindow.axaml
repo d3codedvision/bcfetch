@@ -3,12 +3,13 @@
     x:ClassModifier="internal"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BcFetch.App"
     xmlns:p="using:BcFetch.App.Properties"
     Title="bcfetch"
     Width="860"
     Height="640"
     MinWidth="640"
-    MinHeight="440"
+    MinHeight="480"
     Icon="/Assets/Cloud.png"
     WindowStartupLocation="CenterScreen">
     <!-- Transparent background: empty gaps must be hit-testable, or drops over them are ignored. -->
@@ -52,7 +53,12 @@
                 ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
         </Grid>
 
-        <ProgressBar x:Name="ProgressBar" Classes="line" DockPanel.Dock="Top" ShowProgressText="False" />
+        <ProgressBar
+            x:Name="ProgressBar"
+            AutomationProperties.Name="{x:Static p:Resources.progressOverall}"
+            Classes="line"
+            DockPanel.Dock="Top"
+            ShowProgressText="False" />
 
         <!-- Footer: readouts left, actions right. -->
         <Grid DockPanel.Dock="Bottom" Margin="20,12,20,18" ColumnDefinitions="Auto,Auto,*,Auto,Auto" ColumnSpacing="10">
@@ -81,17 +87,34 @@
                 Content="{x:Static p:Resources.buttonStart}" />
         </Grid>
 
-        <Grid Margin="20,16,20,0" RowDefinitions="Auto,Auto,*" RowSpacing="12">
+        <!--
+            The content rows share the height that is left: the URL box and the log flex between a minimum and
+            a maximum, the track list takes its row only while a run shows it, and the footer always stays reachable.
+        -->
+        <Grid x:Name="ContentGrid" Margin="20,16,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="64" MaxHeight="140" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0" />
+                <RowDefinition Height="2*" MinHeight="72" />
+            </Grid.RowDefinitions>
             <TextBox
                 x:Name="TextBoxUrls"
                 Grid.Row="0"
+                Margin="0,0,0,12"
                 Classes="mono"
-                Height="120"
                 AcceptsReturn="True"
+                AutomationProperties.Name="{x:Static p:Resources.labelUrls}"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                TextWrapping="Wrap"
                 PlaceholderText="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
 
-            <StackPanel Grid.Row="1" Spacing="8">
-                <AccessText Foreground="{DynamicResource BcMuted}" Text="{x:Static p:Resources.labelDownloadsPath}" />
+            <StackPanel Grid.Row="1" Margin="0,0,0,12" Spacing="8">
+                <Label
+                    Padding="0"
+                    Content="{x:Static p:Resources.labelDownloadsPath}"
+                    Foreground="{DynamicResource BcMuted}"
+                    Target="{Binding #TextBoxDownloadsPath}" />
                 <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
                     <TextBox
                         x:Name="TextBoxDownloadsPath"
@@ -101,6 +124,7 @@
                     <Button
                         x:Name="ButtonBrowse"
                         Grid.Column="1"
+                        AutomationProperties.Name="{x:Static p:Resources.buttonBrowse_ToolTip}"
                         Click="ButtonBrowse_Click"
                         Content="{x:Static p:Resources.buttonBrowse}"
                         ToolTip.Tip="{x:Static p:Resources.buttonBrowse_ToolTip}" />
@@ -110,37 +134,78 @@
                     ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
             </StackPanel>
 
-            <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="12">
-                <Border
-                    x:Name="TrackPanel"
-                    Grid.Row="0"
-                    MaxHeight="132"
-                    IsVisible="False"
-                    Background="{DynamicResource BcPanel}"
-                    BorderBrush="{DynamicResource BcLine}"
-                    BorderThickness="1"
-                    CornerRadius="4">
-                    <ScrollViewer>
-                        <StackPanel x:Name="TrackList" Margin="12,8" Spacing="6" />
-                    </ScrollViewer>
-                </Border>
-                <Border
-                    Grid.Row="1"
-                    Margin="0,0,0,0"
-                    Background="{DynamicResource BcPanel}"
-                    BorderBrush="{DynamicResource BcLine}"
-                    BorderThickness="1"
-                    CornerRadius="4">
-                    <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
-                        <SelectableTextBlock
-                            x:Name="LogText"
-                            Margin="12,10"
-                            FontFamily="{StaticResource BcMono}"
-                            FontSize="12.5"
-                            LineHeight="20" />
-                    </ScrollViewer>
-                </Border>
-            </Grid>
+            <Border
+                x:Name="TrackPanel"
+                Grid.Row="2"
+                Margin="0,0,0,12"
+                IsVisible="False"
+                Background="{DynamicResource BcPanel}"
+                BorderBrush="{DynamicResource BcLine}"
+                BorderThickness="1"
+                CornerRadius="4">
+                <ItemsControl x:Name="TrackList" AutomationProperties.Name="{x:Static p:Resources.labelTracks}">
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer>
+                                <ItemsPresenter Margin="12,8" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="local:TrackRowViewModel">
+                            <Grid Margin="0,3" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis"
+                                    ToolTip.Tip="{Binding Name}" />
+                                <ProgressBar
+                                    Grid.Column="1"
+                                    Width="120"
+                                    VerticalAlignment="Center"
+                                    AutomationProperties.Name="{Binding Name}"
+                                    Classes="line"
+                                    IsIndeterminate="{Binding Indeterminate}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="0"
+                                    ShowProgressText="False"
+                                    Value="{Binding Value}" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    Width="104"
+                                    VerticalAlignment="Center"
+                                    FontFamily="{StaticResource BcMono}"
+                                    FontSize="12"
+                                    Foreground="{Binding StatusBrush}"
+                                    Text="{Binding Status}"
+                                    TextAlignment="Right" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+
+            <Border
+                Grid.Row="3"
+                Background="{DynamicResource BcPanel}"
+                BorderBrush="{DynamicResource BcLine}"
+                BorderThickness="1"
+                CornerRadius="4">
+                <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
+                    <SelectableTextBlock
+                        x:Name="LogText"
+                        Margin="12,10"
+                        AutomationProperties.Name="{x:Static p:Resources.labelLog}"
+                        FontFamily="{StaticResource BcMono}"
+                        FontSize="12.5"
+                        LineHeight="20" />
+                </ScrollViewer>
+            </Border>
         </Grid>
     </DockPanel>
 </Window>

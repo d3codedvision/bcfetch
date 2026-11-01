@@ -606,4 +606,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Προσθέτει ένα αρχείο bcfetch-download.log σε κάθε φάκελο άλμπουμ. Για κάθε εκτέλεση καταγράφει ποια κομμάτια λήφθηκαν, παραλείφθηκαν ή απέτυχαν, και γιατί. Προστίθενται μόνο γραμμές στο τέλος.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL των άλμπουμ</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Συνολική πρόοδος</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Κομμάτια</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Καταγραφή</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Εισάγετε έναν ακέραιο αριθμό.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Εισάγετε έναν αριθμό, με τελεία για τα δεκαδικά.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Η μορφή ονόματος αρχείου πρέπει να τελειώνει σε .mp3.</value>
+  </data>
 </root>

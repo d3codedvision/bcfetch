@@ -545,4 +545,25 @@ Liitä artistin sivut: http://[artisti].bandcamp.com ja valitse "☑ Tallenna ar
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Lisää jokaiseen albumikansioon tiedoston bcfetch-download.log. Se kirjaa jokaisesta ajosta, mitkä kappaleet ladattiin, ohitettiin tai epäonnistuivat, ja miksi. Tiedostoon lisätään vain rivejä loppuun.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Albumien URL-osoitteet</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Kokonaisedistyminen</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Kappaleet</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Loki</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Anna kokonaisluku.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Anna luku, desimaalierottimena piste.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Tiedostonimen muodon on päätyttävä .mp3.</value>
+  </data>
 </root>

@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+Interface audit fixes.
+
+* The window works at its minimum size: the URL box, track list and log share the available height, so the Download/Cancel buttons and progress readouts are no longer pushed out of view. The minimum height is now 480.
+* Settings labels wrap instead of being cut off ("Max gleichzeitige Album Do" is now complete), and an invalid value gets a red border plus a sentence under the field, instead of a faint tint with an unexplained disabled Save button.
+* The track list is virtualized: 500 tracks build in about 0.1 s instead of 1.8 s and update 30 times faster.
+* The log in the window keeps the latest 500 lines, so long runs stay responsive (3,000 lines took 11 s, 3 s now and no longer growing); the full history is in the log file.
+* Contrast: the URL box help text is readable (2:1 became 4.9:1), the light-theme accent and warning colours pass 4.5:1, and input borders are visible (3:1 or more).
+* Accessibility: the URL box, folder button, progress bars, track list and log have accessible names, and the "Save albums to" label is tied to its field (its access key now works).
+* Status and log colours come from the theme tokens (no more duplicated hex values); the Settings info line follows the theme.
+* The URL box wraps its text, which removes a stray scrollbar line across it.
+
 ## 0.3.6
 
 * Optional download log: Settings > Downloads > "Write a log file in each album folder" (off by default) adds `bcfetch-download.log` to every album folder. Each run appends which tracks were downloaded, skipped or failed (with the reason), a one-line result, and a line when a finished album is skipped. It works from the window and the command line.

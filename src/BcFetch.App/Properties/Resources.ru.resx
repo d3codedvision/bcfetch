@@ -557,4 +557,25 @@ http://[artist].bandcamp.com/track/[track]
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Добавляет в каждую папку альбома файл bcfetch-download.log. Для каждого запуска в нём записано, какие треки были загружены, пропущены или не удались, и почему. Строки только дописываются в конец.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL-адреса альбомов</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Общий ход загрузки</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Треки</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Введите целое число.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Введите число; десятичный разделитель — точка.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Формат имени файла должен заканчиваться на .mp3.</value>
+  </data>
 </root>

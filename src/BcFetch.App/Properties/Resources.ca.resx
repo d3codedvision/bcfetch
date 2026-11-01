@@ -543,4 +543,25 @@ Obriu un problema nou amb el contingut del vostre fitxer de registre activat a
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Afegeix un fitxer bcfetch-download.log a cada carpeta d'àlbum. En cada execució registra quines pistes s'han descarregat, omès o fallat, i per què. Només s'hi afegeixen línies al final.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL dels àlbums</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Progrés total</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Pistes</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Registre</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Introduïu un nombre enter.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Introduïu un nombre, amb punt per als decimals.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>El format del nom de fitxer ha d'acabar en .mp3.</value>
+  </data>
 </root>

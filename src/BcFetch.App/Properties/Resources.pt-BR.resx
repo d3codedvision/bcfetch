@@ -556,4 +556,25 @@ Colar páginas de artistas: http://[artista]/.bandcamp.com e marque “☑ Baixa
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Adiciona um arquivo bcfetch-download.log a cada pasta de álbum. Em cada execução registra quais faixas foram baixadas, ignoradas ou falharam, e por quê. Apenas linhas são acrescentadas ao final.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URLs dos álbuns</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Progresso geral</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Faixas</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Digite um número inteiro.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Digite um número, com ponto para decimais.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>O formato do nome do arquivo deve terminar em .mp3.</value>
+  </data>
 </root>

@@ -599,4 +599,25 @@ Lim inn artistsider: https://[artist].bandcamp.com og velg "☑ Last ned artistd
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Legger en fil bcfetch-download.log i hver albummappe. For hver kjøring noteres hvilke spor som ble lastet ned, hoppet over eller mislyktes, og hvorfor. Det legges bare til linjer på slutten.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Album-URL-er</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Total fremdrift</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Spor</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Logg</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Skriv inn et heltall.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Skriv inn et tall, med punktum for desimaler.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Filnavnformatet må slutte på .mp3.</value>
+  </data>
 </root>

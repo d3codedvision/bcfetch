@@ -616,4 +616,25 @@ herunterzuladen.</value>
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Legt in jedem Albumordner die Datei bcfetch-download.log an. Sie hält für jeden Durchlauf fest, welche Titel heruntergeladen, übersprungen oder fehlgeschlagen sind und warum. Es werden nur Zeilen angehängt.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Album-URLs</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Gesamtfortschritt</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Protokoll</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Gib eine ganze Zahl ein.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Gib eine Zahl ein, Dezimalstellen mit Punkt.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Das Dateinamenformat muss auf .mp3 enden.</value>
+  </data>
 </root>

@@ -234,4 +234,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>각 앨범 폴더에 bcfetch-download.log 파일을 추가합니다. 실행할 때마다 어떤 트랙이 다운로드되었거나 건너뛰었거나 실패했는지와 그 이유를 기록합니다. 줄은 끝에만 추가됩니다.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>앨범 URL</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>전체 진행률</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>트랙</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>로그</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>정수를 입력하세요.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>숫자를 입력하세요. 소수점은 마침표를 사용합니다.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>파일 이름 형식은 .mp3로 끝나야 합니다.</value>
+  </data>
 </root>

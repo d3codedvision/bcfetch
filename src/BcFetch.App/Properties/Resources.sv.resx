@@ -556,4 +556,25 @@ Rekommenderat värde = 7</value>
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Lägger en fil bcfetch-download.log i varje albummapp. För varje körning noteras vilka spår som laddades ned, hoppades över eller misslyckades, och varför. Rader läggs bara till i slutet.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Album-URL:er</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Total förlopp</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Spår</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Logg</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Ange ett heltal.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Ange ett tal, med punkt för decimaler.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Filnamnsformatet måste sluta på .mp3.</value>
+  </data>
 </root>

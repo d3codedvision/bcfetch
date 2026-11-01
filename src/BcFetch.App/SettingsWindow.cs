@@ -1,7 +1,9 @@
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
+using Avalonia.Automation;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Styling;
@@ -90,6 +92,9 @@ internal sealed class SettingsWindow : Window
     };
 
     // A row is enabled only when all these bool properties are true (Proxy is handled separately).
+    private const double LabelWidth = 250;
+    private readonly Dictionary<string, TextBlock> _messages = new();
+
     private static readonly Dictionary<string, string[]> EnabledWhen = new()
     {
         ["CoverArtFileNameFormat"] = ["SaveCoverArtInFolder"],
@@ -161,7 +166,8 @@ internal sealed class SettingsWindow : Window
         root.Children.Add(footer);
         if (activeDownloads)
         {
-            var info = new TextBlock { Text = T("labelSettingsInfo"), Margin = new(24, 6), Foreground = Brushes.Gray };
+            var info = new TextBlock { Text = T("labelSettingsInfo"), Margin = new(24, 6) };
+            info.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("BcMuted"));
             DockPanel.SetDock(info, Dock.Bottom);
             root.Children.Add(info);
         }
@@ -195,6 +201,7 @@ internal sealed class SettingsWindow : Window
         }
 
         _controls[prop] = editor;
+        AutomationProperties.SetName(editor, T(labelKey));
         if (tipKey != null)
         {
             ToolTip.SetTip(editor, T(tipKey));
@@ -205,11 +212,19 @@ internal sealed class SettingsWindow : Window
             return editor;
         }
 
+        // Labels wrap instead of being cut off: translated labels are often much longer than the English ones.
+        var label = new TextBlock { Text = T(labelKey), Width = LabelWidth, TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center };
+        var message = new TextBlock { FontSize = 12, TextWrapping = TextWrapping.Wrap, IsVisible = false, Margin = new Thickness(LabelWidth + 10, 0, 0, 0) };
+        message.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("BcDanger"));
+        _messages[prop] = message;
         return new StackPanel
         {
-            Orientation = Orientation.Horizontal,
-            Spacing = 10,
-            Children = { new TextBlock { Text = T(labelKey), Width = 190, VerticalAlignment = VerticalAlignment.Center }, editor },
+            Spacing = 4,
+            Children =
+            {
+                new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { label, editor } },
+                message,
+            },
         };
     }
 
@@ -245,8 +260,22 @@ internal sealed class SettingsWindow : Window
             ok = false; // Same rule as the WPF version: must end with ".mp3".
         }
 
-        box.Background = ok ? null : new SolidColorBrush(Color.FromArgb(60, 255, 0, 0));
-        if (ok) { _invalid.Remove(prop); Set(prop, value); } else { _invalid.Add(prop); }
+        // A bad value is marked by a danger-coloured border and a sentence under the field, not by colour alone
+        if (ok)
+        {
+            box.ClearValue(TemplatedControl.BorderBrushProperty);
+            _messages[prop].IsVisible = false;
+            _invalid.Remove(prop);
+            Set(prop, value);
+        }
+        else
+        {
+            box.BorderBrush = this.Token("BcDanger");
+            _messages[prop].Text = T(prop == "FileNameFormat" ? "settingsInvalidFileName" : type == typeof(int) ? "settingsInvalidInteger" : "settingsInvalidNumber");
+            _messages[prop].IsVisible = true;
+            _invalid.Add(prop);
+        }
+
         _saveButton.IsEnabled = _invalid.Count == 0;
     }
 
@@ -273,7 +302,7 @@ internal sealed class SettingsWindow : Window
             {
                 case CheckBox c: c.IsChecked = (bool)value; break;
                 case ComboBox c: c.SelectedItem = ((List<EnumItem>)c.ItemsSource).First(i => i.Value.Equals(value)); break;
-                case TextBox c: c.Text = Convert.ToString(value, CultureInfo.InvariantCulture); c.Background = null; break;
+                case TextBox c: c.Text = Convert.ToString(value, CultureInfo.InvariantCulture); c.ClearValue(TemplatedControl.BorderBrushProperty); if (_messages.TryGetValue(prop, out var m)) m.IsVisible = false; break;
             }
         }
 

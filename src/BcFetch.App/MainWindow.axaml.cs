@@ -27,7 +27,10 @@ internal sealed partial class MainWindow : Window
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
     private readonly DispatcherTimer _rowsTimer = new() { Interval = TimeSpan.FromMilliseconds(250) };
-    private readonly List<(TrackFile File, ProgressBar Bar, TextBlock Status)> _rows = [];
+    private List<TrackRowViewModel> _trackRows = [];
+    private bool _logScrollPending;
+    private const int MaxLogLines = 500;
+    private const int LogTrimBatch = 50;
     private CancellationTokenSource _downloadCts;
     private bool _activeDownloads;
     private readonly Queue<string> _queue = new();
@@ -73,7 +76,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
                 ColorLogLine(stamp, text, level);
             }
 
-            UpdateTrackRows();
+            UpdateTrackRows(force: true);
         };
 
         // AllowDrop is inherited, so one setting on the window makes the whole window a drop target; the events
@@ -350,9 +353,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         {
             LogText.Inlines.Clear();
             _logLines.Clear();
-            TrackList.Children.Clear();
-            _rows.Clear();
-            TrackPanel.IsVisible = false;
+            ShowTrackPanel(false);
             LabelProgress.Text = "";
         }
         else
@@ -364,59 +365,33 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void BuildTrackRows(IEnumerable<TrackFile> files)
     {
-        TrackList.Children.Clear();
-        _rows.Clear();
-        var mono = (FontFamily)Avalonia.Application.Current!.FindResource("BcMono")!;
-        foreach (var file in files)
-        {
-            var name = new TextBlock { Text = file.Name, TextTrimming = TextTrimming.CharacterEllipsis, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
-            ToolTip.SetTip(name, file.Name);
-            var bar = new ProgressBar { Width = 120, Minimum = 0, Maximum = Math.Max(file.Size, 1), VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
-            bar.Classes.Add("line");
-            var status = new TextBlock { FontFamily = mono, FontSize = 12, Width = 104, TextAlignment = TextAlignment.Right, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
-
-            var row = new Grid { ColumnDefinitions = new ColumnDefinitions("*,Auto,Auto"), ColumnSpacing = 12 };
-            Grid.SetColumn(bar, 1);
-            Grid.SetColumn(status, 2);
-            row.Children.Add(name);
-            row.Children.Add(bar);
-            row.Children.Add(status);
-            TrackList.Children.Add(row);
-            _rows.Add((file, bar, status));
-        }
-
-        TrackPanel.IsVisible = _rows.Count > 0;
-        UpdateTrackRows();
+        _trackRows = files.Select(f => new TrackRowViewModel(f)).ToList();
+        TrackList.ItemsSource = _trackRows;
+        ShowTrackPanel(_trackRows.Count > 0);
+        UpdateTrackRows(force: true);
     }
 
-    private void UpdateTrackRows()
+    private void ShowTrackPanel(bool show)
     {
-        var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        foreach (var (file, bar, status) in _rows)
+        if (!show)
         {
-            var state = file.State;
-            var sized = file.Size > 0;
-            bar.IsIndeterminate = state == TrackFileState.Downloading && !sized;
-            bar.Value = state switch
-            {
-                TrackFileState.Done or TrackFileState.Skipped => bar.Maximum,
-                TrackFileState.Downloading => file.BytesReceived,
-                _ => 0,
-            };
-            status.Text = state switch
-            {
-                TrackFileState.Waiting => Tr.Get("trackWaiting"),
-                TrackFileState.Downloading => sized ? $"{Math.Min(100, file.BytesReceived * 100 / file.Size)}%" : "…",
-                TrackFileState.Done => Tr.Get("trackDone"),
-                TrackFileState.Skipped => Tr.Get("trackSkipped"),
-                _ => Tr.Get("trackFailed"),
-            };
-            status.Foreground = new SolidColorBrush(Color.Parse(state switch
-            {
-                TrackFileState.Failed => dark ? "#FF7A6B" : "#B5392B",
-                TrackFileState.Done => dark ? "#5CCB8A" : "#2E7D4F",
-                _ => dark ? "#8A9A97" : "#5E6D6B",
-            }));
+            TrackList.ItemsSource = null;
+            _trackRows = [];
+        }
+
+        // The track list takes its share of the height only while it is shown; the log keeps its minimum either way.
+        var row = ContentGrid.RowDefinitions[2];
+        row.MinHeight = show ? 64 : 0;
+        row.MaxHeight = show ? 240 : double.PositiveInfinity;
+        row.Height = show ? new GridLength(2, GridUnitType.Star) : new GridLength(0);
+        TrackPanel.IsVisible = show;
+    }
+
+    private void UpdateTrackRows(bool force = false)
+    {
+        foreach (var row in _trackRows)
+        {
+            row.Update(this.Token, force);
         }
     }
 
@@ -442,20 +417,19 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         ProgressBar.Value = _userSettings.RetrieveFilesSize ? received : _downloadManager.GetTotalFilesCountReceived();
     }
 
-    // Colours are resolved from the level, so lines already written follow a theme switch.
+    // Colours come from the theme tokens by level, so lines already written follow a theme switch.
     private void ColorLogLine(Avalonia.Controls.Documents.Run stamp, Avalonia.Controls.Documents.Run text, DownloadProgressChangedLevel level)
     {
-        var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        stamp.Foreground = new SolidColorBrush(Color.Parse(dark ? "#8A9A97" : "#5E6D6B"));
-        text.Foreground = new SolidColorBrush(Color.Parse(level switch
+        stamp.Foreground = this.Token("BcMuted");
+        text.Foreground = this.Token(level switch
         {
-            DownloadProgressChangedLevel.VerboseInfo => dark ? "#8A9A97" : "#5E6D6B",
-            DownloadProgressChangedLevel.IntermediateSuccess => dark ? "#3FB8C4" : "#0E7C86",
-            DownloadProgressChangedLevel.Success => dark ? "#5CCB8A" : "#2E7D4F",
-            DownloadProgressChangedLevel.Warning => dark ? "#E3B341" : "#A86B00",
-            DownloadProgressChangedLevel.Error => dark ? "#FF7A6B" : "#B5392B",
-            _ => dark ? "#E3EAE8" : "#14201F",
-        }));
+            DownloadProgressChangedLevel.VerboseInfo => "BcMuted",
+            DownloadProgressChangedLevel.IntermediateSuccess => "BcAccent",
+            DownloadProgressChangedLevel.Success => "BcSuccess",
+            DownloadProgressChangedLevel.Warning => "BcWarning",
+            DownloadProgressChangedLevel.Error => "BcDanger",
+            _ => "BcText",
+        });
     }
 
     private void Log(string message, DownloadProgressChangedLevel level)
@@ -473,7 +447,25 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LogText.Inlines.Add(text);
         _logLines.Add((stamp, text, level));
         ColorLogLine(stamp, text, level);
-        LogScroll.ScrollToEnd();
+
+        // Re-laying out a long log on every line gets slower as it grows (3,000 lines took 11 s), so the window keeps
+        // the latest lines only; the full history is always in the log file. Trimming in batches keeps it cheap.
+        if (_logLines.Count > MaxLogLines + LogTrimBatch)
+        {
+            LogText.Inlines.RemoveRange(0, LogTrimBatch * 2);
+            _logLines.RemoveRange(0, LogTrimBatch);
+        }
+
+        // One scroll per frame, however many lines arrived in it
+        if (!_logScrollPending)
+        {
+            _logScrollPending = true;
+            Dispatcher.UIThread.Post(() =>
+            {
+                _logScrollPending = false;
+                LogScroll.ScrollToEnd();
+            }, DispatcherPriority.Background);
+        }
     }
 
     private async Task CheckForUpdatesAsync()

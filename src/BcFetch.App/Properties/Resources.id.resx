@@ -543,4 +543,25 @@ Tempel halaman artis: http://[artis].bandcamp.com dan centang "☑ Unduh diskogr
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Menambahkan berkas bcfetch-download.log ke setiap folder album. Pada setiap proses, berkas ini mencatat lagu mana yang diunduh, dilewati, atau gagal, beserta alasannya. Hanya baris yang ditambahkan di akhir.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL album</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Kemajuan keseluruhan</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Lagu</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Masukkan bilangan bulat.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Masukkan angka, gunakan titik untuk desimal.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Format nama berkas harus diakhiri dengan .mp3.</value>
+  </data>
 </root>

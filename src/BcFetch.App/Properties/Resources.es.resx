@@ -615,4 +615,25 @@ Pegue páginas de artista: http://[artista].bandcamp.com y cheque «☑ Descarga
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Añade un archivo bcfetch-download.log a cada carpeta de álbum. En cada ejecución registra qué pistas se descargaron, se omitieron o fallaron, y por qué. Solo se añaden líneas al final.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL de los álbumes</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Progreso total</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Pistas</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Introduce un número entero.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Introduce un número, con punto para los decimales.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>El formato del nombre de archivo debe terminar en .mp3.</value>
+  </data>
 </root>

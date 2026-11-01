@@ -556,4 +556,25 @@ Umetni stranice izvođača: http://[artist].bandcamp.com i označi „☑ Preuzm
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Dodaje datoteku bcfetch-download.log u svaku mapu albuma. Za svako pokretanje bilježi koje su pjesme preuzete, preskočene ili neuspjele i zašto. Redci se samo dodaju na kraj.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL-ovi albuma</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Ukupni napredak</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Pjesme</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Dnevnik</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Unesite cijeli broj.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Unesite broj, s točkom za decimale.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Format naziva datoteke mora završavati s .mp3.</value>
+  </data>
 </root>

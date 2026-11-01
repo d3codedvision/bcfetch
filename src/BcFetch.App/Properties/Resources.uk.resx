@@ -602,4 +602,25 @@ URL-адреса Bandcamp виглядає так: http: // [artist] .bandcamp.c
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Додає до кожної теки альбому файл bcfetch-download.log. Для кожного запуску в ньому записано, які треки було завантажено, пропущено або які не вдалися, і чому. Рядки лише дописуються в кінець.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL-адреси альбомів</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Загальний перебіг</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Треки</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Введіть ціле число.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Введіть число; десятковий роздільник — крапка.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Формат імені файлу має закінчуватися на .mp3.</value>
+  </data>
 </root>

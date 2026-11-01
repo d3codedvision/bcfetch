@@ -155,4 +155,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>各アルバムフォルダーに bcfetch-download.log を追加します。実行ごとに、どの曲がダウンロード・スキップ・失敗したか、その理由を記録します。行は末尾に追記されるだけです。</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>アルバムの URL</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>全体の進行状況</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>トラック</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>ログ</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>整数を入力してください。</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>数値を入力してください（小数点はピリオド）。</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>ファイル名の形式は .mp3 で終わる必要があります。</value>
+  </data>
 </root>

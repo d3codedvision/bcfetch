@@ -549,4 +549,25 @@ Sanatçı sayfalarını yapıştırın: http://[sanatçı].bandcamp.com ve tüm 
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Her albüm klasörüne bcfetch-download.log dosyası ekler. Her çalıştırmada hangi parçaların indirildiğini, atlandığını veya başarısız olduğunu ve nedenini kaydeder. Dosyaya yalnızca sona satır eklenir.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Albüm URL'leri</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Genel ilerleme</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Parçalar</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Günlük</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Tam sayı girin.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Bir sayı girin; ondalık için nokta kullanın.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Dosya adı biçimi .mp3 ile bitmelidir.</value>
+  </data>
 </root>

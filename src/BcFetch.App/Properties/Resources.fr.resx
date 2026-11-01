@@ -616,4 +616,25 @@ de leurs albums.</value>
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Ajoute un fichier bcfetch-download.log dans chaque dossier d’album. Pour chaque exécution, il note quelles pistes ont été téléchargées, ignorées ou ont échoué, et pourquoi. Les lignes sont uniquement ajoutées à la fin.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL des albums</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Progression globale</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Pistes</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Saisissez un nombre entier.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Saisissez un nombre, avec un point pour les décimales.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Le format du nom de fichier doit se terminer par .mp3.</value>
+  </data>
 </root>

@@ -555,4 +555,25 @@ Zalecana wartość = 0.2</value>
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Dodaje do każdego folderu albumu plik bcfetch-download.log. Dla każdego uruchomienia zapisuje, które utwory zostały pobrane, pominięte lub nie powiodły się, i dlaczego. Wiersze są tylko dopisywane na końcu.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Adresy URL albumów</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Postęp ogólny</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Utwory</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Dziennik</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Wpisz liczbę całkowitą.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Wpisz liczbę; separator dziesiętny to kropka.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Format nazwy pliku musi kończyć się na .mp3.</value>
+  </data>
 </root>

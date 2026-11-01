@@ -543,4 +543,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>يضيف ملف bcfetch-download.log إلى كل مجلد ألبوم. يسجل في كل تشغيل المقاطع التي تم تنزيلها أو تخطيها أو فشلت، مع السبب. تُضاف الأسطر في النهاية فقط.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>عناوين URL للألبومات</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>التقدم الإجمالي</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>المقاطع</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>السجل</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>أدخل عددًا صحيحًا.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>أدخل رقمًا، واستخدم النقطة للكسور العشرية.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>يجب أن ينتهي تنسيق اسم الملف بـ ‎.mp3‎.</value>
+  </data>
 </root>

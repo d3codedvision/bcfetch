@@ -8,20 +8,36 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="BcText" Color="#14201F" />
                     <SolidColorBrush x:Key="BcMuted" Color="#5E6D6B" />
+                    <!-- Decorative hairlines (panels, progress track) versus the boundary of an input, which needs 3:1. -->
                     <SolidColorBrush x:Key="BcLine" Color="#CBD4D2" />
+                    <SolidColorBrush x:Key="BcInputBorder" Color="#7F8D8B" />
                     <SolidColorBrush x:Key="BcPanel" Color="#FFFFFF" />
-                    <SolidColorBrush x:Key="BcAccent" Color="#0E7C86" />
+                    <SolidColorBrush x:Key="BcAccent" Color="#0C7781" />
                     <SolidColorBrush x:Key="BcOnAccent" Color="#FFFFFF" />
+                    <SolidColorBrush x:Key="BcSuccess" Color="#2E7D4F" />
+                    <SolidColorBrush x:Key="BcWarning" Color="#9C6300" />
                     <SolidColorBrush x:Key="BcDanger" Color="#B5392B" />
+                    <!-- Fluent's placeholder grey is about 2:1; the placeholder here is the only help for the URL box. -->
+                    <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#5E6D6B" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#5E6D6B" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#5E6D6B" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="BcText" Color="#E3EAE8" />
                     <SolidColorBrush x:Key="BcMuted" Color="#8A9A97" />
                     <SolidColorBrush x:Key="BcLine" Color="#2C373D" />
+                    <SolidColorBrush x:Key="BcInputBorder" Color="#5F7078" />
                     <SolidColorBrush x:Key="BcPanel" Color="#0D1114" />
                     <SolidColorBrush x:Key="BcAccent" Color="#3FB8C4" />
                     <SolidColorBrush x:Key="BcOnAccent" Color="#0A1B1D" />
+                    <SolidColorBrush x:Key="BcSuccess" Color="#5CCB8A" />
+                    <SolidColorBrush x:Key="BcWarning" Color="#E3B341" />
                     <SolidColorBrush x:Key="BcDanger" Color="#FF7A6B" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#8A9A97" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#8A9A97" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#8A9A97" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <FontFamily x:Key="BcMono">avares://bcfetch/Assets/Fonts#JetBrains Mono</FontFamily>
@@ -31,7 +47,7 @@
     <Application.Styles>
         <FluentTheme>
             <FluentTheme.Palettes>
-                <ColorPaletteResources x:Key="Light" Accent="#0E7C86" RegionColor="#F1F4F3" />
+                <ColorPaletteResources x:Key="Light" Accent="#0C7781" RegionColor="#F1F4F3" />
                 <ColorPaletteResources x:Key="Dark" Accent="#3FB8C4" RegionColor="#141A1E" />
             </FluentTheme.Palettes>
         </FluentTheme>
@@ -43,8 +59,11 @@
         <!-- Inputs: flat, one hairline, no inner glow. -->
         <Style Selector="TextBox">
             <Setter Property="Background" Value="{DynamicResource BcPanel}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource BcLine}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BcInputBorder}" />
             <Setter Property="CornerRadius" Value="4" />
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="BorderBrush" Value="{DynamicResource BcInputBorder}" />
         </Style>
         <Style Selector="TextBox.mono">
             <Setter Property="FontFamily" Value="{StaticResource BcMono}" />

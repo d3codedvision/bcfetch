@@ -556,4 +556,25 @@ Ajánlott érték = 4</value>
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Minden albummappába felvesz egy bcfetch-download.log fájlt. Futásonként rögzíti, mely számok töltődtek le, maradtak ki vagy sikertelenek, és miért. Csak a végére fűz sorokat.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Albumok URL-jei</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Teljes előrehaladás</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Számok</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Napló</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Adj meg egy egész számot.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Adj meg egy számot, tizedespontot használva.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>A fájlnévformátumnak .mp3-ra kell végződnie.</value>
+  </data>
 </root>

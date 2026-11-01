@@ -615,4 +615,25 @@ Incolla l'URL di una pagina artista http://[artista].bandcamp.com e spunta «☑
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Aggiunge un file bcfetch-download.log a ogni cartella di album. Per ogni esecuzione registra quali brani sono stati scaricati, saltati o non riusciti, e perché. Le righe vengono solo aggiunte in coda.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL degli album</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Avanzamento complessivo</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Brani</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Inserisci un numero intero.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Inserisci un numero, con il punto per i decimali.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Il formato del nome file deve terminare con .mp3.</value>
+  </data>
 </root>

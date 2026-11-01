@@ -265,4 +265,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Adaugă un fișier bcfetch-download.log în fiecare dosar de album. Pentru fiecare rulare notează ce piese au fost descărcate, omise sau eșuate și de ce. Se adaugă doar linii la sfârșit.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL-urile albumelor</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Progres total</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Piese</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Jurnal</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Introdu un număr întreg.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Introdu un număr, cu punct pentru zecimale.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Formatul numelui de fișier trebuie să se termine cu .mp3.</value>
+  </data>
 </root>

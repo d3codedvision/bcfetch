@@ -419,4 +419,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Voegt een bestand bcfetch-download.log toe aan elke albummap. Per run legt het vast welke nummers zijn gedownload, overgeslagen of mislukt, en waarom. Er worden alleen regels toegevoegd.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>Album-URL's</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Totale voortgang</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Nummers</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Logboek</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Voer een geheel getal in.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Voer een getal in, met een punt voor decimalen.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Het bestandsnaamformaat moet eindigen op .mp3.</value>
+  </data>
 </root>

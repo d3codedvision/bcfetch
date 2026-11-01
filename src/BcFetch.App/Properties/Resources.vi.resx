@@ -490,4 +490,25 @@ Nếu không, một số băng thông/thời gian sẽ được tiết kiệm.</
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Thêm tệp bcfetch-download.log vào mỗi thư mục album. Mỗi lần chạy, tệp ghi lại bài nào đã tải, đã bỏ qua hoặc bị lỗi, và vì sao. Chỉ có dòng mới được thêm vào cuối.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL album</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Tiến độ tổng thể</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Bài hát</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Nhật ký</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Nhập một số nguyên.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Nhập một số, dùng dấu chấm cho phần thập phân.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>Định dạng tên tệp phải kết thúc bằng .mp3.</value>
+  </data>
 </root>

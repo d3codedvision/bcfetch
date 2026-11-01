@@ -233,4 +233,25 @@
   <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
     <value>Aldonas dosieron bcfetch-download.log al ĉiu albuma dosierujo. Por ĉiu ruliĝo ĝi notas, kiuj pecoj estis elŝutitaj, preterlasitaj aŭ malsukcesis, kaj kial. Nur linioj estas aldonataj ĉe la fino.</value>
   </data>
+  <data name="labelUrls" xml:space="preserve">
+    <value>URL-oj de albumoj</value>
+  </data>
+  <data name="progressOverall" xml:space="preserve">
+    <value>Ĉiea progreso</value>
+  </data>
+  <data name="labelTracks" xml:space="preserve">
+    <value>Pecoj</value>
+  </data>
+  <data name="labelLog" xml:space="preserve">
+    <value>Protokolo</value>
+  </data>
+  <data name="settingsInvalidInteger" xml:space="preserve">
+    <value>Enigu entjeron.</value>
+  </data>
+  <data name="settingsInvalidNumber" xml:space="preserve">
+    <value>Enigu nombron, kun punkto por decimaloj.</value>
+  </data>
+  <data name="settingsInvalidFileName" xml:space="preserve">
+    <value>La formato de dosiernomo devas fini per .mp3.</value>
+  </data>
 </root>
