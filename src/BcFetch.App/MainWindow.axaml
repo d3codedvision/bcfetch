@@ -53,7 +53,7 @@
             </ScrollViewer>
         </Border>
 
-        <Grid Grid.Row="5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="5">
+        <Grid Grid.Row="5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="5">
             <TextBlock
                 x:Name="LabelNewVersion"
                 Grid.Column="0"
@@ -84,6 +84,11 @@
                 Click="ButtonOpenSettingsWindow_Click"
                 Content="{x:Static p:Resources.buttonOpenSettingsWindow}"
                 ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
+            <Button
+                Grid.Column="6"
+                MinWidth="80"
+                Click="ButtonAbout_Click"
+                Content="{x:Static p:Resources.labelListBoxItemAbout}" />
         </Grid>
     </Grid>
 </Window>

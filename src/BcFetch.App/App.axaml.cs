@@ -29,7 +29,7 @@ public sealed class App : Application
 
             LogManager.GetCurrentClassLogger().Info($"bcfetch {Core.Constants.APP_VERSION_FORMATTED}, settings: {container.GetService<ISettingsService>().GetUserSettingsInJson()}");
 
-            desktop.MainWindow = new MainWindow(container.GetService<ISettingsService>(), container.GetService<Bandcamp.Download.IDownloadManager>(), container.GetService<Core.Updates.IUpdatesService>());
+            desktop.MainWindow = new MainWindow(container.GetService<ISettingsService>(), container.GetService<Bandcamp.Download.IDownloadManager>(), container.GetService<Core.Updates.IUpdatesService>(), container.GetService<Net.IHttpService>());
         }
 
         base.OnFrameworkInitializationCompleted();
