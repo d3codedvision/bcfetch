@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* The URL box help text is now really readable. 0.3.7 changed its colour, but the TextBox template still faded the text to 50%, so it stayed at about 2:1; it now measures 5.4:1 in the light theme and 6.5:1 in the dark theme.
+
 ## 0.3.7
 
 Interface audit fixes.

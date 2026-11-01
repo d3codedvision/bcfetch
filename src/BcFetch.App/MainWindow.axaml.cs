@@ -69,6 +69,16 @@ internal sealed partial class MainWindow : Window
 
 Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
+
+        // The TextBox template fades its placeholder to 50% on the element itself, which a style cannot override and
+        // which halves its contrast (2:1); the placeholder colour token is already the quiet tone.
+        TextBoxUrls.TemplateApplied += (_, e) =>
+        {
+            if (e.NameScope.Find<TextBlock>("PART_Placeholder") is { } placeholder)
+            {
+                placeholder.Opacity = 1;
+            }
+        };
         ActualThemeVariantChanged += (_, _) =>
         {
             foreach (var (stamp, text, level) in _logLines)
