@@ -1,0 +1,106 @@
+﻿using System;
+using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
+using System.Threading;
+using BcFetch.Bandcamp.Extraction.Dto;
+using BcFetch.Model;
+using HtmlAgilityPack;
+using NLog;
+
+namespace BcFetch.Bandcamp.Extraction;
+
+internal interface IAlbumInfoParser
+{
+    /// <summary>
+    /// Retrieves the data on the album of the specified Bandcamp page.
+    /// </summary>
+    /// <param name="htmlContent">The HTML source code of a Bandcamp album page.</param>
+    /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
+    /// <returns>The data on the album of the specified Bandcamp page.</returns>
+    Album GetAlbumInfoFromAlbumPage(string htmlContent, CancellationToken cancellationToken);
+}
+
+internal sealed class AlbumInfoParser : IAlbumInfoParser
+{
+    private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+    public Album GetAlbumInfoFromAlbumPage(string htmlContent, CancellationToken cancellationToken)
+    {
+        // Keep the interesting part of htmlContent only
+        if (!TryGetAlbumData(htmlContent, out var htmlAlbumData))
+        {
+            throw new Exception("Could not retrieve album data in HTML code.");
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        // Fix some wrongly formatted JSON in source code
+        htmlAlbumData = FixJson(htmlAlbumData);
+
+        // Deserialize JSON
+        var options = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        };
+        options.Converters.Add(new BandcampDateTimeJsonConverter());
+
+        var album = JsonSerializer.Deserialize<JsonAlbum>(htmlAlbumData, options).ToAlbum();
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        // Extract lyrics from album page
+        var htmlDoc = new HtmlDocument();
+        htmlDoc.LoadHtml(htmlContent);
+        foreach (var track in album.Tracks)
+        {
+            var lyricsElement = htmlDoc.GetElementbyId("lyrics_row_" + track.Number);
+
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse : lyricsElement can be null
+            if (lyricsElement != null)
+            {
+                track.Lyrics = lyricsElement.InnerText.Trim();
+            }
+        }
+
+        return album;
+    }
+
+    private static string FixJson(string albumData)
+    {
+        // Some JSON is not correctly formatted in bandcamp pages, so it needs to be fixed before we can deserialize it
+
+        // In trackinfo property, we have for instance:
+        // url: "http://verbalclick.bandcamp.com" + "/album/404"
+        // -> Remove the " + "
+        var regex = new Regex("(?<root>url: \".+)\" \\+ \"(?<album>.+\",)");
+        var fixedData = regex.Replace(albumData, "${root}${album}");
+
+        return fixedData;
+    }
+
+    private bool TryGetAlbumData(string htmlContent, out string albumData)
+    {
+        albumData = null;
+
+        const string startString = "data-tralbum=\"{";
+        const string stopString = "}\"";
+
+        if (!htmlContent.Contains(startString))
+        {
+            _logger.Warn($"Could not find {nameof(startString)} in {nameof(htmlContent)}");
+            return false;
+        }
+
+        var startIndex = htmlContent.IndexOf(startString, StringComparison.Ordinal) + startString.Length - 1;
+        var albumDataTemp = htmlContent[startIndex..];
+
+        var length = albumDataTemp.IndexOf(stopString, StringComparison.Ordinal) + 1;
+        albumDataTemp = albumDataTemp[..length];
+
+        albumData = WebUtility.HtmlDecode(albumDataTemp);
+
+        return true;
+    }
+}

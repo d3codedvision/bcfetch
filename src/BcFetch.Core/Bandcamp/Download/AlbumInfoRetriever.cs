@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using BcFetch.Bandcamp.Extraction;
+using BcFetch.Model;
+using BcFetch.Net;
+using NLog;
+
+namespace BcFetch.Bandcamp.Download;
+
+internal interface IAlbumInfoRetriever
+{
+    Task<IReadOnlyCollection<Album>> GetAlbumsAsync(IReadOnlyCollection<string> albumsUrls, CancellationToken cancellationToken);
+    event DownloadProgressChangedEventHandler DownloadProgressChanged;
+}
+
+internal sealed class AlbumInfoRetriever : IAlbumInfoRetriever
+{
+    private readonly IAlbumInfoParser _albumInfoParser;
+    private readonly IHttpService _httpService;
+    private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+    public event DownloadProgressChangedEventHandler DownloadProgressChanged;
+
+    public AlbumInfoRetriever(IAlbumInfoParser albumInfoParser, IHttpService httpService)
+    {
+        _albumInfoParser = albumInfoParser;
+        _httpService = httpService;
+    }
+
+    public async Task<IReadOnlyCollection<Album>> GetAlbumsAsync(IReadOnlyCollection<string> albumsUrls, CancellationToken cancellationToken)
+    {
+        var albums = new List<Album>();
+
+        foreach (var url in albumsUrls)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Retrieving album data for {url}", DownloadProgressChangedLevel.Info));
+
+            // Retrieve URL HTML source code
+            string htmlContent;
+            try
+            {
+                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloading album info from url: {url}", DownloadProgressChangedLevel.VerboseInfo));
+                var httpClient = _httpService.CreateHttpClient();
+                htmlContent = await httpClient.GetStringAsync(url, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                _logger.Error(ex, $"Error downloading album info from url: {url}");
+                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Could not retrieve data for {url}", DownloadProgressChangedLevel.Error));
+                continue;
+            }
+
+            // Get info on album
+            try
+            {
+                var album = _albumInfoParser.GetAlbumInfoFromAlbumPage(htmlContent, cancellationToken);
+
+                if (album.Tracks.Count > 0)
+                {
+                    albums.Add(album);
+                }
+                else
+                {
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"No tracks found for {url}, album will not be downloaded", DownloadProgressChangedLevel.Warning));
+                }
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                _logger.Error(ex, $"Could not retrieve album info for {url}");
+                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Could not retrieve album info for {url}", DownloadProgressChangedLevel.Error));
+            }
+        }
+
+        return albums;
+    }
+}

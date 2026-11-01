@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BcFetch.Core/BcFetch.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BcFetch.Core.Tests/BcFetch.Core.Tests.csproj" />
+  </Folder>
+</Solution>
