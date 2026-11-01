@@ -31,3 +31,7 @@ dotnet test
 ## Credits and license
 
 Based on BandcampDownloader by Otiel, MIT licensed. See [LICENSE](LICENSE).
+
+## Known issues
+
+* On some systems with many installed fonts (seen on Zorin OS, ~2800 fonts) SkiaSharp hangs while loading the default font manager and the window never opens. Workaround: run with a reduced fontconfig, e.g. `FONTCONFIG_FILE=/path/to/minimal-fonts.conf bcfetch`. Root cause not yet found.

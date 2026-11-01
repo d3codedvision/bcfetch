@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../BandcampDownloader-master"
+		},
+		{
+			"name": "bcfetch",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

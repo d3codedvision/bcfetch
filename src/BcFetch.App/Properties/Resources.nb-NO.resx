@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="buttonBrowse" xml:space="preserve">
+    <value>…</value>
+  </data>
+  <data name="buttonBrowse_ToolTip" xml:space="preserve">
+    <value>Velg mappe</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>_Avbryt</value>
+  </data>
+  <data name="buttonCheckForUpdates" xml:space="preserve">
+    <value>Sjekk _nå</value>
+  </data>
+  <data name="buttonDownloadUpdate" xml:space="preserve">
+    <value>_Last ned ny versjon</value>
+  </data>
+  <data name="buttonOpenSettingsWindow" xml:space="preserve">
+    <value>_Innstillinger</value>
+  </data>
+  <data name="buttonOpenSettingsWindow_ToolTip" xml:space="preserve">
+    <value>Åpne innstillinger</value>
+  </data>
+  <data name="buttonResetSettings_ToolTip" xml:space="preserve">
+    <value>Tilbakestill innstillinger til forvalg</value>
+  </data>
+  <data name="buttonSave" xml:space="preserve">
+    <value>_Lagre</value>
+  </data>
+  <data name="buttonStart" xml:space="preserve">
+    <value>_Last ned</value>
+  </data>
+  <data name="buttonStop" xml:space="preserve">
+    <value>_Avbryt</value>
+  </data>
+  <data name="buttonViewChangelog" xml:space="preserve">
+    <value>_Vis</value>
+  </data>
+  <data name="changelogDownloadError" xml:space="preserve">
+    <value>Kunne ikke laste ned endringslogg fra {0}</value>
+  </data>
+  <data name="checkBoxCheckForUpdates" xml:space="preserve">
+    <value>Se etter ny _versjon ved oppstart</value>
+  </data>
+  <data name="checkBoxCheckForUpdates_ToolTip_Part" xml:space="preserve">
+    <value>Sender spørring til denne adressen når programmet startes:</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg" xml:space="preserve">
+    <value>Konverter til _JPG</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Konverterer omslagsbilde til JPG, med sammenpakking på 90 (utmerket kompromiss mellom størrelse og kvalitet).</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize" xml:space="preserve">
+    <value>Begrens ma_ksimal bredde/høyde</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize_ToolTip" xml:space="preserve">
+    <value>Endrer størrelse på angitt albumsbilde til angitt maks bredde/høyde.</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg" xml:space="preserve">
+    <value>Konverter til JP_G</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Konverterer omslagsbilde til JPG, med filkompresjon på 90 (utmerket kompromiss mellom størrelse og kvalitet).</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize" xml:space="preserve">
+    <value>Begrens mak_simal bredde/høyde</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize_ToolTip" xml:space="preserve">
+    <value>Reduserer omslagsbilde til angitt maks bredde/høyde.</value>
+  </data>
+  <data name="checkBoxCreatePlaylist" xml:space="preserve">
+    <value>Opprett _spilleliste for hvert album</value>
+  </data>
+  <data name="checkBoxCreatePlaylist_ToolTip" xml:space="preserve">
+    <value>Oppretter en fil med albumssporene for hvert nedlastede album.</value>
+  </data>
+  <data name="checkBoxDownloadDiscography" xml:space="preserve">
+    <value>Last ned artist_diskografi</value>
+  </data>
+  <data name="checkBoxDownloadDiscography_ToolTip" xml:space="preserve">
+    <value>Laster ned hele artistdiskografien.</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds" xml:space="preserve">
+    <value>Spill av _merknadslyder</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds_ToolTip" xml:space="preserve">
+    <value>Merknadslyd for fullførte nedlastinger.</value>
+  </data>
+  <data name="checkBoxM3uExtended" xml:space="preserve">
+    <value>Bruk _utvidet format (kun for M3U)</value>
+  </data>
+  <data name="checkBoxM3uExtended_ToolTip" xml:space="preserve">
+    <value>M3U-spillelister i utvidet format (mapper anført av #-tegnet).</value>
+  </data>
+  <data name="checkBoxModifyTags" xml:space="preserve">
+    <value>_Rediger sporetiketter (ID3)</value>
+  </data>
+  <data name="checkBoxModifyTags_ToolTip" xml:space="preserve">
+    <value>Endrer hver etikett som angitt nedenfor.
+
+Hvis ikke, vil alle etiketter forbli uendret, tilsvarende "Ikke endre" for hver etikett.</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize" xml:space="preserve">
+    <value>Hent fil_størrelse før nedlasting av spor</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize_ToolTip" xml:space="preserve">
+    <value>Henter filstørrelsen for å vise nøyaktig framdrift.
+Uten dette kan man spare litt båndbredde/tid.</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder" xml:space="preserve">
+    <value>Lagre i _mappe</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder_ToolTip" xml:space="preserve">
+    <value>Laster ned omslagsbilde til albummappen.</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags" xml:space="preserve">
+    <value>Lagre i _etiketter</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags_ToolTip" xml:space="preserve">
+    <value>Lagre omslagsbilde i sporetikettene.</value>
+  </data>
+  <data name="checkBoxVerboseLog" xml:space="preserve">
+    <value>Vis sirlig _loggføring</value>
+  </data>
+  <data name="checkBoxVerboseLog_ToolTip" xml:space="preserve">
+    <value>Viser mer info i loggen.</value>
+  </data>
+  <data name="labelAdvancedSettingsWarning" xml:space="preserve">
+    <value>Endring av disse innstillingene foregår på egen risiko.</value>
+  </data>
+  <data name="labelAlbumArtist" xml:space="preserve">
+    <value>Albu_msartist</value>
+  </data>
+  <data name="labelAlbumTitle" xml:space="preserve">
+    <value>Album_navn</value>
+  </data>
+  <data name="labelAllowedFileSizeDifference" xml:space="preserve">
+    <value>Tillatt filstørrelsesforskjell (%)</value>
+  </data>
+  <data name="labelArtist" xml:space="preserve">
+    <value>Art_ist</value>
+  </data>
+  <data name="labelButtonResetSettings" xml:space="preserve">
+    <value>_Tilbakestill innstillinger</value>
+  </data>
+  <data name="labelChangelog" xml:space="preserve">
+    <value>Endringslogg</value>
+  </data>
+  <data name="labelChangelogTitle" xml:space="preserve">
+    <value>Endringslogg</value>
+  </data>
+  <data name="labelComments" xml:space="preserve">
+    <value>Komm_entarer</value>
+  </data>
+  <data name="labelCoverArtFileNameFormat" xml:space="preserve">
+    <value>Fil_navnsformat</value>
+  </data>
+  <data name="labelCoverArtInFolderMaxSize" xml:space="preserve">
+    <value>Maksimal størrelse (_px)</value>
+  </data>
+  <data name="labelCoverArtInTagsMaxSize" xml:space="preserve">
+    <value>Maksimal størrelse (p_x)</value>
+  </data>
+  <data name="labelCurrentVersion" xml:space="preserve">
+    <value>Nåværende versjon:</value>
+  </data>
+  <data name="labelDownloadMaxTries" xml:space="preserve">
+    <value>_Maks antall nedlastingsforsøk</value>
+  </data>
+  <data name="labelDownloadRetryCooldown" xml:space="preserve">
+    <value>Prøv på _ny om (sek)</value>
+  </data>
+  <data name="labelDownloadRetryExponent" xml:space="preserve">
+    <value>Gjentagelses_eksponent</value>
+  </data>
+  <data name="labelDownloadsPath" xml:space="preserve">
+    <value>La_gre album i</value>
+  </data>
+  <data name="labelFileNameFormat" xml:space="preserve">
+    <value>_Filnavnsformat:</value>
+  </data>
+  <data name="labelHttp" xml:space="preserve">
+    <value>_HTTP(S)-mellomtjener</value>
+  </data>
+  <data name="labelHttpPort" xml:space="preserve">
+    <value>_Port</value>
+  </data>
+  <data name="labelIssues" xml:space="preserve">
+    <value>Innrapporter en feil</value>
+  </data>
+  <data name="labelLanguage" xml:space="preserve">
+    <value>_Språk</value>
+  </data>
+  <data name="labelListBoxItemAbout" xml:space="preserve">
+    <value>Om</value>
+  </data>
+  <data name="labelListBoxItemAdvanced" xml:space="preserve">
+    <value>Avanserte innstillinger</value>
+  </data>
+  <data name="labelListBoxItemCoverArt" xml:space="preserve">
+    <value>Omslag</value>
+  </data>
+  <data name="labelListBoxItemDownloads" xml:space="preserve">
+    <value>Nedlastinger</value>
+  </data>
+  <data name="labelListBoxItemGeneral" xml:space="preserve">
+    <value>Generelt</value>
+  </data>
+  <data name="labelListBoxItemNetwork" xml:space="preserve">
+    <value>Nettverk</value>
+  </data>
+  <data name="labelListBoxItemPlaylist" xml:space="preserve">
+    <value>Spilleliste</value>
+  </data>
+  <data name="labelListBoxItemTags" xml:space="preserve">
+    <value>Navgivning og etiketter</value>
+  </data>
+  <data name="labelLyrics" xml:space="preserve">
+    <value>_Sangtekster</value>
+  </data>
+  <data name="labelPlaylistFileNameFormat" xml:space="preserve">
+    <value>Fil_navnsformat</value>
+  </data>
+  <data name="labelPlaylistFormat" xml:space="preserve">
+    <value>Spilleliste_format</value>
+  </data>
+  <data name="labelSettingsInfo" xml:space="preserve">
+    <value>Noen innstillinger kan ikke endres under nedlasting av spor.</value>
+  </data>
+  <data name="labelTheme" xml:space="preserve">
+    <value>_Drakt</value>
+  </data>
+  <data name="labelTrackNumber" xml:space="preserve">
+    <value>Sporn_ummer</value>
+  </data>
+  <data name="labelTrackTitle" xml:space="preserve">
+    <value>Titte_l</value>
+  </data>
+  <data name="labelVerboseLogInfo" xml:space="preserve">
+    <value>(loggfilen er alltid ordrik)</value>
+  </data>
+  <data name="labelVersion" xml:space="preserve">
+    <value>Versjon</value>
+  </data>
+  <data name="labelVersionError" xml:space="preserve">
+    <value>Kunne ikke se etter nye oppdateringer</value>
+  </data>
+  <data name="labelVersionNewUpdateAvailable" xml:space="preserve">
+    <value>Ny versjon er tilgjengelig</value>
+  </data>
+  <data name="labelWebsite" xml:space="preserve">
+    <value>Nettside</value>
+  </data>
+  <data name="labelYear" xml:space="preserve">
+    <value>Albumut_givelsesår</value>
+  </data>
+  <data name="messageBoxButtonCancel" xml:space="preserve">
+    <value>_Avbryt</value>
+  </data>
+  <data name="messageBoxButtonNo" xml:space="preserve">
+    <value>_Nei</value>
+  </data>
+  <data name="messageBoxButtonOK" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="messageBoxButtonYes" xml:space="preserve">
+    <value>_Ja</value>
+  </data>
+  <data name="messageBoxCancelDownloadsText" xml:space="preserve">
+    <value>Avbryt alle nedlastinger?</value>
+  </data>
+  <data name="messageBoxCheckForUpdatesError" xml:space="preserve">
+    <value>Feil under oppdateringssjekk. Prøv igjen senere.</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingButtonOk" xml:space="preserve">
+    <value>_Lukk program</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingText" xml:space="preserve">
+    <value>Det blir lastet ned i øyeblikket, vil du lukke programmet og stoppe alle nedlastinger?</value>
+  </data>
+  <data name="messageBoxCouldNotOpenUrlError" xml:space="preserve">
+    <value>Kunne ikke åpne denne lenken:
+{0}</value>
+  </data>
+  <data name="messageBoxNoUpdateAvailable" xml:space="preserve">
+    <value>Du har allerede seneste versjon({0}).</value>
+  </data>
+  <data name="messageBoxResetSettingsButtonOk" xml:space="preserve">
+    <value>_Tilbakestill innstillinger</value>
+  </data>
+  <data name="messageBoxResetSettingsText" xml:space="preserve">
+    <value>Tilbakestill alle verdier til forvalg?</value>
+  </data>
+  <data name="messageBoxUnhandledException" xml:space="preserve">
+    <value>Uhåndtert feil. Programmet vil lukkes nå.
+
+Innrapporter feilen sammen med innholdet i loggfilen din på:
+{0}</value>
+  </data>
+  <data name="radioButtonManualProxy" xml:space="preserve">
+    <value>_Manuelt mellomtjeneroppsett</value>
+  </data>
+  <data name="radioButtonNoProxy" xml:space="preserve">
+    <value>_Ingen mellomtjener</value>
+  </data>
+  <data name="radioButtonSystemProxy" xml:space="preserve">
+    <value>S_ystemmellomtjener</value>
+  </data>
+  <data name="saveFileDialogTitle" xml:space="preserve">
+    <value>Lagre som</value>
+  </data>
+  <data name="Skin_Dark" xml:space="preserve">
+    <value>Mørk</value>
+  </data>
+  <data name="Skin_Light" xml:space="preserve">
+    <value>Lys</value>
+  </data>
+  <data name="TagEditAction_DoNotModify" xml:space="preserve">
+    <value>Ikke endre</value>
+  </data>
+  <data name="TagEditAction_Empty" xml:space="preserve">
+    <value>Fjern etikett</value>
+  </data>
+  <data name="TagEditAction_Modify" xml:space="preserve">
+    <value>Lagre i etikett</value>
+  </data>
+  <data name="TagRemoveAction_DoNotModify" xml:space="preserve">
+    <value>Ikke endre</value>
+  </data>
+  <data name="TagRemoveAction_Empty" xml:space="preserve">
+    <value>Fjern etikett</value>
+  </data>
+  <data name="textBlockReleasesWebsite" xml:space="preserve">
+    <value>Utgivelseshistorikk</value>
+  </data>
+  <data name="textBlockTranslationHelp" xml:space="preserve">
+    <value>Hjelp til i oversettelsen</value>
+  </data>
+  <data name="textBoxAllowedFileSizeDifference_ToolTip" xml:space="preserve">
+    <value>Sjekker om det finnes noe ved samme filnavn under nedlasting.
+Hvis størrelsen på begge filer er prosentvis forskjellig, (i prosent), vil ikke sporet bli lastet ned.
+Verdien 0 laster alltid ned spor, selv om de allerede finnes nedlastet.
+
+Anbefalt verdi = 5</value>
+  </data>
+  <data name="textBoxCoverArtFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Du kan bruke plassholdere til å tilpasse filnavnet:
+- {artist} erstattes av albumsartisten
+- {album} erstattes av albumsnavnet
+- {year}, {month} og {day} erstattes av albumsutgivelsesdatoen</value>
+  </data>
+  <data name="textBoxDownloadMaxTries_ToolTip" xml:space="preserve">
+    <value>Maksimalt antall forsøk på å laste ned et spor.
+Forsøker dette for hvert spor, til neste spor blir forsøkt.
+
+Anbefalt verdi = 7</value>
+  </data>
+  <data name="textBoxDownloadRetryCooldown_ToolTip" xml:space="preserve">
+    <value>Brukes for å kontrollere eksponensiell avholdenhetsmekanisme:
+Etter hver gang et spor mislykkes, kan BandcampDownloader vente en gitt tid før et nytt forsøk
+på å laste ned sporet, for å unngå å møte Bandcamp sitt anti-spam-filter.
+Formelen brukt for å regne ut ventetiden igjen på nedlasting er som følger:
+tid = ventetid * (eksponent ^ forsøksantall)
+
+Anbefalt verdi = 0.2</value>
+  </data>
+  <data name="textBoxDownloadRetryExponent_ToolTip" xml:space="preserve">
+    <value>Brukes for å kontrollere eksponensiell avholdenhetsmekanisme:
+Etter hver gang et spor mislykkes, kan BandcampDownloader vente en gitt tid før et nytt forsøk
+på å laste ned sporet, for å unngå å møte Bandcamp sitt anti-spam-filter.
+Formelen brukt for å regne ut ventetiden igjen på nedlasting er som følger:
+tid = ventetid * (eksponent ^ forsøksantall)
+
+Anbefalt verdi = 4</value>
+  </data>
+  <data name="textBoxDownloadsPath_ToolTip" xml:space="preserve">
+    <value>Du kan bruke plassholdere for å tilpasse nedlastingsmappen, avhengig av album:
+- {artist} erstattes av albumsartisten
+- {album} erstattes av albumsnavnet
+- {year}, {month} og {day} erstattes av albumsutgivelsesdatoen</value>
+  </data>
+  <data name="textBoxFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Du kan bruke plassholdere til å tilpasse filnavnet:
+- {artist} erstattes av albumsartisten
+- {title} erstattes av spornavnet
+- {tracknum} erstattes av spornummeret
+- {album} erstattes av albumsnavnet
+- {year}, {month} og {day} erstattes av albumsutgivelsesdatoen</value>
+  </data>
+  <data name="textBoxPlaylistFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Du kan bruke plassholdere for å tilpasse filnavnet:
+- {artist} erstattes av albumsartisten
+- {album} erstattes av albumnavn
+- {year}, {month} og {day} erstattes av albumsutgivelsesdatoen</value>
+  </data>
+  <data name="textBoxUrlsPlaceholder" xml:space="preserve">
+    <value>Lim inn nettadresser for album som skal lastes ned her. Du kan angi flerfoldige nettadresser ved å skrive én per linje.
+
+En Bandcamp-nettadresse ser slik ut: https://[artist].bandcamp.com/album/[album] eller https://[artist].bandcamp.com/track/[track]
+Lim inn artistsider: https://[artist].bandcamp.com og velg "☑ Last ned artistdiskografi" for å laste ned alle albumene deres.</value>
+  </data>
+  <data name="windowSettings_Title" xml:space="preserve">
+    <value>Innstillinger</value>
+  </data>
+  <data name="windowUpdate_Title" xml:space="preserve">
+    <value>Oppdater</value>
+  </data>
+</root>

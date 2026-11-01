@@ -16,7 +16,7 @@ internal sealed class UpdatesService : IUpdatesService
 {
     private readonly IHttpService _httpService;
 
-    private const string LATEST_RELEASE_URL = "https://api.github.com/repos/otiel/bandcampdownloader/releases/latest";
+    private const string LATEST_RELEASE_URL = "https://api.github.com/repos/d3codedvision/bcfetch/releases/latest";
     private const string RELEASE_ASSET_NAME = "BcFetch.zip";
 
     public UpdatesService(IHttpService httpService)

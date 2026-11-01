@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="buttonBrowse" xml:space="preserve">
+    <value>…</value>
+  </data>
+  <data name="buttonBrowse_ToolTip" xml:space="preserve">
+    <value>Przeglądaj foldery</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>_Anuluj</value>
+  </data>
+  <data name="buttonCheckForUpdates" xml:space="preserve">
+    <value>Sprawdź aktualizację</value>
+  </data>
+  <data name="buttonDownloadUpdate" xml:space="preserve">
+    <value>Pobierz nową wersję</value>
+  </data>
+  <data name="buttonOpenSettingsWindow" xml:space="preserve">
+    <value>_Ustawienia</value>
+  </data>
+  <data name="buttonOpenSettingsWindow_ToolTip" xml:space="preserve">
+    <value>Otwórz ustawienia</value>
+  </data>
+  <data name="buttonResetSettings_ToolTip" xml:space="preserve">
+    <value>Resetuj do ustawień domyślnych</value>
+  </data>
+  <data name="buttonSave" xml:space="preserve">
+    <value>_Zapisz</value>
+  </data>
+  <data name="buttonStart" xml:space="preserve">
+    <value>_Zacznij pobieranie</value>
+  </data>
+  <data name="buttonStop" xml:space="preserve">
+    <value>_Anuluj</value>
+  </data>
+  <data name="buttonViewChangelog" xml:space="preserve">
+    <value>_Zobacz zmiany</value>
+  </data>
+  <data name="changelogDownloadError" xml:space="preserve">
+    <value>Nie można pobrać pliku zmian {0}</value>
+  </data>
+  <data name="checkBoxCheckForUpdates" xml:space="preserve">
+    <value>Sprawdź uaktualnienia podczas startu</value>
+  </data>
+  <data name="checkBoxCheckForUpdates_ToolTip_Part" xml:space="preserve">
+    <value>Aplikacja uruchomi następujący adres podczas uruchamiania:</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg" xml:space="preserve">
+    <value>Zapisz jako _JPG</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Konwertuje okładkę na jpg z kompresją 'jpeg 90' (co jest dobrym kompromisem między rozmiarem a jakością).</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize" xml:space="preserve">
+    <value>Maksymalna szerokość / wysokość</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize_ToolTip" xml:space="preserve">
+    <value>Zmniejsza okładkę do podanej maksymalnej szerokości / wysokości.</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg" xml:space="preserve">
+    <value>Konwertuj na JP_G</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Konwertuje okładkę na jpg z kompresją 'jpeg 90' (co jest dobrym kompromisem między rozmiarem a jakością).</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize" xml:space="preserve">
+    <value>Maksymalna szerokość / wysokość</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize_ToolTip" xml:space="preserve">
+    <value>Zmniejsza okładkę do podanej maksymalnej szerokości / wysokości.</value>
+  </data>
+  <data name="checkBoxCreatePlaylist" xml:space="preserve">
+    <value>Utwórz _playlistę dla każdego albumu</value>
+  </data>
+  <data name="checkBoxCreatePlaylist_ToolTip" xml:space="preserve">
+    <value>Tworzy playlistę dla każdego pobranego albumu.</value>
+  </data>
+  <data name="checkBoxDownloadDiscography" xml:space="preserve">
+    <value>Pobierz _dyskografię</value>
+  </data>
+  <data name="checkBoxDownloadDiscography_ToolTip" xml:space="preserve">
+    <value>Pobiera całą dyskografię artysty / wydawcy.</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds" xml:space="preserve">
+    <value>Odtwarzaj _dźwięki powiadomień</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds_ToolTip" xml:space="preserve">
+    <value>Odtwarza dźwięk powiadomienia po zakończeniu pobierania.</value>
+  </data>
+  <data name="checkBoxM3uExtended" xml:space="preserve">
+    <value>Użyj formatu rozszerzonego [#EXTM3U] (tylko w przypadku M3U)</value>
+  </data>
+  <data name="checkBoxM3uExtended_ToolTip" xml:space="preserve">
+    <value>Playlisty M3U w rozszerzonymi formacie (odnosi się do nich znak #EXTM3U).</value>
+  </data>
+  <data name="checkBoxModifyTags" xml:space="preserve">
+    <value>_Modyfikuj tagi utworów (ID3)</value>
+  </data>
+  <data name="checkBoxModifyTags_ToolTip" xml:space="preserve">
+    <value>Modyfikuje każdy tag w sposób określony poniżej.
+
+W przeciwnym wypadku, wszystkie tagi pozostają niezmienione, co jest równoważne ustawieniu "nie modyfikuj" dla każdego tagu.</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize" xml:space="preserve">
+    <value>Pobierz _wielkość plików przed pobraniem utworów</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize_ToolTip" xml:space="preserve">
+    <value>Pobiera rozmiar pliku przed pobieraniem, pozwala to na pokazanie postępu pobierania.
+Wydłuża pobieranie i zużywa więcej transferu (nieznacznie).</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder" xml:space="preserve">
+    <value>Zapisz w _katalogu</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder_ToolTip" xml:space="preserve">
+    <value>Pobiera okładkę do folderu albumów.</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags" xml:space="preserve">
+    <value>Zapisz w _tagach</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags_ToolTip" xml:space="preserve">
+    <value>Zapisuje okładkę w tagach utworu.</value>
+  </data>
+  <data name="checkBoxVerboseLog" xml:space="preserve">
+    <value>Pokaż szczegółowy log</value>
+  </data>
+  <data name="checkBoxVerboseLog_ToolTip" xml:space="preserve">
+    <value>Pokazuje rozszerzony log.</value>
+  </data>
+  <data name="labelAdvancedSettingsWarning" xml:space="preserve">
+    <value>Zmień te ustawienia na własne ryzyko.</value>
+  </data>
+  <data name="labelAlbumArtist" xml:space="preserve">
+    <value>Album art_ist</value>
+  </data>
+  <data name="labelAlbumTitle" xml:space="preserve">
+    <value>Nazwa_albumu</value>
+  </data>
+  <data name="labelAllowedFileSizeDifference" xml:space="preserve">
+    <value>Dozwolona _różnica rozmiaru pliku (%)</value>
+  </data>
+  <data name="labelArtist" xml:space="preserve">
+    <value>_Wykonawca</value>
+  </data>
+  <data name="labelButtonResetSettings" xml:space="preserve">
+    <value>_Przywróć domyślne ustawienia</value>
+  </data>
+  <data name="labelChangelog" xml:space="preserve">
+    <value>Lista zmian</value>
+  </data>
+  <data name="labelChangelogTitle" xml:space="preserve">
+    <value>Lista zmian</value>
+  </data>
+  <data name="labelComments" xml:space="preserve">
+    <value>Komentarze</value>
+  </data>
+  <data name="labelCoverArtFileNameFormat" xml:space="preserve">
+    <value>Format nazwy pliku</value>
+  </data>
+  <data name="labelCoverArtInFolderMaxSize" xml:space="preserve">
+    <value>Maksymalny rozmiar (_px)</value>
+  </data>
+  <data name="labelCoverArtInTagsMaxSize" xml:space="preserve">
+    <value>Maksymalny rozmiar (p_x)</value>
+  </data>
+  <data name="labelCurrentVersion" xml:space="preserve">
+    <value>Używana wersja:</value>
+  </data>
+  <data name="labelDownloadMaxTries" xml:space="preserve">
+    <value>_Maksymalna ilość prób pobrania</value>
+  </data>
+  <data name="labelDownloadRetryCooldown" xml:space="preserve">
+    <value>Odstęp pomiędzy ponowieniem próby (sek)</value>
+  </data>
+  <data name="labelDownloadsPath" xml:space="preserve">
+    <value>Zapisz albumy _w</value>
+  </data>
+  <data name="labelFileNameFormat" xml:space="preserve">
+    <value>_Typ playlisty:</value>
+  </data>
+  <data name="labelHttp" xml:space="preserve">
+    <value>_HTTPS(S) proxy</value>
+  </data>
+  <data name="labelHttpPort" xml:space="preserve">
+    <value>_Port</value>
+  </data>
+  <data name="labelIssues" xml:space="preserve">
+    <value>Zgłoś błąd</value>
+  </data>
+  <data name="labelLanguage" xml:space="preserve">
+    <value>_Język</value>
+  </data>
+  <data name="labelListBoxItemAbout" xml:space="preserve">
+    <value>O programie</value>
+  </data>
+  <data name="labelListBoxItemAdvanced" xml:space="preserve">
+    <value>Zaawansowane ustawienia</value>
+  </data>
+  <data name="labelListBoxItemCoverArt" xml:space="preserve">
+    <value>Grafika albumu</value>
+  </data>
+  <data name="labelListBoxItemDownloads" xml:space="preserve">
+    <value>Pobrane</value>
+  </data>
+  <data name="labelListBoxItemGeneral" xml:space="preserve">
+    <value>Podstawowe</value>
+  </data>
+  <data name="labelListBoxItemNetwork" xml:space="preserve">
+    <value>Sieć</value>
+  </data>
+  <data name="labelListBoxItemPlaylist" xml:space="preserve">
+    <value>Playlista</value>
+  </data>
+  <data name="labelListBoxItemTags" xml:space="preserve">
+    <value>Nazewnictwo i tagi</value>
+  </data>
+  <data name="labelLyrics" xml:space="preserve">
+    <value>_Tekst</value>
+  </data>
+  <data name="labelPlaylistFileNameFormat" xml:space="preserve">
+    <value>Format nazwy playlisty</value>
+  </data>
+  <data name="labelPlaylistFormat" xml:space="preserve">
+    <value>Format_playlisty</value>
+  </data>
+  <data name="labelSettingsInfo" xml:space="preserve">
+    <value>Pewne ustawienia nie mogą zostać zmienione podczas pobierania.</value>
+  </data>
+  <data name="labelTheme" xml:space="preserve">
+    <value>_Motyw</value>
+  </data>
+  <data name="labelTrackNumber" xml:space="preserve">
+    <value>Numer utworu</value>
+  </data>
+  <data name="labelTrackTitle" xml:space="preserve">
+    <value>_Tytuł</value>
+  </data>
+  <data name="labelVerboseLogInfo" xml:space="preserve">
+    <value>(plik logów jest zawsze rozszerzony)</value>
+  </data>
+  <data name="labelVersion" xml:space="preserve">
+    <value>Wersja</value>
+  </data>
+  <data name="labelVersionError" xml:space="preserve">
+    <value>Nie można sprawdzić aktualizacji</value>
+  </data>
+  <data name="labelVersionNewUpdateAvailable" xml:space="preserve">
+    <value>Nowa wersja jest dostępna</value>
+  </data>
+  <data name="labelWebsite" xml:space="preserve">
+    <value>Strona internetowa</value>
+  </data>
+  <data name="labelYear" xml:space="preserve">
+    <value>Data wydania albumu</value>
+  </data>
+  <data name="messageBoxButtonCancel" xml:space="preserve">
+    <value>_Anuluj</value>
+  </data>
+  <data name="messageBoxButtonNo" xml:space="preserve">
+    <value>_Nie</value>
+  </data>
+  <data name="messageBoxButtonOK" xml:space="preserve">
+    <value>_OK</value>
+  </data>
+  <data name="messageBoxButtonYes" xml:space="preserve">
+    <value>_Tak</value>
+  </data>
+  <data name="messageBoxCancelDownloadsText" xml:space="preserve">
+    <value>Przerwać pobieranie?</value>
+  </data>
+  <data name="messageBoxCheckForUpdatesError" xml:space="preserve">
+    <value>Wystąpił błąd podczas sprawdzania aktualizacji. Spróbuj ponownie później.</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingButtonOk" xml:space="preserve">
+    <value>_Zamknij aplikację</value>
+  </data>
+  <data name="messageBoxCloseWindowWhenDownloadingText" xml:space="preserve">
+    <value>Aplikacja jest w trakcie pobierania. Czy na pewno chcesz ją zamknąć i je zakończyć?</value>
+  </data>
+  <data name="messageBoxCouldNotOpenUrlError" xml:space="preserve">
+    <value>Nie można otworzyć poniższego linku:
+{0}</value>
+  </data>
+  <data name="messageBoxNoUpdateAvailable" xml:space="preserve">
+    <value>Już posiadasz najnowszą wersję ({0}).</value>
+  </data>
+  <data name="messageBoxResetSettingsButtonOk" xml:space="preserve">
+    <value>_Przywróć ustawienia domyślne</value>
+  </data>
+  <data name="messageBoxResetSettingsText" xml:space="preserve">
+    <value>Przywrócić wszystkie ustawienia do domyślnych wartości? Ta akcja nie może być przywrócona.</value>
+  </data>
+  <data name="messageBoxUnhandledException" xml:space="preserve">
+    <value>Wystąpił nieznany błąd. Aplikacja zostanie zamknięta.
+
+Proszę otworzyć nowy problem na GitHubie z plikiem logów.
+{0}</value>
+  </data>
+  <data name="radioButtonManualProxy" xml:space="preserve">
+    <value>_Ręczna konfiguracja</value>
+  </data>
+  <data name="radioButtonNoProxy" xml:space="preserve">
+    <value>_Brak</value>
+  </data>
+  <data name="radioButtonSystemProxy" xml:space="preserve">
+    <value>_Systemowa</value>
+  </data>
+  <data name="saveFileDialogTitle" xml:space="preserve">
+    <value>Zapisz jako</value>
+  </data>
+  <data name="Skin_Dark" xml:space="preserve">
+    <value>Ciemny</value>
+  </data>
+  <data name="Skin_Light" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
+  <data name="TagEditAction_DoNotModify" xml:space="preserve">
+    <value>Nie zmieniaj</value>
+  </data>
+  <data name="TagEditAction_Empty" xml:space="preserve">
+    <value>Wyczyść tag</value>
+  </data>
+  <data name="TagEditAction_Modify" xml:space="preserve">
+    <value>Zapisz w tagu</value>
+  </data>
+  <data name="TagRemoveAction_DoNotModify" xml:space="preserve">
+    <value>Nie zmieniaj</value>
+  </data>
+  <data name="TagRemoveAction_Empty" xml:space="preserve">
+    <value>Wyczyść tag</value>
+  </data>
+  <data name="textBlockReleasesWebsite" xml:space="preserve">
+    <value>Historia aktualizacji</value>
+  </data>
+  <data name="textBlockTranslationHelp" xml:space="preserve">
+    <value>Pomóż w tłumaczeniu</value>
+  </data>
+  <data name="textBoxAllowedFileSizeDifference_ToolTip" xml:space="preserve">
+    <value>Podczas pobierania utworu, jeśli dany plik (lub o takiej samej nazwie) już istnieje, zostanie sprawdzony przed pobieraniem.
+Jeśli rozmiar obu plików różni się o wartość mniejszą niż podano (w %) pobieranie zostanie pominięte.
+Ustaw tą wartość na 0 aby zawsze nadpisywać pliki, nawet jeśli już są na dysku.
+
+Zalecana wartość = 5</value>
+  </data>
+  <data name="textBoxCoverArtFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Możesz użyć tagów aby dostosować nazwę pliku:
+-{artist} zostanie zastąpiony wykonawcą
+-{album} zostanie zastąpiony nazwą albumu
+-{year}, {month} i {day} zostaną zastąpione odpowiednio rokiem, miesiącem i dniem wydania albumu</value>
+  </data>
+  <data name="textBoxDownloadMaxTries_ToolTip" xml:space="preserve">
+    <value>Maksymalna liczba prób pobrania utworu jeśli występuje problem.
+Po tym jak ta liczba zostanie osiągnięta (dla każdego utworu osobno) pobieranie zostanie pominięte.
+
+Zalecana wartość = 7</value>
+  </data>
+  <data name="textBoxDownloadsPath_ToolTip" xml:space="preserve">
+    <value>Możesz użyć tagów aby dostosować folder pobierania albumu:
+-{artist} zostanie zastąpiony wykonawcą
+-{album} zostanie zastąpiony nazwą albumu
+-{year}, {month} i {day} zostaną zastąpione odpowiednio rokiem, miesiącem i dniem wydania albumu</value>
+  </data>
+  <data name="textBoxFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Możesz użyć tagów aby dostosować nazwę pliku:
+-{artist} zostanie zastąpiony wykonawcą
+-{title} zostanie zastąpiony tytułem utworu
+-{tracknum} zostanie zastąpiony numerem utworu
+-{album} zostanie zastąpiony nazwą albumu
+-{year}, {month} i {day} zostaną zastąpione odpowiednio rokiem, miesiącem i dniem wydania albumu</value>
+  </data>
+  <data name="textBoxPlaylistFileNameFormat_ToolTip" xml:space="preserve">
+    <value>Możesz użyć tagów aby dostosować nazwę pliku:
+-{artist} zostanie zastąpiony wykonawcą
+-{album} zostanie zastąpiony nazwą albumu
+-{year}, {month} i {day} zostaną zastąpione odpowiednio rokiem, miesiącem i dniem wydania albumu</value>
+  </data>
+  <data name="textBoxUrlsPlaceholder" xml:space="preserve">
+    <value>Wklej tu linki albumów do pobrania. Możesz podać linki do wielu albumów jednocześnie, każdy w kolejnej linii.
+
+Link strony z Bandcampa wygląda następująco: http://[wykonawca].bandcamp.com/album/[album] lub http://[wykonawca].bandcamp.com/track/[utwór]
+Możesz także pobrać całą dyskografię: http://[wykonawca].bandcamp.com i zaznacz "☑ Pobierz całą dyskografię" aby pobrać wszystkie albumy wykonawcy.</value>
+  </data>
+  <data name="windowSettings_Title" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="windowUpdate_Title" xml:space="preserve">
+    <value>Aktualizacja</value>
+  </data>
+  <data name="textBoxDownloadRetryExponent_ToolTip" xml:space="preserve">
+    <value>Używany do kontrolowania wykładniczego mechanizmu back-off.
+Po każdym niepowodzeniu pobrania utworu BandcampDownloader może odczekać określony czas przed ponowną próbą
+pobrania utworu, aby uniknąć drażnienia filtra antyspamowego Bandcamp.
+Formuła używana do obliczania czasu oczekiwania przed ponowną próbą pobrania jest następująca:
+czas = czas oczekiwania * (wykładnik ^ liczba-prób)
+
+Zalecana wartość = 4</value>
+  </data>
+  <data name="labelProxy" xml:space="preserve">
+    <value>Serwer pośredniczący</value>
+  </data>
+  <data name="textBoxDownloadRetryCooldown_ToolTip" xml:space="preserve">
+    <value>Używany do kontrolowania wykładniczego mechanizmu back-off.
+Po każdym niepowodzeniu pobrania utworu BandcampDownloader może odczekać określony czas przed ponowną próbą
+pobrania utworu, aby uniknąć drażnienia filtra antyspamowego Bandcamp.
+Formuła używana do obliczania czasu oczekiwania przed ponowną próbą pobrania jest następująca:
+czas = czas oczekiwania * (wykładnik ^ liczba-prób)
+
+Zalecana wartość = 0.2</value>
+  </data>
+  <data name="labelDownloadRetryExponent" xml:space="preserve">
+    <value>Spróbuj ponownie _exponent</value>
+  </data>
+  <data name="labelMaxConcurrentTracksDownloads" xml:space="preserve">
+    <value>Maksymalna liczba jednoczesnych pobrań utworów</value>
+  </data>
+  <data name="labelMaxConcurrentAlbumsDownloads" xml:space="preserve">
+    <value>Maksymalna liczba jednoczesnych pobrań albumów</value>
+  </data>
+  <data name="textBoxMaxConcurrentAlbumsDownloads_ToolTip" xml:space="preserve">
+    <value>Maksymalna liczba albumów, które mogą się pobrać jednocześnie</value>
+  </data>
+  <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
+    <value>Maksymalna liczba utworów (które są w albumie), które mogą być pobrane jednocześnie</value>
+  </data>
+</root>

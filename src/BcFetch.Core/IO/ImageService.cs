@@ -35,7 +35,7 @@ internal sealed class ImageService : IImageService
             }
 
             var info = new SKImageInfo(Math.Max(1, (int)(bitmap.Width * scale)), Math.Max(1, (int)(bitmap.Height * scale)));
-            using var resized = bitmap.Resize(info, new SKSamplingOptions(SKCubicResampler.Mitchell));
+            using var resized = bitmap.Resize(info, SKFilterQuality.High);
             return Encode(resized, format);
         }, cancellationToken);
     }

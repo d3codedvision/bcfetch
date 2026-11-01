@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+      PublicKeyToken=b77a5c561934e089
+    </value>
+  </resheader>
+  <data name="buttonBrowse" xml:space="preserve">
+    <value>…</value>
+  </data>
+  <data name="buttonBrowse_ToolTip" xml:space="preserve">
+    <value>Bladeren naar map</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>_Annuleren</value>
+  </data>
+  <data name="buttonCheckForUpdates" xml:space="preserve">
+    <value>_Nu controleren</value>
+  </data>
+  <data name="buttonDownloadUpdate" xml:space="preserve">
+    <value>Nieuwe versie _downloaden</value>
+  </data>
+  <data name="buttonOpenSettingsWindow" xml:space="preserve">
+    <value>In_stellingen</value>
+  </data>
+  <data name="buttonOpenSettingsWindow_ToolTip" xml:space="preserve">
+    <value>Instellingen openen</value>
+  </data>
+  <data name="buttonResetSettings_ToolTip" xml:space="preserve">
+    <value>Standaardwaarden herstellen</value>
+  </data>
+  <data name="buttonSave" xml:space="preserve">
+    <value>Op_slaan</value>
+  </data>
+  <data name="buttonStart" xml:space="preserve">
+    <value>_Downloaden</value>
+  </data>
+  <data name="buttonStop" xml:space="preserve">
+    <value>_Annuleren</value>
+  </data>
+  <data name="buttonViewChangelog" xml:space="preserve">
+    <value>_Bekijken</value>
+  </data>
+  <data name="changelogDownloadError" xml:space="preserve">
+    <value>Kan wijzigingslog niet ophalen van {0}</value>
+  </data>
+  <data name="checkBoxCheckForUpdates" xml:space="preserve">
+    <value>Automatisch controleren op _updates</value>
+  </data>
+  <data name="checkBoxCheckForUpdates_ToolTip_Part" xml:space="preserve">
+    <value>Vraagt het volgende adres bij het starten van de app:</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg" xml:space="preserve">
+    <value>Converteren naar _JPG</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Converteert hoesafbeeldingen naar JPG met een compressie van 90 (uitstekende afweging tussen grootte en kwaliteit).</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize" xml:space="preserve">
+    <value>_Maximale hoogte/breedte beperken</value>
+  </data>
+  <data name="checkBoxCoverArtInFolderResize_ToolTip" xml:space="preserve">
+    <value>Hiermee wordt de hoesgrootte aangepast aan de opgegeven maximale breedte / hoogte.</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg" xml:space="preserve">
+    <value>Converteren naar JP_G</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsConvertToJpg_ToolTip" xml:space="preserve">
+    <value>Converteert hoesafbeeldingen naar JPG met een compressie van 90 (uitstekende afweging tussen grootte en kwaliteit).</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize" xml:space="preserve">
+    <value>M_aximale hoogte/breedte beperken</value>
+  </data>
+  <data name="checkBoxCoverArtInTagsResize_ToolTip" xml:space="preserve">
+    <value>Hiermee wordt de hoesgrootte aangepast aan de opgegeven maximale breedte / hoogte.</value>
+  </data>
+  <data name="checkBoxCreatePlaylist" xml:space="preserve">
+    <value>Afs_peellijsten maken voor elk album</value>
+  </data>
+  <data name="checkBoxCreatePlaylist_ToolTip" xml:space="preserve">
+    <value>Creëert een albumtrackbestand voor elk gedownload album.</value>
+  </data>
+  <data name="checkBoxDownloadDiscography" xml:space="preserve">
+    <value>Discografie van _artiest downloaden</value>
+  </data>
+  <data name="checkBoxDownloadDiscography_ToolTip" xml:space="preserve">
+    <value>Downloadt de hele discografie van de artiest.</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds" xml:space="preserve">
+    <value>Meldi_ngsgeluiden afspelen</value>
+  </data>
+  <data name="checkBoxEnableApplicationSounds_ToolTip" xml:space="preserve">
+    <value>Meldingsgeluid voor voltooide downloads.</value>
+  </data>
+  <data name="checkBoxM3uExtended" xml:space="preserve">
+    <value>Uitg_ebreid formaat gebruiken (alleen M3U)</value>
+  </data>
+  <data name="checkBoxM3uExtended_ToolTip" xml:space="preserve">
+    <value>M3U afspeellijsten in uitgebreid formaat (richtlijnen voorafgegaan door de # karakter).</value>
+  </data>
+  <data name="checkBoxModifyTags" xml:space="preserve">
+    <value>_Tags aanpassen (ID3)</value>
+  </data>
+  <data name="checkBoxRetrieveFilesSize" xml:space="preserve">
+    <value>Haal _bestandsgrootte op voor het downloaden van tracks</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInFolder" xml:space="preserve">
+    <value>Opslaan in _map</value>
+  </data>
+  <data name="checkBoxSaveCoverArtInTags" xml:space="preserve">
+    <value>Opslaan in _tags</value>
+  </data>
+  <data name="checkBoxVerboseLog" xml:space="preserve">
+    <value>Toon _verbose logboek</value>
+  </data>
+  <data name="labelAlbumArtist" xml:space="preserve">
+    <value>Album art_iest</value>
+  </data>
+  <data name="labelAlbumTitle" xml:space="preserve">
+    <value>Album _naam</value>
+  </data>
+  <data name="labelAllowedFileSizeDifference" xml:space="preserve">
+    <value>Toegestane bestandsgrootte _verschil (%)</value>
+  </data>
+  <data name="labelArtist" xml:space="preserve">
+    <value>_Artiest</value>
+  </data>
+  <data name="labelButtonResetSettings" xml:space="preserve">
+    <value>_Reset instellingen</value>
+  </data>
+  <data name="labelChangelog" xml:space="preserve">
+    <value>Wijzigingslog</value>
+  </data>
+  <data name="labelChangelogTitle" xml:space="preserve">
+    <value>Wijzigingslog</value>
+  </data>
+  <data name="labelComments" xml:space="preserve">
+    <value>Comm_entaar</value>
+  </data>
+  <data name="labelCoverArtFileNameFormat" xml:space="preserve">
+    <value>Bestands_naam formaat</value>
+  </data>
+  <data name="labelCoverArtInFolderMaxSize" xml:space="preserve">
+    <value>Maximale grootte (_px)</value>
+  </data>
+  <data name="labelCoverArtInTagsMaxSize" xml:space="preserve">
+    <value>Maximale grootte (p_x)</value>
+  </data>
+  <data name="labelCurrentVersion" xml:space="preserve">
+    <value>Huidige versie:</value>
+  </data>
+  <data name="labelDownloadMaxTries" xml:space="preserve">
+    <value>_Max downloadpogingen</value>
+  </data>
+  <data name="labelDownloadRetryCooldown" xml:space="preserve">
+    <value>C_ooldown opnieuw proberen (sec)</value>
+  </data>
+  <data name="labelDownloadRetryExponent" xml:space="preserve">
+    <value>Opnieuw proberen _exponent</value>
+  </data>
+  <data name="labelDownloadsPath" xml:space="preserve">
+    <value>Albums opslaan _in</value>
+  </data>
+  <data name="labelFileNameFormat" xml:space="preserve">
+    <value>Bestandsnaam _formaat:</value>
+  </data>
+  <data name="labelHttp" xml:space="preserve">
+    <value>_HTTP(S) proxy</value>
+  </data>
+  <data name="labelHttpPort" xml:space="preserve">
+    <value>_Poort</value>
+  </data>
+  <data name="labelIssues" xml:space="preserve">
+    <value>Een bug melden</value>
+  </data>
+  <data name="labelLanguage" xml:space="preserve">
+    <value>_Taal</value>
+  </data>
+  <data name="labelListBoxItemAbout" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="labelListBoxItemAdvanced" xml:space="preserve">
+    <value>Geavanceerde instellingen</value>
+  </data>
+  <data name="labelListBoxItemCoverArt" xml:space="preserve">
+    <value>Omslagdesign</value>
+  </data>
+  <data name="labelListBoxItemDownloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="labelListBoxItemGeneral" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="labelListBoxItemNetwork" xml:space="preserve">
+    <value>Netwerk</value>
+  </data>
+  <data name="labelListBoxItemPlaylist" xml:space="preserve">
+    <value>Afspeellijst</value>
+  </data>
+  <data name="labelListBoxItemTags" xml:space="preserve">
+    <value>Naamgeving en Tags</value>
+  </data>
+  <data name="labelLyrics" xml:space="preserve">
+    <value>_Lyrics</value>
+  </data>
+  <data name="labelPlaylistFileNameFormat" xml:space="preserve">
+    <value>Bestands_naam formaat</value>
+  </data>
+  <data name="labelPlaylistFormat" xml:space="preserve">
+    <value>Afspeellijst _format</value>
+  </data>
+  <data name="labelSettingsInfo" xml:space="preserve">
+    <value>Sommige instellingen kunnen niet worden gewijzigd tijdens het downloaden van tracks.</value>
+  </data>
+  <data name="labelTrackNumber" xml:space="preserve">
+    <value>Track n_nummer</value>
+  </data>
+  <data name="labelTrackTitle" xml:space="preserve">
+    <value>_Titel</value>
+  </data>
+  <data name="labelVerboseLogInfo" xml:space="preserve">
+    <value>(het logbestand is altijd uitgebreid)</value>
+  </data>
+  <data name="labelVersion" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+  <data name="labelVersionError" xml:space="preserve">
+    <value>Kon niet controleren op updates</value>
+  </data>
+  <data name="labelVersionNewUpdateAvailable" xml:space="preserve">
+    <value>Nieuwe versie beschikbaar</value>
+  </data>
+  <data name="labelWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="labelYear" xml:space="preserve">
+    <value>Album release _jaar</value>
+  </data>
+  <data name="messageBoxButtonCancel" xml:space="preserve">
+    <value>_Annuleren</value>
+  </data>
+  <data name="messageBoxButtonNo" xml:space="preserve">
+    <value>_Nee</value>
+  </data>
+  <data name="messageBoxButtonOK" xml:space="preserve">
+    <value>_Oké</value>
+  </data>
+  <data name="messageBoxButtonYes" xml:space="preserve">
+    <value>_Ja</value>
+  </data>
+  <data name="messageBoxCheckForUpdatesError" xml:space="preserve">
+    <value>Er is een fout opgetreden bij het controleren op updates. Probeer het later opnieuw.</value>
+  </data>
+  <data name="messageBoxNoUpdateAvailable" xml:space="preserve">
+    <value>U heeft reeds de laatste versie ({0}).</value>
+  </data>
+  <data name="radioButtonManualProxy" xml:space="preserve">
+    <value>Hand_matige proxy configuratie</value>
+  </data>
+  <data name="radioButtonNoProxy" xml:space="preserve">
+    <value>_Geen proxy</value>
+  </data>
+  <data name="radioButtonSystemProxy" xml:space="preserve">
+    <value>S_ysteem proxy</value>
+  </data>
+  <data name="TagEditAction_DoNotModify" xml:space="preserve">
+    <value>Niet aanpassen</value>
+  </data>
+  <data name="TagEditAction_Empty" xml:space="preserve">
+    <value>Tag wissen</value>
+  </data>
+  <data name="TagEditAction_Modify" xml:space="preserve">
+    <value>Opslaan in tag</value>
+  </data>
+  <data name="TagRemoveAction_DoNotModify" xml:space="preserve">
+    <value>Niet aanpassen</value>
+  </data>
+  <data name="TagRemoveAction_Empty" xml:space="preserve">
+    <value>Tag wissen</value>
+  </data>
+  <data name="textBlockReleasesWebsite" xml:space="preserve">
+    <value>Releases geschiedenis</value>
+  </data>
+  <data name="textBlockTranslationHelp" xml:space="preserve">
+    <value>Help met vertalen</value>
+  </data>
+  <data name="windowSettings_Title" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="windowUpdate_Title" xml:space="preserve">
+    <value>Update</value>
+  </data>
+</root>

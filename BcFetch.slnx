@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/BcFetch.App/BcFetch.App.csproj">
+      <Platform Project="x64" />
+    </Project>
     <Project Path="src/BcFetch.Core/BcFetch.Core.csproj" />
   </Folder>
   <Folder Name="/tests/">

@@ -1,0 +1,89 @@
+<Window
+    x:Class="BcFetch.App.MainWindow"
+    x:ClassModifier="internal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:p="using:BcFetch.App.Properties"
+    Title="bcfetch"
+    Width="815"
+    Height="440"
+    MinWidth="600"
+    MinHeight="400"
+    Icon="/Assets/Cloud.png"
+    WindowStartupLocation="CenterScreen">
+    <Grid Margin="10" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" RowSpacing="6">
+        <Grid Grid.Row="0" Height="111">
+            <TextBox
+                x:Name="TextBoxUrls"
+                AcceptsReturn="True"
+                Watermark="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="5">
+            <TextBlock
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="{x:Static p:Resources.labelDownloadsPath}" />
+            <TextBox
+                x:Name="TextBoxDownloadsPath"
+                Grid.Column="1"
+                ToolTip.Tip="{x:Static p:Resources.textBoxDownloadsPath_ToolTip}" />
+            <Button
+                x:Name="ButtonBrowse"
+                Grid.Column="2"
+                Click="ButtonBrowse_Click"
+                Content="{x:Static p:Resources.buttonBrowse}"
+                ToolTip.Tip="{x:Static p:Resources.buttonBrowse_ToolTip}" />
+        </Grid>
+
+        <CheckBox
+            x:Name="CheckBoxDownloadDiscography"
+            Grid.Row="2"
+            Content="{x:Static p:Resources.checkBoxDownloadDiscography}"
+            ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
+
+        <ProgressBar x:Name="ProgressBar" Grid.Row="3" Height="18" ShowProgressText="False" />
+
+        <Border
+            Grid.Row="4"
+            BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+            BorderThickness="1">
+            <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
+                <SelectableTextBlock x:Name="LogText" Margin="4" FontFamily="monospace" />
+            </ScrollViewer>
+        </Border>
+
+        <Grid Grid.Row="5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="5">
+            <TextBlock
+                x:Name="LabelNewVersion"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Cursor="Hand"
+                Foreground="OrangeRed"
+                IsVisible="False"
+                PointerPressed="LabelNewVersion_PointerPressed" />
+            <TextBlock x:Name="LabelDownloadSpeed" Grid.Column="1" VerticalAlignment="Center" />
+            <TextBlock x:Name="LabelProgress" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" />
+            <Button
+                x:Name="ButtonStart"
+                Grid.Column="3"
+                MinWidth="100"
+                Click="ButtonStart_Click"
+                Content="{x:Static p:Resources.buttonStart}" />
+            <Button
+                x:Name="ButtonStop"
+                Grid.Column="4"
+                MinWidth="100"
+                Click="ButtonStop_Click"
+                Content="{x:Static p:Resources.buttonStop}"
+                IsEnabled="False" />
+            <Button
+                x:Name="ButtonOpenSettingsWindow"
+                Grid.Column="5"
+                MinWidth="100"
+                Content="{x:Static p:Resources.buttonOpenSettingsWindow}"
+                IsEnabled="False"
+                ToolTip.Tip="{x:Static p:Resources.buttonOpenSettingsWindow_ToolTip}" />
+        </Grid>
+    </Grid>
+</Window>
