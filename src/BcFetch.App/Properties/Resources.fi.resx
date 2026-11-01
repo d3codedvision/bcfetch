@@ -473,4 +473,70 @@ Liitä artistin sivut: http://[artisti].bandcamp.com ja valitse "☑ Tallenna ar
   <data name="labelProxy" xml:space="preserve">
     <value>Välityspalvelin</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Lisää jonoon</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Yritä epäonnistuneita uudelleen</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>{0} URL-osoitetta jonossa; {1} erää odottaa</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} kappaletta epäonnistui. Yritä uudelleen valitsemalla ”{1}”; valmiit tiedostot ohitetaan.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Kieli vaihtuu, kun tämä ajo päättyy</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Pudotettu sisältö ei näyttänyt URL-osoitteelta</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Lataukset valmiit</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Lataukset valmiit, {0} kappaletta epäonnistui</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Näytä bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Lopeta</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>odottaa</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>valmis</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>ohitettu</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>epäonnistui</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Näytä ilmaisinalueen kuvake</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Näyttää ilmaisinalueen kuvakkeen, jonka valikosta bcfetch voidaan tuoda esiin tai lopettaa, ja latauksen edistymisen työkaluvihjeenä. Vaatii työpöydän, joka näyttää ilmaisinalueen kuvakkeet (GNOME tarvitsee AppIndicator-laajennuksen).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Ikkunan sulkeminen jättää bcfetchin käyntiin ilmaisinalueelle</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Ikkunan sulkeminen piilottaa sen ja lataukset jatkuvat. Tuo se takaisin tai lopeta kuvakkeen valikosta. Jätä pois päältä, jos työpöytäsi ei näytä ilmaisinalueen kuvakkeita.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Näytä ilmoitus, kun lataukset ovat valmiit</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Lähettää työpöytäilmoituksen, kun kaikki lataukset ovat valmiit. Vaatii notify-send-ohjelman (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Ohita jo ladatut albumit</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Ohittaa albumin, jonka kaikki kappaleet ladattiin aiemmalla ajolla, tarkistamatta tiedostokokoja. Albumi tunnistetaan albumikansion piilotiedostosta .bcfetch-done; kappaleen tai tuon tiedoston poistaminen lataa albumin uudelleen.</value>
+  </data>
 </root>

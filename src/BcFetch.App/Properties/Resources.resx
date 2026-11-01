@@ -245,13 +245,13 @@ If not, some bandwidth/time is saved.</value>
     <value>Show a _tray icon</value>
   </data>
   <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
-    <value>Shows a notification-area icon with a menu to show or quit bcfetch and the download progress as its tooltip. Needs a desktop with a status notifier or app indicator host (GNOME needs the AppIndicator extension).</value>
+    <value>Shows a notification-area icon with a menu to show or quit bcfetch and the download progress as its tooltip. Needs a desktop that shows tray icons (GNOME needs the AppIndicator extension).</value>
   </data>
   <data name="checkBoxCloseToTray" xml:space="preserve">
     <value>_Closing the window keeps bcfetch running in the tray</value>
   </data>
   <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
-    <value>Closing the window hides it and downloads continue. Use the tray menu to show it again or quit. Leave this off if your desktop does not show tray icons, or you would not be able to get the window back.</value>
+    <value>Closing the window hides it and downloads continue. Use the tray menu to show it again or quit. Leave this off if your desktop does not show tray icons.</value>
   </data>
   <data name="checkBoxNotifyOnFinish" xml:space="preserve">
     <value>Show a notification when _downloads finish</value>
@@ -566,5 +566,47 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   </data>
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
       <value>The maximum number of tracks (within the same album) that can be downloaded simultaneously</value>
+  </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Add to queue</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Retry failed</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>Queued {0} URL(s); {1} batch(es) waiting</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} track(s) failed. Press "{1}" to try them again; finished files are skipped.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>The language changes when this run ends</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Nothing that looks like a URL was dropped</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Downloads finished</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Downloads finished, {0} track(s) failed</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Show bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>waiting</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>done</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>skipped</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>failed</value>
   </data>
 </root>

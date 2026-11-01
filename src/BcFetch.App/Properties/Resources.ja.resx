@@ -83,4 +83,70 @@
   <data name="buttonStart" xml:space="preserve">
     <value>_ダウンロード</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>キューに追加</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>失敗したものを再試行</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>{0} 件の URL をキューに追加しました。待機中のバッチ: {1}</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} 曲が失敗しました。「{1}」を押すと再試行します。完了済みのファイルはスキップされます。</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>言語はこの実行が終わると切り替わります</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>URL に見えるものはドロップされませんでした</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>ダウンロードが完了しました</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>ダウンロードが完了しました（{0} 曲が失敗）</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>bcfetch を表示</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>終了</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>待機中</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>スキップ</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>トレイアイコンを表示する</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>通知領域にアイコンを表示し、メニューから bcfetch の表示や終了ができ、ツールチップにダウンロードの進行状況を表示します。トレイアイコンを表示するデスクトップが必要です（GNOME では AppIndicator 拡張機能が必要）。</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>ウィンドウを閉じても bcfetch をトレイで実行し続ける</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>ウィンドウを閉じると非表示になり、ダウンロードは続行されます。再表示や終了はトレイのメニューから行います。デスクトップにトレイアイコンが表示されない場合はオフのままにしてください。</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>ダウンロード完了時に通知する</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>すべてのダウンロードが完了するとデスクトップ通知を送ります。notify-send（libnotify-bin）が必要です。</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>ダウンロード済みのアルバムをスキップする</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>以前の実行で全曲がダウンロードされたアルバムを、ファイルサイズを確認せずにスキップします。アルバムフォルダー内の隠しファイル .bcfetch-done で判別するため、曲またはこのファイルを削除するとアルバムが再ダウンロードされます。</value>
+  </data>
 </root>

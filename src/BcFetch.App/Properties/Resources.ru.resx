@@ -485,4 +485,70 @@ http://[artist].bandcamp.com/track/[track]
   <data name="textBoxMaxConcurrentAlbumsDownloads_ToolTip" xml:space="preserve">
     <value>Максимальное количество альбомов, которые могут быть загружены одновременно</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Добавить в очередь</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Повторить неудачные</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>В очередь добавлено URL: {0}; ожидает партий: {1}</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>Не удалось загрузить треков: {0}. Нажмите «{1}», чтобы повторить; готовые файлы будут пропущены.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Язык изменится, когда завершится эта загрузка</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Ничего, похожего на URL, не было перетащено</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Загрузки завершены</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Загрузки завершены, неудачных треков: {0}</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Показать bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>ожидание</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>готово</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>пропущено</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>ошибка</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Показывать значок в области уведомлений</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Показывает значок в области уведомлений с меню для показа окна или выхода из bcfetch; ход загрузки отображается во всплывающей подсказке. Нужен рабочий стол, показывающий значки области уведомлений (для GNOME требуется расширение AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Закрытие окна оставляет bcfetch работать в области уведомлений</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>При закрытии окно скрывается, а загрузки продолжаются. Используйте меню значка, чтобы показать окно снова или выйти. Оставьте выключенным, если рабочий стол не показывает значки области уведомлений.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Показывать уведомление по завершении загрузок</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Отправляет уведомление рабочего стола, когда все загрузки завершены. Требуется notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Пропускать уже загруженные альбомы</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Пропускает альбом, все треки которого были загружены при предыдущем запуске, не проверяя размеры файлов. Альбом определяется по скрытому файлу .bcfetch-done в папке альбома; если удалить трек или этот файл, альбом будет загружен снова.</value>
+  </data>
 </root>

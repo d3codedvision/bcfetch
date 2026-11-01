@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Translations for the strings added since 0.2.0: the queue and retry buttons, log and notification messages, tray menu, track statuses and the settings for tray icon, finish notification and skipping finished albums. Covered: ar, ca, de, eo, es, fi, fr, hr, hu, id, it, ja, ko, nb-NO, nl, pl, pt, pt-BR, ro, ru, sv, tr, uk, vi, zh (arz stays English; it has only a few strings). These are my own translations and have not been reviewed by native speakers, so corrections are welcome. The command line and the Core log messages stay in English.
+
 ## 0.3.1
 
 * Long names: the Windows limits (folder path cut at 247 characters, file names squeezed to 11 characters past 260) are gone. Each folder and file name is now shortened only when it exceeds the Linux limit of 255 bytes, cut at a character boundary and with the extension kept. Previously two albums with long names could end up in the same folder.

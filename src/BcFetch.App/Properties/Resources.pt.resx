@@ -484,4 +484,70 @@ Cole as páginas do artista: http://[artista].bandcamp.com e ative «☑ Baixar 
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
     <value>O número máximo de faixas (do mesmo álbum) que podem ser descarregadas simultaneamente</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Adicionar à fila</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Repetir as falhadas</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>{0} URL(s) em fila; {1} lote(s) em espera</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} faixa(s) falhada(s). Prima «{1}» para as tentar novamente; os ficheiros concluídos são ignorados.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>O idioma muda quando esta execução terminar</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Nada que pareça um URL foi largado</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Transferências concluídas</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Transferências concluídas, {0} faixa(s) falhada(s)</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Mostrar o bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>em espera</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>feito</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>ignorado</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>falhou</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Mostrar um ícone na área de notificação</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Mostra um ícone na área de notificação com um menu para mostrar ou sair do bcfetch, e o progresso da transferência como dica. Requer um ambiente de trabalho que mostre ícones de notificação (o GNOME precisa da extensão AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Fechar a janela mantém o bcfetch na área de notificação</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Fechar a janela oculta-a e as transferências continuam. Use o menu do ícone para a mostrar de novo ou sair. Deixe desativado se o seu ambiente de trabalho não mostrar ícones de notificação.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Mostrar uma notificação quando as transferências terminarem</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Envia uma notificação do ambiente de trabalho quando todas as transferências terminarem. Requer notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Ignorar álbuns já transferidos</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Ignora um álbum cujas faixas foram todas transferidas numa execução anterior, sem verificar o tamanho dos ficheiros. É reconhecido por um ficheiro oculto .bcfetch-done na pasta do álbum; apagar uma faixa ou esse ficheiro volta a transferir o álbum.</value>
+  </data>
 </root>

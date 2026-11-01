@@ -418,4 +418,70 @@ Nếu không, một số băng thông/thời gian sẽ được tiết kiệm.</
   <data name="windowUpdate_Title" xml:space="preserve">
     <value>Cập nhật</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Thêm vào hàng đợi</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Thử lại các bài lỗi</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>Đã đưa {0} URL vào hàng đợi; {1} đợt đang chờ</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} bài bị lỗi. Nhấn “{1}” để thử lại; các tệp đã xong sẽ được bỏ qua.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Ngôn ngữ sẽ đổi khi lượt tải này kết thúc</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Không có gì giống URL được thả vào</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Đã tải xong</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Đã tải xong, {0} bài bị lỗi</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Hiện bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>đang chờ</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>xong</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>đã bỏ qua</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>lỗi</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Hiện biểu tượng ở khay hệ thống</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Hiện một biểu tượng ở vùng thông báo với menu để hiện hoặc thoát bcfetch, và tiến độ tải xuống trong chú giải. Cần môi trường desktop hiển thị biểu tượng khay (GNOME cần tiện ích AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Đóng cửa sổ thì bcfetch vẫn chạy ở khay hệ thống</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Đóng cửa sổ sẽ ẩn nó và các lượt tải vẫn tiếp tục. Dùng menu của biểu tượng để hiện lại hoặc thoát. Hãy để tắt nếu desktop của bạn không hiển thị biểu tượng khay.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Hiện thông báo khi tải xong</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Gửi thông báo desktop khi mọi lượt tải đã xong. Cần notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Bỏ qua các album đã tải</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Bỏ qua album mà mọi bài đã được tải ở lần chạy trước, không kiểm tra kích thước tệp. Album được nhận ra nhờ tệp ẩn .bcfetch-done trong thư mục album; xóa một bài hoặc tệp đó thì album sẽ được tải lại.</value>
+  </data>
 </root>

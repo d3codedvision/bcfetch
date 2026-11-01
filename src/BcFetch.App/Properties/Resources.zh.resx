@@ -484,4 +484,70 @@ Bandcamp的链接如下所示：http://[艺术家名称].bandcamp.com/album/[alb
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
     <value>同一张专辑中可同时下载的最大曲目数量</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>加入队列</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>重试失败项</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>已将 {0} 个 URL 加入队列；{1} 批等待中</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} 首曲目失败。点击“{1}”重试；已完成的文件会被跳过。</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>本次下载结束后将切换语言</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>拖入的内容里没有看起来像 URL 的项</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>下载已完成</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>下载已完成，{0} 首曲目失败</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>显示 bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>等待中</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>已跳过</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>显示托盘图标</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>在通知区域显示图标，菜单可显示或退出 bcfetch，工具提示显示下载进度。需要显示托盘图标的桌面环境（GNOME 需要 AppIndicator 扩展）。</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>关闭窗口后 bcfetch 继续在托盘中运行</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>关闭窗口会将其隐藏，下载继续进行。可通过托盘图标菜单重新显示或退出。如果你的桌面不显示托盘图标，请保持关闭。</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>下载完成时显示通知</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>所有下载完成后发送桌面通知。需要 notify-send（libnotify-bin）。</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>跳过已下载的专辑</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>若某专辑的所有曲目已在之前的运行中下载，则跳过该专辑，且不检查文件大小。通过专辑文件夹中的隐藏文件 .bcfetch-done 识别；删除某首曲目或该文件会重新下载专辑。</value>
+  </data>
 </root>

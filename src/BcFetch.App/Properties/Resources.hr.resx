@@ -484,4 +484,70 @@ Umetni stranice izvođača: http://[artist].bandcamp.com i označi „☑ Preuzm
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
     <value>Maksimalan broj pjesama (unutar istog albuma) koje se mogu istovremeno preuzeti</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Dodaj u red</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Ponovi neuspjele</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>U red dodano URL-ova: {0}; skupina na čekanju: {1}</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>Neuspjelih pjesama: {0}. Kliknite „{1}” za ponovni pokušaj; dovršene datoteke se preskaču.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Jezik će se promijeniti kad ovo pokretanje završi</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Ispušteno nije ništa što izgleda kao URL</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Preuzimanja su završena</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Preuzimanja su završena, neuspjelih pjesama: {0}</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Prikaži bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Izlaz</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>čeka</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>gotovo</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>preskočeno</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>neuspjelo</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Prikaži ikonu u programskoj traci</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Prikazuje ikonu u području obavijesti s izbornikom za prikaz ili izlaz iz bcfetcha te napretkom preuzimanja u opisu. Potrebno je radno okruženje koje prikazuje ikone programske trake (GNOME treba proširenje AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Zatvaranje prozora ostavlja bcfetch pokrenut u programskoj traci</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Zatvaranjem se prozor sakriva, a preuzimanja se nastavljaju. Izbornikom ikone ponovno ga prikažite ili izađite. Ostavite isključeno ako vaše okruženje ne prikazuje ikone programske trake.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Prikaži obavijest kad preuzimanja završe</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Šalje obavijest radne površine kad su sva preuzimanja gotova. Potreban je notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Preskoči albume koji su već preuzeti</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Preskače album čije su sve pjesme preuzete u ranijem pokretanju, bez provjere veličina datoteka. Prepoznaje se po skrivenoj datoteci .bcfetch-done u mapi albuma; brisanjem pjesme ili te datoteke album se ponovno preuzima.</value>
+  </data>
 </root>

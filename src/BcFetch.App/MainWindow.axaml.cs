@@ -83,9 +83,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void SetupTray()
     {
-        var show = new NativeMenuItem("Show bcfetch");
+        var show = new NativeMenuItem(Tr.Get("trayShow"));
         show.Click += (_, _) => ShowFromTray();
-        var quit = new NativeMenuItem("Quit");
+        var quit = new NativeMenuItem(Tr.Get("trayQuit"));
         quit.Click += (_, _) =>
         {
             _quitting = true;
@@ -135,7 +135,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         var urls = UrlHelper.ExtractUrls(text);
         if (urls.Count == 0)
         {
-            Log("Nothing that looks like a URL was dropped", DownloadProgressChangedLevel.Info);
+            Log(Tr.Get("logNothingDropped"), DownloadProgressChangedLevel.Info);
             return;
         }
 
@@ -173,7 +173,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _tray.IsVisible = _userSettings.ShowTrayIcon;
         if (_activeDownloads && !Equals(Res.Culture, _uiCulture))
         {
-            Log("The language changes when this run ends", DownloadProgressChangedLevel.Info);
+            Log(Tr.Get("logLanguageLater"), DownloadProgressChangedLevel.Info);
         }
         RefreshLanguage();
     }
@@ -265,7 +265,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         RefreshLanguage();
         if (!cancelled && _userSettings.NotifyOnFinish)
         {
-            Notifier.Send("bcfetch", totalFailed > 0 ? $"Downloads finished, {totalFailed} track(s) failed" : "Downloads finished");
+            Notifier.Send("bcfetch", totalFailed > 0 ? Tr.Get("notifyFinishedFailures", totalFailed) : Tr.Get("notifyFinished"));
         }
     }
 
@@ -273,7 +273,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     {
         _queue.Enqueue(inputUrls.Trim());
         TextBoxUrls.Clear();
-        Log($"Queued {inputUrls.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Length} URL(s); {_queue.Count} batch(es) waiting", DownloadProgressChangedLevel.Info);
+        Log(Tr.Get("logQueued", inputUrls.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Length, _queue.Count), DownloadProgressChangedLevel.Info);
     }
 
     /// <summary>Downloads one batch of URLs and returns how many tracks failed.</summary>
@@ -305,7 +305,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             var failed = _downloadManager.GetFailedTracksCount();
             if (failed > 0)
             {
-                Log($"{failed} track(s) failed. Press \"Retry failed\" to try them again; finished files are skipped.", DownloadProgressChangedLevel.Error);
+                Log(Tr.Get("logTracksFailed", failed, Tr.Get("buttonRetryFailed")), DownloadProgressChangedLevel.Error);
                 _retryInput = _retryInput == null ? inputUrls : _retryInput + "\n" + inputUrls;
             }
             return failed;
@@ -332,7 +332,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     }
 
     // The one button is Start, Retry failed or (during a run) Add to queue.
-    private void UpdateStartLabel() => ButtonStart.Content = _activeDownloads ? "Add to queue" : _retryInput != null ? "Retry failed" : Res.buttonStart;
+    private void UpdateStartLabel() => ButtonStart.Content = _activeDownloads ? Tr.Get("buttonAddToQueue") : _retryInput != null ? Tr.Get("buttonRetryFailed") : Res.buttonStart;
 
     private void SetDownloading(bool downloading)
     {
@@ -370,7 +370,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             ToolTip.SetTip(name, file.Name);
             var bar = new ProgressBar { Width = 120, Minimum = 0, Maximum = Math.Max(file.Size, 1), VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
             bar.Classes.Add("line");
-            var status = new TextBlock { FontFamily = mono, FontSize = 12, Width = 64, TextAlignment = TextAlignment.Right, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
+            var status = new TextBlock { FontFamily = mono, FontSize = 12, Width = 104, TextAlignment = TextAlignment.Right, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
 
             var row = new Grid { ColumnDefinitions = new ColumnDefinitions("*,Auto,Auto"), ColumnSpacing = 12 };
             Grid.SetColumn(bar, 1);
@@ -402,11 +402,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             };
             status.Text = state switch
             {
-                TrackFileState.Waiting => "waiting",
+                TrackFileState.Waiting => Tr.Get("trackWaiting"),
                 TrackFileState.Downloading => sized ? $"{Math.Min(100, file.BytesReceived * 100 / file.Size)}%" : "…",
-                TrackFileState.Done => "done",
-                TrackFileState.Skipped => "skipped",
-                _ => "failed",
+                TrackFileState.Done => Tr.Get("trackDone"),
+                TrackFileState.Skipped => Tr.Get("trackSkipped"),
+                _ => Tr.Get("trackFailed"),
             };
             status.Foreground = new SolidColorBrush(Color.Parse(state switch
             {

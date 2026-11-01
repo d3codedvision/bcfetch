@@ -544,4 +544,70 @@ de leurs albums.</value>
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
       <value>Le nombre maximum de chansons (au sein d'un même album) qui peuvent être téléchargés en parallèle</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Ajouter à la file d’attente</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Réessayer les échecs</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>{0} URL ajoutée(s) ; {1} lot(s) en attente</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} piste(s) en échec. Cliquez sur « {1} » pour les réessayer ; les fichiers terminés sont ignorés.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>La langue changera à la fin de ce téléchargement</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Rien qui ressemble à une URL n’a été déposé</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Téléchargements terminés</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Téléchargements terminés, {0} piste(s) en échec</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Afficher bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>en attente</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>terminé</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>ignoré</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>échec</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Afficher une icône dans la zone de notification</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Affiche une icône dans la zone de notification avec un menu pour afficher ou quitter bcfetch, et la progression du téléchargement en info-bulle. Nécessite un bureau qui affiche les icônes de notification (GNOME demande l’extension AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Fermer la fenêtre garde bcfetch actif dans la zone de notification</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Fermer la fenêtre la masque et les téléchargements continuent. Utilisez le menu de l’icône pour la réafficher ou quitter. Laissez désactivé si votre bureau n’affiche pas les icônes de notification.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Afficher une notification à la fin des téléchargements</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Envoie une notification du bureau lorsque tous les téléchargements sont terminés. Nécessite notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Ignorer les albums déjà téléchargés</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Ignore un album dont toutes les pistes ont été téléchargées lors d’une exécution précédente, sans vérifier la taille des fichiers. Il est reconnu grâce à un fichier caché .bcfetch-done dans le dossier de l’album ; supprimer une piste ou ce fichier retélécharge l’album.</value>
+  </data>
 </root>

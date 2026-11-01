@@ -530,4 +530,70 @@ URL-адреса Bandcamp виглядає так: http: // [artist] .bandcamp.c
   <data name="labelProxy" xml:space="preserve">
     <value>Проксі</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Додати до черги</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Повторити невдалі</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>До черги додано URL: {0}; очікує партій: {1}</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>Не вдалося завантажити треків: {0}. Натисніть «{1}», щоб повторити; готові файли буде пропущено.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Мова зміниться, коли завершиться це завантаження</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Нічого, схожого на URL, не було перетягнуто</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Завантаження завершено</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Завантаження завершено, невдалих треків: {0}</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>Показати bcfetch</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>очікує</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>готово</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>пропущено</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>помилка</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Показувати значок в області сповіщень</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Показує значок в області сповіщень із меню для показу вікна або виходу з bcfetch; перебіг завантаження відображається у підказці. Потрібне робоче середовище, що показує значки області сповіщень (для GNOME потрібне розширення AppIndicator).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Закриття вікна залишає bcfetch працювати в області сповіщень</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Після закриття вікно ховається, а завантаження тривають. Скористайтеся меню значка, щоб показати вікно знову або вийти. Залишіть вимкненим, якщо ваше середовище не показує значки області сповіщень.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Показувати сповіщення після завершення завантажень</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Надсилає сповіщення робочого середовища, коли всі завантаження завершено. Потрібен notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Пропускати вже завантажені альбоми</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Пропускає альбом, усі треки якого було завантажено під час попереднього запуску, не перевіряючи розміри файлів. Альбом розпізнається за прихованим файлом .bcfetch-done у теці альбому; якщо видалити трек або цей файл, альбом буде завантажено знову.</value>
+  </data>
 </root>

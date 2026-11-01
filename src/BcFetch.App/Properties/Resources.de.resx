@@ -544,4 +544,70 @@ herunterzuladen.</value>
   <data name="textBoxMaxConcurrentTracksDownloads_ToolTip" xml:space="preserve">
     <value>Die maximale Anzahl an Songs (innerhalb des selben Albums), die gleichzeitig heruntergeladen werden können</value>
   </data>
+  <data name="buttonAddToQueue" xml:space="preserve">
+    <value>Zur Warteschlange hinzufügen</value>
+  </data>
+  <data name="buttonRetryFailed" xml:space="preserve">
+    <value>Fehlgeschlagene wiederholen</value>
+  </data>
+  <data name="logQueued" xml:space="preserve">
+    <value>{0} URL(s) eingereiht; {1} Stapel warten</value>
+  </data>
+  <data name="logTracksFailed" xml:space="preserve">
+    <value>{0} Titel fehlgeschlagen. Klicke auf „{1}“, um sie erneut zu versuchen; fertige Dateien werden übersprungen.</value>
+  </data>
+  <data name="logLanguageLater" xml:space="preserve">
+    <value>Die Sprache wechselt, wenn dieser Durchlauf endet</value>
+  </data>
+  <data name="logNothingDropped" xml:space="preserve">
+    <value>Es wurde nichts abgelegt, das wie eine URL aussieht</value>
+  </data>
+  <data name="notifyFinished" xml:space="preserve">
+    <value>Downloads abgeschlossen</value>
+  </data>
+  <data name="notifyFinishedFailures" xml:space="preserve">
+    <value>Downloads abgeschlossen, {0} Titel fehlgeschlagen</value>
+  </data>
+  <data name="trayShow" xml:space="preserve">
+    <value>bcfetch anzeigen</value>
+  </data>
+  <data name="trayQuit" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="trackWaiting" xml:space="preserve">
+    <value>wartet</value>
+  </data>
+  <data name="trackDone" xml:space="preserve">
+    <value>fertig</value>
+  </data>
+  <data name="trackSkipped" xml:space="preserve">
+    <value>übersprungen</value>
+  </data>
+  <data name="trackFailed" xml:space="preserve">
+    <value>fehlgeschlagen</value>
+  </data>
+  <data name="checkBoxShowTrayIcon" xml:space="preserve">
+    <value>Symbol im Infobereich anzeigen</value>
+  </data>
+  <data name="checkBoxShowTrayIcon_ToolTip" xml:space="preserve">
+    <value>Zeigt ein Symbol im Infobereich mit einem Menü zum Anzeigen oder Beenden von bcfetch; der Tooltip zeigt den Download-Fortschritt. Erfordert einen Desktop, der Tray-Symbole anzeigt (GNOME benötigt die AppIndicator-Erweiterung).</value>
+  </data>
+  <data name="checkBoxCloseToTray" xml:space="preserve">
+    <value>Beim Schließen des Fensters im Infobereich weiterlaufen</value>
+  </data>
+  <data name="checkBoxCloseToTray_ToolTip" xml:space="preserve">
+    <value>Beim Schließen wird das Fenster ausgeblendet und die Downloads laufen weiter. Über das Tray-Menü lässt es sich wieder anzeigen oder beenden. Deaktiviert lassen, wenn dein Desktop keine Tray-Symbole anzeigt.</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish" xml:space="preserve">
+    <value>Benachrichtigung anzeigen, wenn Downloads fertig sind</value>
+  </data>
+  <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
+    <value>Sendet eine Desktop-Benachrichtigung, wenn alle Downloads abgeschlossen sind. Benötigt notify-send (libnotify-bin).</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>Bereits heruntergeladene Alben überspringen</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Überspringt ein Album, dessen Titel bei einem früheren Durchlauf alle heruntergeladen wurden, ohne die Dateigrößen zu prüfen. Erkannt wird es an einer versteckten Datei .bcfetch-done im Albumordner; löscht man einen Titel oder diese Datei, wird das Album erneut heruntergeladen.</value>
+  </data>
 </root>
