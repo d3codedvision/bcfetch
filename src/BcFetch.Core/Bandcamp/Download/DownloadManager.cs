@@ -24,6 +24,7 @@ internal interface IDownloadManager
     long GetTotalBytesToDownload();
     int GetTotalFilesCountReceived();
     int GetTotalFilesCountToDownload();
+    int GetFailedTracksCount();
     event DownloadProgressChangedEventHandler DownloadProgressChanged;
 }
 
@@ -39,6 +40,7 @@ internal sealed class DownloadManager : IDownloadManager
     private readonly IUserSettings _userSettings;
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private bool _isInitialized;
+    private int _failedTracksCount;
     private IReadOnlyCollection<TrackFile> _downloadingFiles;
     private IReadOnlyCollection<Album> _albums;
 
@@ -71,6 +73,7 @@ internal sealed class DownloadManager : IDownloadManager
         _albums = await _albumInfoRetriever.GetAlbumsAsync(albumsUrls, cancellationToken).ConfigureAwait(false);
         _downloadingFiles = await _trackFileService.GetFilesToDownloadAsync(_albums, cancellationToken).ConfigureAwait(false);
 
+        _failedTracksCount = 0;
         _isInitialized = true;
     }
 
@@ -113,6 +116,11 @@ internal sealed class DownloadManager : IDownloadManager
     public int GetTotalFilesCountToDownload()
     {
         return _downloadingFiles.Count;
+    }
+
+    public int GetFailedTracksCount()
+    {
+        return _failedTracksCount;
     }
 
     public int GetTotalFilesCountReceived()
@@ -329,6 +337,11 @@ internal sealed class DownloadManager : IDownloadManager
                 await _resilienceService.WaitForCooldownAsync(tries, cancellationToken).ConfigureAwait(false);
             }
         } while (!trackDownloaded && tries < _userSettings.DownloadMaxTries);
+
+        if (!trackDownloaded)
+        {
+            Interlocked.Increment(ref _failedTracksCount);
+        }
 
         return trackDownloaded;
     }

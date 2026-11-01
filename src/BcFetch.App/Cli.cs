@@ -78,7 +78,9 @@ internal static class Cli
         {
             await manager.InitializeAsync(string.Join('\n', urls), cts.Token);
             await manager.StartDownloadsAsync(cts.Token);
-            return failed ? 1 : 0;
+            var failedTracks = manager.GetFailedTracksCount();
+            if (failedTracks > 0) Console.Error.WriteLine($"{failedTracks} track(s) failed. Run the same command again to retry them; finished files are skipped.");
+            return failed || failedTracks > 0 ? 1 : 0;
         }
         catch (OperationCanceledException)
         {

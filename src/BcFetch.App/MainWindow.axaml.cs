@@ -40,6 +40,7 @@ internal sealed partial class MainWindow : Window
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
         _timer.Tick += (_, _) => UpdateProgress();
 
+        TextBoxUrls.TextChanged += (_, _) => ButtonStart.Content = Res.buttonStart;
         CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
         TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
         TextBoxDownloadsPath.TextChanged += (_, _) => _userSettings.DownloadsPath = TextBoxDownloadsPath.Text;
@@ -99,7 +100,13 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _lastSpeedUpdate = DateTime.Now;
             _timer.Start();
             await _downloadManager.StartDownloadsAsync(_downloadCts.Token);
-            if (_userSettings.NotifyOnFinish) Notifier.Send("bcfetch", "Downloads finished");
+            var failed = _downloadManager.GetFailedTracksCount();
+            if (failed > 0)
+            {
+                Log($"{failed} track(s) failed. Press \"Retry failed\" to try them again; finished files are skipped.", DownloadProgressChangedLevel.Error);
+            }
+            ButtonStart.Content = failed > 0 ? "Retry failed" : Res.buttonStart;
+            if (_userSettings.NotifyOnFinish) Notifier.Send("bcfetch", failed > 0 ? $"Downloads finished, {failed} track(s) failed" : "Downloads finished");
         }
         catch (OperationCanceledException)
         {
