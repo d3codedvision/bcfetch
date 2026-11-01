@@ -20,3 +20,15 @@ public sealed class AlbumMarkerTests
         Directory.Delete(dir, true);
     }
 }
+
+public sealed class UrlHelperTests
+{
+    [Test]
+    public void ExtractUrls_KeepsDistinctHttpUrlsInOrder()
+    {
+        const string text = "# comment\nhttps://a.bandcamp.com/album/x\r\nnot a url\nhttps://a.bandcamp.com/album/x ftp://x/y http://b.bandcamp.com";
+
+        Assert.That(BcFetch.Helpers.UrlHelper.ExtractUrls(text), Is.EqualTo(new[] { "https://a.bandcamp.com/album/x", "http://b.bandcamp.com" }));
+        Assert.That(BcFetch.Helpers.UrlHelper.ExtractUrls(null), Is.Empty);
+    }
+}

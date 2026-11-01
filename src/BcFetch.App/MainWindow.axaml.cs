@@ -7,6 +7,7 @@ using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using BcFetch.Bandcamp.Download;
 using BcFetch.Core.Logging;
+using BcFetch.Helpers;
 using BcFetch.Core;
 using BcFetch.Core.Updates;
 using BcFetch.Settings;
@@ -29,6 +30,8 @@ internal sealed partial class MainWindow : Window
     private bool _activeDownloads;
     private readonly Queue<string> _queue = new();
     private string _retryInput;
+    private TrayIcon _tray;
+    private bool _quitting;
     private long _lastTotalReceivedBytes;
     private DateTime _lastSpeedUpdate;
 
@@ -58,6 +61,83 @@ internal sealed partial class MainWindow : Window
 
 Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
+
+        DragDrop.SetAllowDrop(this, true);
+        AddHandler(DragDrop.DragOverEvent, OnDragOver, RoutingStrategies.Tunnel);
+        AddHandler(DragDrop.DropEvent, OnDrop, RoutingStrategies.Tunnel);
+        SetupTray();
+    }
+
+    private void SetupTray()
+    {
+        var show = new NativeMenuItem("Show bcfetch");
+        show.Click += (_, _) => ShowFromTray();
+        var quit = new NativeMenuItem("Quit");
+        quit.Click += (_, _) =>
+        {
+            _quitting = true;
+            Close();
+        };
+        var menu = new NativeMenu();
+        menu.Add(show);
+        menu.Add(quit);
+
+        _tray = new TrayIcon { Icon = Icon, ToolTipText = "bcfetch", Menu = menu, IsVisible = _userSettings.ShowTrayIcon };
+        _tray.Clicked += (_, _) => ShowFromTray();
+        TrayIcon.SetIcons(Avalonia.Application.Current!, new TrayIcons { _tray });
+        Closed += (_, _) => _tray.Dispose();
+    }
+
+    private void ShowFromTray()
+    {
+        Show();
+        if (WindowState == WindowState.Minimized)
+        {
+            WindowState = WindowState.Normal;
+        }
+
+        Activate();
+    }
+
+    private static void OnDragOver(object sender, DragEventArgs e)
+    {
+        e.DragEffects = e.DataTransfer.Contains(DataFormat.Text) || e.DataTransfer.Contains(DataFormat.File) ? DragDropEffects.Copy : DragDropEffects.None;
+        e.Handled = true;
+    }
+
+    // Accepts a dragged link or text, or a text file of URLs.
+    private async void OnDrop(object sender, DragEventArgs e)
+    {
+        e.Handled = true;
+        var text = e.DataTransfer.TryGetText() ?? "";
+        foreach (var file in e.DataTransfer.TryGetFiles() ?? [])
+        {
+            var path = file.TryGetLocalPath();
+            if (path != null && File.Exists(path) && new FileInfo(path).Length <= 1_000_000)
+            {
+                text += "\n" + await File.ReadAllTextAsync(path);
+            }
+        }
+
+        var urls = UrlHelper.ExtractUrls(text);
+        if (urls.Count == 0)
+        {
+            Log("Nothing that looks like a URL was dropped", DownloadProgressChangedLevel.Info);
+            return;
+        }
+
+        if (_activeDownloads)
+        {
+            EnqueueUrls(string.Join('\n', urls));
+            return;
+        }
+
+        var present = UrlHelper.ExtractUrls(TextBoxUrls.Text);
+        var added = urls.Where(u => !present.Contains(u)).ToList();
+        if (added.Count > 0)
+        {
+            TextBoxUrls.Text = (string.IsNullOrWhiteSpace(TextBoxUrls.Text) ? "" : TextBoxUrls.Text.TrimEnd() + "\n") + string.Join('\n', added);
+        }
     }
 
     private async void ButtonBrowse_Click(object sender, RoutedEventArgs e)
@@ -77,6 +157,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         // The window edits the same settings object; refresh the controls shown on this window.
         TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
+        _tray.IsVisible = _userSettings.ShowTrayIcon;
     }
 
     private async void ButtonStart_Click(object sender, RoutedEventArgs e)
@@ -91,9 +172,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
                 return;
             }
 
-            _queue.Enqueue(inputUrls.Trim());
-            TextBoxUrls.Clear();
-            Log($"Queued {inputUrls.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Length} URL(s); {_queue.Count} batch(es) waiting", DownloadProgressChangedLevel.Info);
+            EnqueueUrls(inputUrls);
             return;
         }
 
@@ -139,6 +218,13 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         {
             Notifier.Send("bcfetch", totalFailed > 0 ? $"Downloads finished, {totalFailed} track(s) failed" : "Downloads finished");
         }
+    }
+
+    private void EnqueueUrls(string inputUrls)
+    {
+        _queue.Enqueue(inputUrls.Trim());
+        TextBoxUrls.Clear();
+        Log($"Queued {inputUrls.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Length} URL(s); {_queue.Count} batch(es) waiting", DownloadProgressChangedLevel.Info);
     }
 
     /// <summary>Downloads one batch of URLs and returns how many tracks failed.</summary>
@@ -218,6 +304,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         }
         else
         {
+            _tray.ToolTipText = "bcfetch";
             LabelDownloadSpeed.Text = "";
         }
     }
@@ -292,6 +379,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _lastTotalReceivedBytes = received;
         _lastSpeedUpdate = now;
 
+        if (!ProgressBar.IsIndeterminate && ProgressBar.Maximum > 0)
+        {
+            _tray.ToolTipText = $"bcfetch {ProgressBar.Value * 100 / ProgressBar.Maximum:0}%";
+        }
+
         LabelProgress.Text = (received / (1024.0 * 1024)).ToString("0.00") + " MB" +
                              (_userSettings.RetrieveFilesSize ? " / " + (_downloadManager.GetTotalBytesToDownload() / (1024.0 * 1024)).ToString("0.00") + " MB" : "");
         ProgressBar.Value = _userSettings.RetrieveFilesSize ? received : _downloadManager.GetTotalFilesCountReceived();
@@ -347,6 +439,13 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private async void OnClosing(object sender, WindowClosingEventArgs e)
     {
+        if (!_quitting && _userSettings.ShowTrayIcon && _userSettings.CloseToTray)
+        {
+            e.Cancel = true;
+            Hide();
+            return;
+        }
+
         if (!_activeDownloads)
         {
             return;
@@ -358,6 +457,10 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _activeDownloads = false;
             await _downloadCts.CancelAsync();
             Close();
+        }
+        else
+        {
+            _quitting = false;
         }
     }
 }

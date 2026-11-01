@@ -21,6 +21,8 @@ internal sealed class SettingsWindow : Window
     [
         ("General", [
             ("CheckForUpdates", "checkBoxCheckForUpdates", null),
+            ("ShowTrayIcon", "checkBoxShowTrayIcon", "checkBoxShowTrayIcon_ToolTip"),
+            ("CloseToTray", "checkBoxCloseToTray", "checkBoxCloseToTray_ToolTip"),
             ("NotifyOnFinish", "checkBoxNotifyOnFinish", "checkBoxNotifyOnFinish_ToolTip"),
             ("ShowVerboseLog", "checkBoxVerboseLog", "checkBoxVerboseLog_ToolTip"),
             ("Language", "labelLanguage", null),
@@ -84,6 +86,7 @@ internal sealed class SettingsWindow : Window
         ["CoverArtInTagsConvertToJpg"] = ["SaveCoverArtInTags"],
         ["CoverArtInTagsResize"] = ["SaveCoverArtInTags"],
         ["CoverArtInTagsMaxSize"] = ["SaveCoverArtInTags", "CoverArtInTagsResize"],
+        ["CloseToTray"] = ["ShowTrayIcon"],
         ["PlaylistFormat"] = ["CreatePlaylist"],
         ["PlaylistFileNameFormat"] = ["CreatePlaylist"],
         ["M3uExtended"] = ["CreatePlaylist"],
