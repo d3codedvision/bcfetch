@@ -6,7 +6,7 @@
     xmlns:p="using:BcFetch.App.Properties"
     Title="bcfetch"
     Width="860"
-    Height="560"
+    Height="640"
     MinWidth="640"
     MinHeight="440"
     Icon="/Assets/Cloud.png"
@@ -102,22 +102,37 @@
                     ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
             </StackPanel>
 
-            <Border
-                Grid.Row="2"
-                Margin="0,0,0,0"
-                Background="{DynamicResource BcPanel}"
-                BorderBrush="{DynamicResource BcLine}"
-                BorderThickness="1"
-                CornerRadius="4">
-                <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
-                    <SelectableTextBlock
-                        x:Name="LogText"
-                        Margin="12,10"
-                        FontFamily="{StaticResource BcMono}"
-                        FontSize="12.5"
-                        LineHeight="20" />
-                </ScrollViewer>
-            </Border>
+            <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="12">
+                <Border
+                    x:Name="TrackPanel"
+                    Grid.Row="0"
+                    MaxHeight="132"
+                    IsVisible="False"
+                    Background="{DynamicResource BcPanel}"
+                    BorderBrush="{DynamicResource BcLine}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                    <ScrollViewer>
+                        <StackPanel x:Name="TrackList" Margin="12,8" Spacing="6" />
+                    </ScrollViewer>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Margin="0,0,0,0"
+                    Background="{DynamicResource BcPanel}"
+                    BorderBrush="{DynamicResource BcLine}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                    <ScrollViewer x:Name="LogScroll" HorizontalScrollBarVisibility="Auto">
+                        <SelectableTextBlock
+                            x:Name="LogText"
+                            Margin="12,10"
+                            FontFamily="{StaticResource BcMono}"
+                            FontSize="12.5"
+                            LineHeight="20" />
+                    </ScrollViewer>
+                </Border>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

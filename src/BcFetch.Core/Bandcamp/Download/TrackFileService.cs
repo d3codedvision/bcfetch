@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -73,7 +73,7 @@ internal sealed class TrackFileService : ITrackFileService
                     async (track, ct) =>
                     {
                         var size = await GetFileSizeAsync(track.Mp3Url, track.Title, FileType.Track, ct).ConfigureAwait(false);
-                        var trackFile = new TrackFile(track.Mp3Url, 0, size);
+                        var trackFile = new TrackFile(track.Mp3Url, 0, size, TrackName(album, track));
 
                         lock (filesLock)
                         {
@@ -85,7 +85,7 @@ internal sealed class TrackFileService : ITrackFileService
             {
                 foreach (var track in album.Tracks)
                 {
-                    var trackFile = new TrackFile(track.Mp3Url, 0, 0);
+                    var trackFile = new TrackFile(track.Mp3Url, 0, 0, TrackName(album, track));
                     files.Add(trackFile);
                 }
             }
@@ -93,6 +93,8 @@ internal sealed class TrackFileService : ITrackFileService
 
         return files;
     }
+
+    private static string TrackName(Album album, Track track) => $"{album.Title} / {track.Number:00} {track.Title}";
 
     private async Task<long> GetFileSizeAsync(string url, string titleForLog, FileType fileType, CancellationToken cancellationToken)
     {

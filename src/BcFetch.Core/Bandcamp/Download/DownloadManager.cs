@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +25,7 @@ internal interface IDownloadManager
     int GetTotalFilesCountReceived();
     int GetTotalFilesCountToDownload();
     int GetFailedTracksCount();
+    IReadOnlyCollection<TrackFile> GetTrackFiles();
     event DownloadProgressChangedEventHandler DownloadProgressChanged;
 }
 
@@ -116,6 +117,11 @@ internal sealed class DownloadManager : IDownloadManager
     public int GetTotalFilesCountToDownload()
     {
         return _downloadingFiles.Count;
+    }
+
+    public IReadOnlyCollection<TrackFile> GetTrackFiles()
+    {
+        return _downloadingFiles.Where(f => f.Name != null).ToList();
     }
 
     public int GetFailedTracksCount()
@@ -272,6 +278,7 @@ internal sealed class DownloadManager : IDownloadManager
                 currentFile.Size < length + currentFile.Size * _userSettings.AllowedFileSizeDifference)
             {
                 DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Track already exists within allowed file size range: track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\" - Skipping download!", DownloadProgressChangedLevel.IntermediateSuccess));
+                currentFile.State = TrackFileState.Skipped;
                 return false;
             }
         }
@@ -280,6 +287,7 @@ internal sealed class DownloadManager : IDownloadManager
         {
             cancellationToken.ThrowIfCancellationRequested();
 
+            currentFile.State = TrackFileState.Downloading;
             var downloadService = new DownloadService();
 
             // Update progress bar when downloading
@@ -340,6 +348,7 @@ internal sealed class DownloadManager : IDownloadManager
                 {
                     // Note the file as downloaded
                     currentFile.Downloaded = true;
+                    currentFile.State = TrackFileState.Done;
                     DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
                 }
             }
@@ -353,6 +362,7 @@ internal sealed class DownloadManager : IDownloadManager
 
         if (!trackDownloaded)
         {
+            currentFile.State = TrackFileState.Failed;
             Interlocked.Increment(ref _failedTracksCount);
         }
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Per-track progress list in the window: each track shows waiting, a live percentage, done, skipped or failed, with its own progress line. The window is a little taller to make room.
+
 ## 0.2.1
 
 * The AppImage runtime used by the build is now pinned and checksum-verified. The 0.2.0 AppImage was packed with an unpinned runtime; use 0.2.1.

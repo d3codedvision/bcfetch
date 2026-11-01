@@ -23,6 +23,8 @@ internal sealed partial class MainWindow : Window
     private readonly IUpdatesService _updatesService;
     private readonly Logger _logger = LogManager.GetCurrentClassLogger();
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
+    private readonly DispatcherTimer _rowsTimer = new() { Interval = TimeSpan.FromMilliseconds(250) };
+    private readonly List<(TrackFile File, ProgressBar Bar, TextBlock Status)> _rows = [];
     private CancellationTokenSource _downloadCts;
     private bool _activeDownloads;
     private long _lastTotalReceivedBytes;
@@ -39,6 +41,7 @@ internal sealed partial class MainWindow : Window
         _updatesService = updatesService;
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
         _timer.Tick += (_, _) => UpdateProgress();
+        _rowsTimer.Tick += (_, _) => UpdateTrackRows();
 
         TextBoxUrls.TextChanged += (_, _) => ButtonStart.Content = Res.buttonStart;
         CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
@@ -98,7 +101,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
             _lastTotalReceivedBytes = 0;
             _lastSpeedUpdate = DateTime.Now;
+            BuildTrackRows(_downloadManager.GetTrackFiles());
             _timer.Start();
+            _rowsTimer.Start();
             await _downloadManager.StartDownloadsAsync(_downloadCts.Token);
             var failed = _downloadManager.GetFailedTracksCount();
             if (failed > 0)
@@ -120,6 +125,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         finally
         {
             _timer.Stop();
+            _rowsTimer.Stop();
+            UpdateTrackRows();
             UpdateProgress();
             _activeDownloads = false;
             SetDownloading(false);
@@ -150,11 +157,70 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         if (downloading)
         {
             LogText.Inlines.Clear();
+            TrackList.Children.Clear();
+            _rows.Clear();
+            TrackPanel.IsVisible = false;
             LabelProgress.Text = "";
         }
         else
         {
             LabelDownloadSpeed.Text = "";
+        }
+    }
+
+    private void BuildTrackRows(IEnumerable<TrackFile> files)
+    {
+        var mono = (FontFamily)Avalonia.Application.Current!.FindResource("BcMono")!;
+        foreach (var file in files)
+        {
+            var name = new TextBlock { Text = file.Name, TextTrimming = TextTrimming.CharacterEllipsis, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
+            ToolTip.SetTip(name, file.Name);
+            var bar = new ProgressBar { Width = 120, Minimum = 0, Maximum = Math.Max(file.Size, 1), VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
+            bar.Classes.Add("line");
+            var status = new TextBlock { FontFamily = mono, FontSize = 12, Width = 64, TextAlignment = TextAlignment.Right, VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center };
+
+            var row = new Grid { ColumnDefinitions = new ColumnDefinitions("*,Auto,Auto"), ColumnSpacing = 12 };
+            Grid.SetColumn(bar, 1);
+            Grid.SetColumn(status, 2);
+            row.Children.Add(name);
+            row.Children.Add(bar);
+            row.Children.Add(status);
+            TrackList.Children.Add(row);
+            _rows.Add((file, bar, status));
+        }
+
+        TrackPanel.IsVisible = _rows.Count > 0;
+        UpdateTrackRows();
+    }
+
+    private void UpdateTrackRows()
+    {
+        var dark = ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
+        foreach (var (file, bar, status) in _rows)
+        {
+            var state = file.State;
+            var sized = file.Size > 0;
+            bar.IsIndeterminate = state == TrackFileState.Downloading && !sized;
+            bar.Value = state switch
+            {
+                TrackFileState.Done or TrackFileState.Skipped => bar.Maximum,
+                TrackFileState.Downloading => file.BytesReceived,
+                _ => 0,
+            };
+            status.Text = state switch
+            {
+                TrackFileState.Waiting => "waiting",
+                TrackFileState.Downloading => sized ? $"{Math.Min(100, file.BytesReceived * 100 / file.Size)}%" : "…",
+                TrackFileState.Done => "done",
+                TrackFileState.Skipped => "skipped",
+                _ => "failed",
+            };
+            status.Foreground = new SolidColorBrush(Color.Parse(state switch
+            {
+                TrackFileState.Failed => dark ? "#FF7A6B" : "#B5392B",
+                TrackFileState.Done => dark ? "#5CCB8A" : "#2E7D4F",
+                _ => dark ? "#8A9A97" : "#5E6D6B",
+            }));
         }
     }
 
