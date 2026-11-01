@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.4
 
 * Software centres now match the installed app to its AppStream metadata: the desktop entry is renamed to `io.github.d3codedvision.bcfetch.desktop` (same as the AppStream id; `StartupWMClass=bcfetch` keeps the window grouped under its icon) and the metadata names the package. The generated metainfo no longer repeats the release notes inside a comment.
 
