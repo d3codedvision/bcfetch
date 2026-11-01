@@ -550,4 +550,10 @@ Colar páginas de artistas: http://[artista]/.bandcamp.com e marque “☑ Baixa
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Ignora um álbum cujas faixas foram todas baixadas em uma execução anterior, sem verificar o tamanho dos arquivos. Ele é reconhecido por um arquivo oculto .bcfetch-done na pasta do álbum; apagar uma faixa ou esse arquivo baixa o álbum de novo.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Gravar um arquivo de log em cada pasta de álbum</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Adiciona um arquivo bcfetch-download.log a cada pasta de álbum. Em cada execução registra quais faixas foram baixadas, ignoradas ou falharam, e por quê. Apenas linhas são acrescentadas ao final.</value>
+  </data>
 </root>

@@ -228,4 +228,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>이전 실행에서 모든 트랙을 다운로드한 앨범을 파일 크기를 확인하지 않고 건너뜁니다. 앨범 폴더의 숨김 파일 .bcfetch-done으로 알아보며, 트랙이나 이 파일을 삭제하면 앨범을 다시 다운로드합니다.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>각 앨범 폴더에 로그 파일 쓰기</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>각 앨범 폴더에 bcfetch-download.log 파일을 추가합니다. 실행할 때마다 어떤 트랙이 다운로드되었거나 건너뛰었거나 실패했는지와 그 이유를 기록합니다. 줄은 끝에만 추가됩니다.</value>
+  </data>
 </root>

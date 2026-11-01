@@ -413,4 +413,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Slaat een album over waarvan alle nummers in een eerdere run zijn gedownload, zonder de bestandsgroottes te controleren. Het wordt herkend aan een verborgen bestand .bcfetch-done in de albummap; verwijder je een nummer of dat bestand, dan wordt het album opnieuw gedownload.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Een logbestand schrijven in elke albummap</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Voegt een bestand bcfetch-download.log toe aan elke albummap. Per run legt het vast welke nummers zijn gedownload, overgeslagen of mislukt, en waarom. Er worden alleen regels toegevoegd.</value>
+  </data>
 </root>

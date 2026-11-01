@@ -550,4 +550,10 @@ Ajánlott érték = 4</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Kihagyja azt az albumot, amelynek minden számát egy korábbi futás letöltötte, a fájlméretek ellenőrzése nélkül. Az album mappájában lévő rejtett .bcfetch-done fájl alapján ismeri fel; egy szám vagy e fájl törlésekor az album újra letöltődik.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Naplófájl írása minden albummappába</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Minden albummappába felvesz egy bcfetch-download.log fájlt. Futásonként rögzíti, mely számok töltődtek le, maradtak ki vagy sikertelenek, és miért. Csak a végére fűz sorokat.</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using BcFetch.Audio;
+using BcFetch.Core;
 using BcFetch.Helpers;
 using BcFetch.IO;
 using BcFetch.Model;
@@ -96,7 +97,18 @@ internal sealed class DownloadManager : IDownloadManager
                 parallelOptions,
                 async (album, ct) =>
                 {
-                    await DownloadAlbumAsync(album, ct).ConfigureAwait(false);
+                    try
+                    {
+                        await DownloadAlbumAsync(album, ct).ConfigureAwait(false);
+                    }
+                    finally
+                    {
+                        // Also after a cancellation, so the log shows what was finished
+                        if (_userSettings.WriteDownloadLog)
+                        {
+                            AlbumLog.Append(album.Path, DescribeAlbumRun(album));
+                        }
+                    }
                 }).ConfigureAwait(false);
         }
         finally
@@ -143,7 +155,47 @@ internal sealed class DownloadManager : IDownloadManager
         }
 
         DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Skipping album \"{album.Title}\": already downloaded", DownloadProgressChangedLevel.Info));
+        if (_userSettings.WriteDownloadLog)
+        {
+            AlbumLog.Append(album.Path, [$"bcfetch {Constants.APP_VERSION_FORMATTED} | {album.Artist} - {album.Title}", "  album skipped: already downloaded"]);
+        }
+
         return true;
+    }
+
+    /// <summary>The log lines for one album after a run: what happened to each track and a one-line result.</summary>
+    private IEnumerable<string> DescribeAlbumRun(Album album)
+    {
+        yield return $"bcfetch {Constants.APP_VERSION_FORMATTED} | {album.Artist} - {album.Title}";
+
+        int downloaded = 0, skipped = 0, failed = 0, unfinished = 0;
+        foreach (var track in album.Tracks)
+        {
+            var file = _downloadingFiles.First(f => f.Url == track.Mp3Url);
+            var name = Path.GetFileName(track.Path);
+            switch (file.State)
+            {
+                case TrackFileState.Done:
+                    downloaded++;
+                    var size = File.Exists(track.Path) ? $" ({new FileInfo(track.Path).Length / (1024.0 * 1024):0.0} MB)" : "";
+                    yield return $"  downloaded  {name}{size}";
+                    break;
+                case TrackFileState.Skipped:
+                    skipped++;
+                    yield return $"  skipped     {name} (already on disk)";
+                    break;
+                case TrackFileState.Failed:
+                    failed++;
+                    yield return $"  FAILED      {name}{(file.Error == null ? "" : ": " + file.Error)}";
+                    break;
+                default:
+                    unfinished++;
+                    yield return $"  unfinished  {name} (cancelled or not started)";
+                    break;
+            }
+        }
+
+        yield return $"  result: {downloaded} downloaded, {skipped} skipped, {failed} failed" + (unfinished > 0 ? $", {unfinished} unfinished" : "");
     }
 
     private void ThrowIfNotInitialized()
@@ -321,6 +373,14 @@ internal sealed class DownloadManager : IDownloadManager
                 DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloading track \"{track.Title}\" from url: {track.Mp3Url}", DownloadProgressChangedLevel.VerboseInfo));
                 await downloadService.DownloadFileTaskAsync(track.Mp3Url, track.Path, cancellationToken).ConfigureAwait(false);
                 cancellationToken.ThrowIfCancellationRequested(); // See https://github.com/bezzad/Downloader/issues/203
+
+                // The library does not throw for every HTTP error (a 500 leaves a half-written ".download" file), so only
+                // a file that really exists counts. Without this a failed track was reported as downloaded.
+                if (!File.Exists(track.Path))
+                {
+                    throw new IOException("The server did not deliver the file");
+                }
+
                 trackDownloaded = true;
                 DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{track.Title}\" from url: {track.Mp3Url}", DownloadProgressChangedLevel.VerboseInfo));
             }
@@ -328,6 +388,7 @@ internal sealed class DownloadManager : IDownloadManager
             {
                 // Any network or IO failure (429, timeout, dropped connection...) counts as a failed try; cancellation still propagates
                 _logger.Error(ex);
+                currentFile.Error = ex.Message;
 
                 if (tries + 1 < _userSettings.DownloadMaxTries)
                 {
@@ -353,6 +414,7 @@ internal sealed class DownloadManager : IDownloadManager
                     {
                         // A corrupt download counts as a failed try instead of aborting every album
                         _logger.Error(ex);
+                        currentFile.Error = "tags: " + ex.Message;
                         trackDownloaded = false;
                         DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to save tags for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\": {ex.Message}", DownloadProgressChangedLevel.Warning));
                     }

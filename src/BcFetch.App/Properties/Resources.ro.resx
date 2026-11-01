@@ -259,4 +259,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Omite un album ale cărui piese au fost toate descărcate într-o rulare anterioară, fără a verifica dimensiunile fișierelor. Este recunoscut după un fișier ascuns .bcfetch-done din dosarul albumului; ștergerea unei piese sau a acelui fișier readuce descărcarea albumului.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Scrie un fișier jurnal în fiecare dosar de album</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Adaugă un fișier bcfetch-download.log în fiecare dosar de album. Pentru fiecare rulare notează ce piese au fost descărcate, omise sau eșuate și de ce. Se adaugă doar linii la sfârșit.</value>
+  </data>
 </root>

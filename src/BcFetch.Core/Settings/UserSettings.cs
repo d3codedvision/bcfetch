@@ -236,6 +236,9 @@ public interface IUserSettings
     [Option(DefaultValue = true)]
     bool ShowTrayIcon { get; set; }
 
+    [Option(DefaultValue = false)]
+    bool WriteDownloadLog { get; set; }
+
     [Option(DefaultValue = true)]
     bool SkipCompletedAlbums { get; set; }
 

@@ -484,4 +484,10 @@ Nếu không, một số băng thông/thời gian sẽ được tiết kiệm.</
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Bỏ qua album mà mọi bài đã được tải ở lần chạy trước, không kiểm tra kích thước tệp. Album được nhận ra nhờ tệp ẩn .bcfetch-done trong thư mục album; xóa một bài hoặc tệp đó thì album sẽ được tải lại.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Ghi tệp nhật ký trong mỗi thư mục album</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Thêm tệp bcfetch-download.log vào mỗi thư mục album. Mỗi lần chạy, tệp ghi lại bài nào đã tải, đã bỏ qua hoặc bị lỗi, và vì sao. Chỉ có dòng mới được thêm vào cuối.</value>
+  </data>
 </root>

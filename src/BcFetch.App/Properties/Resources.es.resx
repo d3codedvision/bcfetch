@@ -609,4 +609,10 @@ Pegue páginas de artista: http://[artista].bandcamp.com y cheque «☑ Descarga
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Omite un álbum cuyas pistas se descargaron todas en una ejecución anterior, sin comprobar el tamaño de los archivos. Se reconoce por un archivo oculto .bcfetch-done en la carpeta del álbum; si borras una pista o ese archivo, el álbum se vuelve a descargar.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Escribir un archivo de registro en cada carpeta de álbum</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Añade un archivo bcfetch-download.log a cada carpeta de álbum. En cada ejecución registra qué pistas se descargaron, se omitieron o fallaron, y por qué. Solo se añaden líneas al final.</value>
+  </data>
 </root>

@@ -537,4 +537,10 @@ Tempel halaman artis: http://[artis].bandcamp.com dan centang "☑ Unduh diskogr
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Melewati album yang semua lagunya sudah diunduh pada proses sebelumnya, tanpa memeriksa ukuran berkas. Album dikenali dari berkas tersembunyi .bcfetch-done di folder album; menghapus sebuah lagu atau berkas itu akan mengunduh ulang album.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Tulis berkas log di setiap folder album</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Menambahkan berkas bcfetch-download.log ke setiap folder album. Pada setiap proses, berkas ini mencatat lagu mana yang diunduh, dilewati, atau gagal, beserta alasannya. Hanya baris yang ditambahkan di akhir.</value>
+  </data>
 </root>

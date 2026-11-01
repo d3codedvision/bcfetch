@@ -600,4 +600,10 @@
   <data name="trackFailed" xml:space="preserve">
     <value>απέτυχε</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Εγγραφή αρχείου καταγραφής σε κάθε φάκελο άλμπουμ</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Προσθέτει ένα αρχείο bcfetch-download.log σε κάθε φάκελο άλμπουμ. Για κάθε εκτέλεση καταγράφει ποια κομμάτια λήφθηκαν, παραλείφθηκαν ή απέτυχαν, και γιατί. Προστίθενται μόνο γραμμές στο τέλος.</value>
+  </data>
 </root>

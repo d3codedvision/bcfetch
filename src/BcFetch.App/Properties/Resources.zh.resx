@@ -550,4 +550,10 @@ Bandcamp的链接如下所示：http://[艺术家名称].bandcamp.com/album/[alb
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>若某专辑的所有曲目已在之前的运行中下载，则跳过该专辑，且不检查文件大小。通过专辑文件夹中的隐藏文件 .bcfetch-done 识别；删除某首曲目或该文件会重新下载专辑。</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>在每个专辑文件夹中写入日志文件</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>在每个专辑文件夹中添加 bcfetch-download.log 文件。每次运行都会记录哪些曲目已下载、已跳过或失败，以及原因。只会在末尾追加行。</value>
+  </data>
 </root>

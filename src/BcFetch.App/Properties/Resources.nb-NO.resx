@@ -593,4 +593,10 @@ Lim inn artistsider: https://[artist].bandcamp.com og velg "☑ Last ned artistd
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Hopper over et album der alle sporene ble lastet ned i en tidligere kjøring, uten å sjekke filstørrelser. Det gjenkjennes på en skjult fil .bcfetch-done i albummappen; sletter du et spor eller den filen, lastes albumet ned på nytt.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Skriv en loggfil i hver albummappe</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Legger en fil bcfetch-download.log i hver albummappe. For hver kjøring noteres hvilke spor som ble lastet ned, hoppet over eller mislyktes, og hvorfor. Det legges bare til linjer på slutten.</value>
+  </data>
 </root>

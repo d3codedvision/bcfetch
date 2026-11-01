@@ -539,4 +539,10 @@ Liitä artistin sivut: http://[artisti].bandcamp.com ja valitse "☑ Tallenna ar
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Ohittaa albumin, jonka kaikki kappaleet ladattiin aiemmalla ajolla, tarkistamatta tiedostokokoja. Albumi tunnistetaan albumikansion piilotiedostosta .bcfetch-done; kappaleen tai tuon tiedoston poistaminen lataa albumin uudelleen.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Kirjoita lokitiedosto jokaiseen albumikansioon</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Lisää jokaiseen albumikansioon tiedoston bcfetch-download.log. Se kirjaa jokaisesta ajosta, mitkä kappaleet ladattiin, ohitettiin tai epäonnistuivat, ja miksi. Tiedostoon lisätään vain rivejä loppuun.</value>
+  </data>
 </root>

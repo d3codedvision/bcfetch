@@ -149,4 +149,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>以前の実行で全曲がダウンロードされたアルバムを、ファイルサイズを確認せずにスキップします。アルバムフォルダー内の隠しファイル .bcfetch-done で判別するため、曲またはこのファイルを削除するとアルバムが再ダウンロードされます。</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>各アルバムフォルダーにログファイルを書き込む</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>各アルバムフォルダーに bcfetch-download.log を追加します。実行ごとに、どの曲がダウンロード・スキップ・失敗したか、その理由を記録します。行は末尾に追記されるだけです。</value>
+  </data>
 </root>

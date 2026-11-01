@@ -1,4 +1,4 @@
-﻿namespace BcFetch.Bandcamp.Download;
+namespace BcFetch.Bandcamp.Download;
 
 internal enum TrackFileState
 {
@@ -20,6 +20,9 @@ internal sealed class TrackFile
     public string Name { get; }
 
     public volatile TrackFileState State;
+
+    /// <summary>The last error that made a try fail, for the download log.</summary>
+    public volatile string Error;
 
     public TrackFile(string url, long bytesReceived, long size, string name = null)
     {

@@ -609,4 +609,10 @@ Incolla l'URL di una pagina artista http://[artista].bandcamp.com e spunta «☑
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Salta un album i cui brani sono stati tutti scaricati in un'esecuzione precedente, senza controllare la dimensione dei file. Viene riconosciuto da un file nascosto .bcfetch-done nella cartella dell'album; eliminando un brano o quel file l'album viene scaricato di nuovo.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Scrivi un file di log in ogni cartella di album</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Aggiunge un file bcfetch-download.log a ogni cartella di album. Per ogni esecuzione registra quali brani sono stati scaricati, saltati o non riusciti, e perché. Le righe vengono solo aggiunte in coda.</value>
+  </data>
 </root>

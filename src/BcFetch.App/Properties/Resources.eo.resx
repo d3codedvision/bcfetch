@@ -227,4 +227,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Preterlasas albumon, kies ĉiuj pecoj estis elŝutitaj en pli frua ruliĝo, sen kontroli dosiergrandojn. Ĝi rekoniĝas per kaŝita dosiero .bcfetch-done en la albuma dosierujo; forigo de peco aŭ de tiu dosiero refoje elŝutas la albumon.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Skribi protokolan dosieron en ĉiu albuma dosierujo</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Aldonas dosieron bcfetch-download.log al ĉiu albuma dosierujo. Por ĉiu ruliĝo ĝi notas, kiuj pecoj estis elŝutitaj, preterlasitaj aŭ malsukcesis, kaj kial. Nur linioj estas aldonataj ĉe la fino.</value>
+  </data>
 </root>

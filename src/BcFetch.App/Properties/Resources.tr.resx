@@ -543,4 +543,10 @@ Sanatçı sayfalarını yapıştırın: http://[sanatçı].bandcamp.com ve tüm 
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Parçalarının tümü önceki bir çalıştırmada indirilmiş bir albümü, dosya boyutlarını denetlemeden atlar. Albüm, klasöründeki gizli .bcfetch-done dosyasından tanınır; bir parçayı veya bu dosyayı silerseniz albüm yeniden indirilir.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Her albüm klasörüne bir günlük dosyası yaz</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Her albüm klasörüne bcfetch-download.log dosyası ekler. Her çalıştırmada hangi parçaların indirildiğini, atlandığını veya başarısız olduğunu ve nedenini kaydeder. Dosyaya yalnızca sona satır eklenir.</value>
+  </data>
 </root>

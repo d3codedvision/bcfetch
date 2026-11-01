@@ -549,4 +549,10 @@ Zalecana wartość = 0.2</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Pomija album, którego wszystkie utwory pobrano podczas wcześniejszego uruchomienia, bez sprawdzania rozmiarów plików. Rozpoznaje go ukryty plik .bcfetch-done w folderze albumu; usunięcie utworu lub tego pliku sprawi, że album zostanie pobrany ponownie.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Zapisuj plik dziennika w każdym folderze albumu</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Dodaje do każdego folderu albumu plik bcfetch-download.log. Dla każdego uruchomienia zapisuje, które utwory zostały pobrane, pominięte lub nie powiodły się, i dlaczego. Wiersze są tylko dopisywane na końcu.</value>
+  </data>
 </root>

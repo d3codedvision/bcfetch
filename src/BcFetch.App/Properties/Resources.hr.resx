@@ -550,4 +550,10 @@ Umetni stranice izvođača: http://[artist].bandcamp.com i označi „☑ Preuzm
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Preskače album čije su sve pjesme preuzete u ranijem pokretanju, bez provjere veličina datoteka. Prepoznaje se po skrivenoj datoteci .bcfetch-done u mapi albuma; brisanjem pjesme ili te datoteke album se ponovno preuzima.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Zapisuj datoteku dnevnika u svaku mapu albuma</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Dodaje datoteku bcfetch-download.log u svaku mapu albuma. Za svako pokretanje bilježi koje su pjesme preuzete, preskočene ili neuspjele i zašto. Redci se samo dodaju na kraj.</value>
+  </data>
 </root>

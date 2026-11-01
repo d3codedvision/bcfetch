@@ -610,4 +610,10 @@ herunterzuladen.</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Überspringt ein Album, dessen Titel bei einem früheren Durchlauf alle heruntergeladen wurden, ohne die Dateigrößen zu prüfen. Erkannt wird es an einer versteckten Datei .bcfetch-done im Albumordner; löscht man einen Titel oder diese Datei, wird das Album erneut heruntergeladen.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Protokolldatei in jedem Albumordner anlegen</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Legt in jedem Albumordner die Datei bcfetch-download.log an. Sie hält für jeden Durchlauf fest, welche Titel heruntergeladen, übersprungen oder fehlgeschlagen sind und warum. Es werden nur Zeilen angehängt.</value>
+  </data>
 </root>

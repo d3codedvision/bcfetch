@@ -596,4 +596,10 @@ URL-адреса Bandcamp виглядає так: http: // [artist] .bandcamp.c
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Пропускає альбом, усі треки якого було завантажено під час попереднього запуску, не перевіряючи розміри файлів. Альбом розпізнається за прихованим файлом .bcfetch-done у теці альбому; якщо видалити трек або цей файл, альбом буде завантажено знову.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Записувати файл журналу в кожну теку альбому</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Додає до кожної теки альбому файл bcfetch-download.log. Для кожного запуску в ньому записано, які треки було завантажено, пропущено або які не вдалися, і чому. Рядки лише дописуються в кінець.</value>
+  </data>
 </root>

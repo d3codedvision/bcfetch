@@ -610,4 +610,10 @@ de leurs albums.</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Ignore un album dont toutes les pistes ont été téléchargées lors d’une exécution précédente, sans vérifier la taille des fichiers. Il est reconnu grâce à un fichier caché .bcfetch-done dans le dossier de l’album ; supprimer une piste ou ce fichier retélécharge l’album.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Écrire un fichier journal dans chaque dossier d’album</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Ajoute un fichier bcfetch-download.log dans chaque dossier d’album. Pour chaque exécution, il note quelles pistes ont été téléchargées, ignorées ou ont échoué, et pourquoi. Les lignes sont uniquement ajoutées à la fin.</value>
+  </data>
 </root>

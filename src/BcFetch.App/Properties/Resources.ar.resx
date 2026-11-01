@@ -537,4 +537,10 @@
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>يتخطى ألبومًا تم تنزيل كل مقاطعه في تشغيل سابق دون فحص أحجام الملفات. يُعرَف الألبوم من ملف مخفي اسمه ‎.bcfetch-done‎ في مجلد الألبوم؛ حذف مقطع أو هذا الملف يعيد تنزيل الألبوم.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>اكتب ملف سجل في كل مجلد ألبوم</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>يضيف ملف bcfetch-download.log إلى كل مجلد ألبوم. يسجل في كل تشغيل المقاطع التي تم تنزيلها أو تخطيها أو فشلت، مع السبب. تُضاف الأسطر في النهاية فقط.</value>
+  </data>
 </root>

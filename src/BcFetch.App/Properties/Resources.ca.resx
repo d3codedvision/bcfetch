@@ -537,4 +537,10 @@ Obriu un problema nou amb el contingut del vostre fitxer de registre activat a
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Omet un àlbum les pistes del qual es van descarregar totes en una execució anterior, sense comprovar la mida dels fitxers. Es reconeix per un fitxer ocult .bcfetch-done a la carpeta de l'àlbum; si suprimiu una pista o aquest fitxer, l'àlbum es torna a descarregar.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Escriu un fitxer de registre a cada carpeta d'àlbum</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Afegeix un fitxer bcfetch-download.log a cada carpeta d'àlbum. En cada execució registra quines pistes s'han descarregat, omès o fallat, i per què. Només s'hi afegeixen línies al final.</value>
+  </data>
 </root>

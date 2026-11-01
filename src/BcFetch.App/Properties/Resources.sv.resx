@@ -550,4 +550,10 @@ Rekommenderat värde = 7</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Hoppar över ett album vars spår alla laddades ned vid en tidigare körning, utan att kontrollera filstorlekarna. Det känns igen på en dold fil .bcfetch-done i albummappen; tar du bort ett spår eller den filen laddas albumet ned igen.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Skriv en loggfil i varje albummapp</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Lägger en fil bcfetch-download.log i varje albummapp. För varje körning noteras vilka spår som laddades ned, hoppades över eller misslyckades, och varför. Rader läggs bara till i slutet.</value>
+  </data>
 </root>

@@ -551,4 +551,10 @@ http://[artist].bandcamp.com/track/[track]
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Пропускает альбом, все треки которого были загружены при предыдущем запуске, не проверяя размеры файлов. Альбом определяется по скрытому файлу .bcfetch-done в папке альбома; если удалить трек или этот файл, альбом будет загружен снова.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Записывать файл журнала в каждую папку альбома</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Добавляет в каждую папку альбома файл bcfetch-download.log. Для каждого запуска в нём записано, какие треки были загружены, пропущены или не удались, и почему. Строки только дописываются в конец.</value>
+  </data>
 </root>

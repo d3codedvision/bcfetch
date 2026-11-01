@@ -550,4 +550,10 @@ Cole as páginas do artista: http://[artista].bandcamp.com e ative «☑ Baixar 
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Ignora um álbum cujas faixas foram todas transferidas numa execução anterior, sem verificar o tamanho dos ficheiros. É reconhecido por um ficheiro oculto .bcfetch-done na pasta do álbum; apagar uma faixa ou esse ficheiro volta a transferir o álbum.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Escrever um ficheiro de registo em cada pasta de álbum</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Adiciona um ficheiro bcfetch-download.log a cada pasta de álbum. Em cada execução regista que faixas foram transferidas, ignoradas ou falharam, e porquê. Apenas são acrescentadas linhas no fim.</value>
+  </data>
 </root>

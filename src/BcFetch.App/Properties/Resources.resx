@@ -265,6 +265,12 @@ If not, some bandwidth/time is saved.</value>
   <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
     <value>Skips an album whose tracks were all downloaded by an earlier run, without checking file sizes. It is recognised by a hidden .bcfetch-done file in the album folder, so deleting a track or that file downloads the album again.</value>
   </data>
+  <data name="checkBoxWriteDownloadLog" xml:space="preserve">
+    <value>Write a _log file in each album folder</value>
+  </data>
+  <data name="checkBoxWriteDownloadLog_ToolTip" xml:space="preserve">
+    <value>Adds a bcfetch-download.log file to each album folder. For every run it records which tracks were downloaded, skipped or failed, and why. Lines are only ever appended.</value>
+  </data>
   <data name="checkBoxVerboseLog" xml:space="preserve">
     <value>Show _verbose log</value>
   </data>
