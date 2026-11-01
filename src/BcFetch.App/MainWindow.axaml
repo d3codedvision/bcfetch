@@ -80,7 +80,7 @@
                 Classes="mono"
                 Height="120"
                 AcceptsReturn="True"
-                Watermark="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
+                PlaceholderText="{x:Static p:Resources.textBoxUrlsPlaceholder}" />
 
             <StackPanel Grid.Row="1" Spacing="8">
                 <AccessText Foreground="{DynamicResource BcMuted}" Text="{x:Static p:Resources.labelDownloadsPath}" />

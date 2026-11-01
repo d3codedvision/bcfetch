@@ -75,9 +75,12 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             UpdateTrackRows();
         };
 
+        // The drag events bubble from the control under the pointer. The URL box would insert dropped text itself, so
+        // it does not take part; the window handles every drop.
         DragDrop.SetAllowDrop(this, true);
-        AddHandler(DragDrop.DragOverEvent, OnDragOver, RoutingStrategies.Tunnel);
-        AddHandler(DragDrop.DropEvent, OnDrop, RoutingStrategies.Tunnel);
+        DragDrop.SetAllowDrop(TextBoxUrls, false);
+        AddHandler(DragDrop.DragOverEvent, OnDragOver);
+        AddHandler(DragDrop.DropEvent, OnDrop);
         SetupTray();
     }
 

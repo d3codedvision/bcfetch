@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+* Drag and drop now works: links, text and text files dropped on the window from a browser or file manager are added to the URL box (or the queue during a run). In 0.3.0-0.3.4 it did nothing. Two causes: the handlers were registered for the wrong event route, and Avalonia 11's X11 backend cannot receive drops from other programs at all.
+* Updated to Avalonia 12.1.4 and SkiaSharp 3.119.4 (needed for drops from other programs). Cover art resizing uses the new SkiaSharp sampling API, with new tests for resize, no-upscale and JPEG conversion.
+
 ## 0.3.4
 
 * Software centres now match the installed app to its AppStream metadata: the desktop entry is renamed to `io.github.d3codedvision.bcfetch.desktop` (same as the AppStream id; `StartupWMClass=bcfetch` keeps the window grouped under its icon) and the metadata names the package. The generated metainfo no longer repeats the release notes inside a comment.
