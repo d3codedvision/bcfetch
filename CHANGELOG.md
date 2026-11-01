@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.2
 
 * Greek (Ελληνικά) added to the languages: a full translation of the window, settings, dialogs, tooltips and messages. Like the other new translations it has not been reviewed by a native speaker, so corrections are welcome.
 * The tab names in Settings (General, Downloads, Tags, ...) now follow the selected language; they were English in every language.
