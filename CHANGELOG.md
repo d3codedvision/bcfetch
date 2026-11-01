@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.3.3
 
 * Packages carry AppStream metadata, so software centres show the license (MIT), a full description, release notes taken from this changelog, the project and bug-tracker links and an age rating instead of "Unknown license" and "No details for this release". The `.deb` also gets a homepage, section, a longer description and a copyright file; the desktop entry gets keywords and a generic name. The AppImage embeds the same metadata.
 
