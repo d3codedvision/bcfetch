@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using BcFetch.Core.DependencyInjection;
 using BcFetch.IO;
@@ -106,7 +106,7 @@ internal sealed class Album
 
     /// <summary>
     /// Returns the folder path from the specified path format, by replacing the placeholders strings with their
-    /// corresponding values. If the path is too long (&gt; 247 characters), it will be stripped.
+    /// corresponding values. Each component is shortened to the file system limit of 255 bytes.
     /// </summary>
     private string ParseFolderPath()
     {
@@ -117,13 +117,7 @@ internal sealed class Album
         path = path.Replace("{artist}", Artist.ToAllowedFileName());
         path = path.Replace("{album}", Title.ToAllowedFileName());
 
-        if (path.Length >= 248)
-        {
-            // Windows doesn't do well with path >= 248 characters (and path + filename >= 260 characters)
-            path = path.Substring(0, 247);
-        }
-
-        return path;
+        return PathLimits.FitPath(path);
     }
 
     /// <summary>
@@ -143,25 +137,13 @@ internal sealed class Album
 
     /// <summary>
     /// Returns the path to be used for the playlist file from the file name format saved in the UserSettings, by
-    /// replacing the placeholders strings with their corresponding values. If the path is too long (&gt; 259 characters), it will be stripped.
+    /// replacing the placeholders strings with their corresponding values. The file name is shortened to the file system limit.
     /// </summary>
     private string ParsePlaylistPath()
     {
         var fileExt = GetPlaylistFileExtension();
 
-        // Compute paths where to save artwork
-        var filePath = Path + System.IO.Path.DirectorySeparatorChar + ParsePlaylistFileName() + fileExt;
-
-        if (filePath.Length >= 260)
-        {
-            // Windows doesn't do well with path + filename >= 260 characters (and path >= 248 characters)
-            // Path has been shorten to 247 characters before, so we have 12 characters max left for "\filename.ext",
-            // so 11 character max for "filename.ext"
-            var fileNameMaxLength = 11 - fileExt.Length;
-            filePath = Path + System.IO.Path.DirectorySeparatorChar + ParsePlaylistFileName().Substring(0, fileNameMaxLength) + fileExt;
-        }
-
-        return filePath;
+        return Path + System.IO.Path.DirectorySeparatorChar + PathLimits.FitFileName(ParsePlaylistFileName() + fileExt);
     }
 
     /// <summary>
@@ -173,18 +155,7 @@ internal sealed class Album
         {
             var artworkFileExt = System.IO.Path.GetExtension(ArtworkUrl);
 
-            // Compute paths where to save artwork
-            ArtworkPath = Path + System.IO.Path.DirectorySeparatorChar + ParseCoverArtFileName() + artworkFileExt;
-
-            if (ArtworkPath.Length >= 260)
-            {
-                // Windows doesn't do well with path + filename >= 260 characters (and path >= 248 characters)
-                // Path has been shorten to 247 characters before, so we have 12 characters max left for "\filename.ext",
-                // so 11 character max for "filename.ext"
-                // There may be only one path needed to shorten, but it's better to use the same file name in both places
-                var fileNameInFolderMaxLength = 11 - (artworkFileExt?.Length ?? 0);
-                ArtworkPath = Path + System.IO.Path.DirectorySeparatorChar + ParseCoverArtFileName().Substring(0, fileNameInFolderMaxLength) + artworkFileExt;
-            }
+            ArtworkPath = Path + System.IO.Path.DirectorySeparatorChar + PathLimits.FitFileName(ParseCoverArtFileName() + artworkFileExt);
         }
     }
 }

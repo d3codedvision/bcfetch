@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+
+* Long names: the Windows limits (folder path cut at 247 characters, file names squeezed to 11 characters past 260) are gone. Each folder and file name is now shortened only when it exceeds the Linux limit of 255 bytes, cut at a character boundary and with the extension kept. Previously two albums with long names could end up in the same folder.
 ## 0.3.0
 
 * Per-track progress list in the window: each track shows waiting, a live percentage, done, skipped or failed, with its own progress line. The window is a little taller to make room.
