@@ -247,6 +247,12 @@ If not, some bandwidth/time is saved.</value>
   <data name="checkBoxNotifyOnFinish_ToolTip" xml:space="preserve">
     <value>Sends a desktop notification when all downloads are done. Needs notify-send (libnotify-bin).</value>
   </data>
+  <data name="checkBoxSkipCompletedAlbums" xml:space="preserve">
+    <value>_Skip albums that are already downloaded</value>
+  </data>
+  <data name="checkBoxSkipCompletedAlbums_ToolTip" xml:space="preserve">
+    <value>Skips an album whose tracks were all downloaded by an earlier run, without checking file sizes. It is recognised by a hidden .bcfetch-done file in the album folder, so deleting a track or that file downloads the album again.</value>
+  </data>
   <data name="checkBoxVerboseLog" xml:space="preserve">
     <value>Show _verbose log</value>
   </data>

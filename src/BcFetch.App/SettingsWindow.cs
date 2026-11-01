@@ -30,6 +30,7 @@ internal sealed class SettingsWindow : Window
             ("MaxConcurrentAlbumsDownloads", "labelMaxConcurrentAlbumsDownloads", "textBoxMaxConcurrentAlbumsDownloads_ToolTip"),
             ("MaxConcurrentTracksDownloads", "labelMaxConcurrentTracksDownloads", "textBoxMaxConcurrentTracksDownloads_ToolTip"),
             ("RetrieveFilesSize", "checkBoxRetrieveFilesSize", "checkBoxRetrieveFilesSize_ToolTip"),
+            ("SkipCompletedAlbums", "checkBoxSkipCompletedAlbums", "checkBoxSkipCompletedAlbums_ToolTip"),
         ]),
         ("Tags", [
             ("FileNameFormat", "labelFileNameFormat", "textBoxFileNameFormat_ToolTip"),

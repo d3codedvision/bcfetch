@@ -71,7 +71,8 @@ internal sealed class DownloadManager : IDownloadManager
     public async Task InitializeAsync(string inputUrls, CancellationToken cancellationToken)
     {
         var albumsUrls = await _albumUrlRetriever.RetrieveAlbumsUrlsAsync(inputUrls, _userSettings.DownloadArtistDiscography, cancellationToken).ConfigureAwait(false);
-        _albums = await _albumInfoRetriever.GetAlbumsAsync(albumsUrls, cancellationToken).ConfigureAwait(false);
+        var albums = await _albumInfoRetriever.GetAlbumsAsync(albumsUrls, cancellationToken).ConfigureAwait(false);
+        _albums = _userSettings.SkipCompletedAlbums ? albums.Where(a => !SkipIfComplete(a)).ToList() : albums;
         _downloadingFiles = await _trackFileService.GetFilesToDownloadAsync(_albums, cancellationToken).ConfigureAwait(false);
 
         _failedTracksCount = 0;
@@ -132,6 +133,17 @@ internal sealed class DownloadManager : IDownloadManager
     public int GetTotalFilesCountReceived()
     {
         return _downloadingFiles.Count(f => f.Downloaded);
+    }
+
+    private bool SkipIfComplete(Album album)
+    {
+        if (!AlbumMarker.IsComplete(album.Path, album.Tracks.Select(t => t.Path)))
+        {
+            return false;
+        }
+
+        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Skipping album \"{album.Title}\": already downloaded", DownloadProgressChangedLevel.Info));
+        return true;
     }
 
     private void ThrowIfNotInitialized()
@@ -206,8 +218,10 @@ internal sealed class DownloadManager : IDownloadManager
             DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Saved playlist for album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
         }
 
-        if (album.Tracks.Count == downloadedTracksCount)
+        var tracksOnDisk = album.Tracks.Count(t => _downloadingFiles.First(f => f.Url == t.Mp3Url).State is TrackFileState.Done or TrackFileState.Skipped);
+        if (album.Tracks.Count == tracksOnDisk)
         {
+            AlbumMarker.Mark(album.Path);
             DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Successfully downloaded album \"{album.Title}\"", DownloadProgressChangedLevel.Success));
         }
         else

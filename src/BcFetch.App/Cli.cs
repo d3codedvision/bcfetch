@@ -17,6 +17,7 @@ internal static class Cli
           -o, --output <path>   download path template, e.g. "~/Music/{artist}/{album}"
           -f, --file <path>     read URLs from a file, one per line ("-" for stdin; blank lines and # comments are skipped)
           -d, --discography     download the whole artist discography
+          --force               download albums again even if an earlier run completed them
           -v, --verbose         show verbose log lines
           -V, --version         print version
           -h, --help            print this help
@@ -30,6 +31,7 @@ internal static class Cli
         string output = null;
         bool? discography = null;
         var verbose = false;
+        var force = false;
         var urls = new List<string>();
 
         for (var i = 0; i < args.Length; i++)
@@ -51,6 +53,7 @@ internal static class Cli
                     }
                     break;
                 case "-d" or "--discography": discography = true; break;
+                case "--force": force = true; break;
                 case "-v" or "--verbose": verbose = true; break;
                 case "-o" or "--output":
                     if (++i >= args.Length) return Fail("--output needs a path");
@@ -72,6 +75,8 @@ internal static class Cli
         // Settings write through to the ini file, so restore overrides afterwards.
         var oldPath = settings.DownloadsPath;
         var oldDiscography = settings.DownloadArtistDiscography;
+        var oldSkip = settings.SkipCompletedAlbums;
+        if (force) settings.SkipCompletedAlbums = false;
         if (output != null) settings.DownloadsPath = output.StartsWith("~/") ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), output[2..]) : output;
         if (discography != null) settings.DownloadArtistDiscography = discography.Value;
 
@@ -109,6 +114,7 @@ internal static class Cli
         {
             settings.DownloadsPath = oldPath;
             settings.DownloadArtistDiscography = oldDiscography;
+            settings.SkipCompletedAlbums = oldSkip;
         }
     }
 

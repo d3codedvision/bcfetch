@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Config.Net;
 
@@ -226,6 +226,9 @@ public interface IUserSettings
 
     [Option(DefaultValue = true)]
     bool NotifyOnFinish { get; set; }
+
+    [Option(DefaultValue = true)]
+    bool SkipCompletedAlbums { get; set; }
 
     [Option(DefaultValue = false)]
     bool SaveCoverArtInFolder { get; set; }
