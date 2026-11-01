@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.3.5
 
 * Drag and drop now works: links, text and text files dropped on the window from a browser or file manager are added to the URL box (or the queue during a run). In 0.3.0-0.3.4 it did nothing. Two causes: the handlers were registered for the wrong event route, and Avalonia 11's X11 backend cannot receive drops from other programs at all.
 * Updated to Avalonia 12.1.4 and SkiaSharp 3.119.4 (needed for drops from other programs). Cover art resizing uses the new SkiaSharp sampling API, with new tests for resize, no-upscale and JPEG conversion.
+* The main window shows the version next to the app name.
 
 ## 0.3.4
 
