@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+Where files go is now a setting, and the track list and the log have a tab each.
+
+* Settings, Downloads: "Save albums to" (with Browse) lives here now. A new option, "Ask for a folder before each download", opens the folder picker when you press Download. The folder you pick applies to that download only (queued batches included); the saved folder stays the default. Cancelling the picker cancels the download.
+* Main window: the folder field is gone. A line next to the discography switch shows where files will go; click it to open Settings.
+* Main window: Tracks and Log are tabs, so each gets the full height. Tracks is shown while a run is active (and after it, with the result strip); the Log tab title counts errors, for example "Log (2 errors)".
+* New texts are in English and German; other languages show English for them until translated.
+
 ## 0.3.9
 
 Main window: clearer idle, running and finished states.
