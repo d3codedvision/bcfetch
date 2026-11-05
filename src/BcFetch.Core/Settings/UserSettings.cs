@@ -187,6 +187,10 @@ public interface IUserSettings
     [Option(DefaultValue = "")]
     string DownloadsPath { get; set; }
 
+    // Pick a folder at every download instead of using DownloadsPath
+    [Option(DefaultValue = false)]
+    bool AskDownloadsFolderEveryTime { get; set; }
+
     [Option(DefaultValue = false)]
     bool EnableApplicationSounds { get; set; }
 

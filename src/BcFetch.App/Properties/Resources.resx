@@ -675,4 +675,31 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   <data name="summaryFailed" xml:space="preserve">
     <value>{0} failed</value>
   </data>
+  <data name="tabTracks" xml:space="preserve">
+    <value>Tracks</value>
+  </data>
+  <data name="tabLog" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="tabLogErrors" xml:space="preserve">
+    <value>Log ({0} errors)</value>
+  </data>
+  <data name="labelSaveTo" xml:space="preserve">
+    <value>Saving to {0}</value>
+  </data>
+  <data name="labelSaveToAsk" xml:space="preserve">
+    <value>You choose the folder when you press Download</value>
+  </data>
+  <data name="labelSaveToTip" xml:space="preserve">
+    <value>Change in Settings, Downloads</value>
+  </data>
+  <data name="pickFolderTitle" xml:space="preserve">
+    <value>Save albums to</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder" xml:space="preserve">
+    <value>Ask for a folder before each download</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder_ToolTip" xml:space="preserve">
+    <value>The folder you pick applies to that download only; the folder above stays the default.</value>
+  </data>
 </root>

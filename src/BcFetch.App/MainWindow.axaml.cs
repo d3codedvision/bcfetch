@@ -29,6 +29,7 @@ internal sealed partial class MainWindow : Window
     private readonly DispatcherTimer _rowsTimer = new() { Interval = TimeSpan.FromMilliseconds(250) };
     private List<TrackRowViewModel> _trackRows = [];
     private bool _logScrollPending;
+    private int _logErrors;
     private const int MaxLogLines = 500;
     private const int LogTrimBatch = 50;
     private CancellationTokenSource _downloadCts;
@@ -71,8 +72,9 @@ internal sealed partial class MainWindow : Window
             UpdateStartLabel();
         };
         CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
-        TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
-        TextBoxDownloadsPath.TextChanged += (_, _) => _userSettings.DownloadsPath = TextBoxDownloadsPath.Text;
+        UpdateSaveTo();
+        TabTracks.Header = Tr.Get("tabTracks");
+        TabLog.Header = Tr.Get("tabLog");
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         CheckBoxDownloadDiscography.IsCheckedChanged += (_, _) => _userSettings.DownloadArtistDiscography = CheckBoxDownloadDiscography.IsChecked == true;
 
@@ -195,12 +197,17 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         }
     }
 
-    private async void ButtonBrowse_Click(object sender, RoutedEventArgs e)
+    private void UpdateSaveTo()
     {
-        var folders = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions { AllowMultiple = false });
-        if (folders.Count > 0 && folders[0].TryGetLocalPath() is { } path)
+        LabelSaveTo.Text = _userSettings.AskDownloadsFolderEveryTime ? Tr.Get("labelSaveToAsk") : Tr.Get("labelSaveTo", _userSettings.DownloadsPath);
+        ToolTip.SetTip(LabelSaveTo, Tr.Get("labelSaveToTip"));
+    }
+
+    private void LabelSaveTo_PointerPressed(object sender, PointerPressedEventArgs e)
+    {
+        if (!_activeDownloads)
         {
-            TextBoxDownloadsPath.Text = Path.Combine(path, "{artist}", "{album}");
+            ButtonOpenSettingsWindow_Click(sender, e);
         }
     }
 
@@ -210,7 +217,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     {
         await new SettingsWindow(_settingsService, _activeDownloads).ShowDialog(this);
         // The window edits the same settings object; refresh the controls shown on this window.
-        TextBoxDownloadsPath.Text = _userSettings.DownloadsPath;
+        UpdateSaveTo();
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         _tray.IsVisible = _userSettings.ShowTrayIcon;
         if (_activeDownloads && !Equals(Res.Culture, _uiCulture))
@@ -274,6 +281,20 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             return;
         }
 
+        // "Ask before each download": the chosen folder is used for this run only (all its queued batches too)
+        string savedPath = null;
+        if (_userSettings.AskDownloadsFolderEveryTime)
+        {
+            var folders = await StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions { Title = Tr.Get("pickFolderTitle") });
+            if (folders.Count == 0 || folders[0].TryGetLocalPath() is not { } picked)
+            {
+                return;
+            }
+
+            savedPath = _userSettings.DownloadsPath;
+            _userSettings.DownloadsPath = Path.Combine(picked, "{artist}", "{album}");
+        }
+
         _retryInput = null;
         _downloadCts = new CancellationTokenSource();
         _activeDownloads = true;
@@ -306,6 +327,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         }
 
         _queue.Clear();
+        if (savedPath != null)
+        {
+            _userSettings.DownloadsPath = savedPath;
+        }
+
         _activeDownloads = false;
         SetDownloading(false);
         if (string.IsNullOrWhiteSpace(TextBoxUrls.Text))
@@ -422,11 +448,10 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void SetDownloading(bool downloading)
     {
-        ButtonBrowse.IsEnabled = !downloading;
         ButtonStop.IsVisible = downloading; // nothing to cancel otherwise, so no disabled button
         ButtonStop.IsEnabled = downloading;
         CheckBoxDownloadDiscography.IsEnabled = !downloading;
-        TextBoxDownloadsPath.IsReadOnly = downloading;
+        LabelSaveTo.Opacity = downloading ? 0.6 : 1;
         UpdateStartLabel();
         ProgressBar.IsIndeterminate = downloading;
         ProgressBar.Value = 0;
@@ -435,6 +460,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             LogText.Inlines.Clear();
             _logLines.Clear();
             ShowTrackPanel(false);
+            _logErrors = 0;
+            TabLog.Header = Tr.Get("tabLog");
             LabelProgress.Text = "";
         }
         else
@@ -463,12 +490,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         TrackSummary.IsVisible = false;
 
-        // The track list takes its share of the height only while it is shown; the log keeps its minimum either way.
-        var row = ContentGrid.RowDefinitions[2];
-        row.MinHeight = show ? 64 : 0;
-        row.MaxHeight = show ? 240 : double.PositiveInfinity;
-        row.Height = show ? new GridLength(2, GridUnitType.Star) : new GridLength(0);
-        TrackPanel.IsVisible = show;
+        // The Tracks tab exists only while a run shows it, and takes the focus then; otherwise the Log is shown.
+        TabTracks.IsVisible = show;
+        TabDetails.SelectedItem = show ? TabTracks : TabLog;
     }
 
     /// <summary>
@@ -582,6 +606,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LogText.Inlines.Add(text);
         _logLines.Add((stamp, text, level));
         EmptyState.IsVisible = false;
+        if (level == DownloadProgressChangedLevel.Error)
+        {
+            TabLog.Header = Tr.Get("tabLogErrors", ++_logErrors);
+        }
+
         ColorLogLine(stamp, text, level);
 
         // Re-laying out a long log on every line gets slower as it grows (3,000 lines took 11 s), so the window keeps

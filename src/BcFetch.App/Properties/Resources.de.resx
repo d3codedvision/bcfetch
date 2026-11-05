@@ -676,4 +676,31 @@ herunterzuladen.</value>
   <data name="summaryFailed" xml:space="preserve">
     <value>{0} fehlgeschlagen</value>
   </data>
+  <data name="tabTracks" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="tabLog" xml:space="preserve">
+    <value>Protokoll</value>
+  </data>
+  <data name="tabLogErrors" xml:space="preserve">
+    <value>Protokoll ({0} Fehler)</value>
+  </data>
+  <data name="labelSaveTo" xml:space="preserve">
+    <value>Speichern in {0}</value>
+  </data>
+  <data name="labelSaveToAsk" xml:space="preserve">
+    <value>Den Ordner wählst du beim Herunterladen</value>
+  </data>
+  <data name="labelSaveToTip" xml:space="preserve">
+    <value>In den Einstellungen unter „Downloads“ ändern</value>
+  </data>
+  <data name="pickFolderTitle" xml:space="preserve">
+    <value>Alben speichern in</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder" xml:space="preserve">
+    <value>Vor jedem Download nach dem Ordner fragen</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder_ToolTip" xml:space="preserve">
+    <value>Der gewählte Ordner gilt nur für diesen Download; der Ordner oben bleibt die Vorgabe.</value>
+  </data>
 </root>

@@ -31,6 +31,8 @@ internal sealed class SettingsWindow : Window
             ("Theme", "labelTheme", null),
         ]),
         ("Downloads", [
+            ("DownloadsPath", "labelDownloadsPath", "textBoxDownloadsPath_ToolTip"),
+            ("AskDownloadsFolderEveryTime", "checkBoxAskDownloadsFolder", "checkBoxAskDownloadsFolder_ToolTip"),
             ("MaxConcurrentAlbumsDownloads", "labelMaxConcurrentAlbumsDownloads", "textBoxMaxConcurrentAlbumsDownloads_ToolTip"),
             ("MaxConcurrentTracksDownloads", "labelMaxConcurrentTracksDownloads", "textBoxMaxConcurrentTracksDownloads_ToolTip"),
             ("RetrieveFilesSize", "checkBoxRetrieveFilesSize", "checkBoxRetrieveFilesSize_ToolTip"),
@@ -118,6 +120,7 @@ internal sealed class SettingsWindow : Window
     private readonly HashSet<string> _invalid = new();
     private readonly Button _saveButton = new() { Content = T("buttonSave"), MinWidth = 90, IsDefault = true, Classes = { "primary" } };
     private bool _loading;
+    private Button _browse;
 
     public SettingsWindow(ISettingsService settingsService, bool activeDownloads)
     {
@@ -196,9 +199,22 @@ internal sealed class SettingsWindow : Window
         }
         else
         {
-            var box = new TextBox { Width = 200, HorizontalAlignment = HorizontalAlignment.Left };
+            var box = new TextBox { Width = prop == "DownloadsPath" ? 300 : 200, HorizontalAlignment = HorizontalAlignment.Left };
             box.TextChanged += (_, _) => OnText(prop, type, box);
             editor = box;
+            if (prop == "DownloadsPath")
+            {
+                _browse = new Button { Content = T("buttonBrowse") };
+                AutomationProperties.SetName(_browse, T("buttonBrowse_ToolTip"));
+                _browse.Click += async (_, _) =>
+                {
+                    var folders = await StorageProvider.OpenFolderPickerAsync(new() { Title = T("pickFolderTitle") });
+                    if (folders.Count > 0 && folders[0].TryGetLocalPath() is { } path)
+                    {
+                        box.Text = Path.Combine(path, "{artist}", "{album}");
+                    }
+                };
+            }
         }
 
         _controls[prop] = editor;
@@ -218,12 +234,18 @@ internal sealed class SettingsWindow : Window
         var message = new TextBlock { FontSize = 12, TextWrapping = TextWrapping.Wrap, IsVisible = false, Margin = new Thickness(LabelWidth + 10, 0, 0, 0) };
         message.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("BcDanger"));
         _messages[prop] = message;
+        var line = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { label, editor } };
+        if (prop == "DownloadsPath")
+        {
+            line.Children.Add(_browse);
+        }
+
         return new StackPanel
         {
             Spacing = 4,
             Children =
             {
-                new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { label, editor } },
+                line,
                 message,
             },
         };
@@ -325,6 +347,12 @@ internal sealed class SettingsWindow : Window
             else if (prop is "ProxyHttpAddress" or "ProxyHttpPort")
             {
                 enabled = (ProxyType)_values["Proxy"] == ProxyType.Manual;
+            }
+
+            if (prop == "DownloadsPath")
+            {
+                enabled = !(bool)_values["AskDownloadsFolderEveryTime"];
+                _browse.IsEnabled = enabled;
             }
 
             control.IsEnabled = enabled;

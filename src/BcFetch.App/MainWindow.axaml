@@ -80,8 +80,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="64" MaxHeight="140" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="0" />
-                <RowDefinition Height="2*" MinHeight="88" />
+                <RowDefinition Height="2*" MinHeight="140" />
             </Grid.RowDefinitions>
             <!-- Read out by screen readers when a run ends; invisible on screen. -->
             <TextBlock
@@ -105,37 +104,29 @@
                 TextWrapping="Wrap"
                 PlaceholderText="{x:Static p:Resources.urlsPlaceholder}" />
 
-            <StackPanel Grid.Row="1" Margin="0,0,0,12" Spacing="8">
-                <Label
-                    Padding="0"
-                    Content="{x:Static p:Resources.labelDownloadsPath}"
-                    Foreground="{DynamicResource BcMuted}"
-                    Target="{Binding #TextBoxDownloadsPath}" />
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-                    <TextBox
-                        x:Name="TextBoxDownloadsPath"
-                        Grid.Column="0"
-                        Classes="mono"
-                        ToolTip.Tip="{x:Static p:Resources.textBoxDownloadsPath_ToolTip}" />
-                    <Button
-                        x:Name="ButtonBrowse"
-                        Grid.Column="1"
-                        AutomationProperties.Name="{x:Static p:Resources.buttonBrowse_ToolTip}"
-                        Click="ButtonBrowse_Click"
-                        Content="{x:Static p:Resources.buttonBrowse}"
-                        ToolTip.Tip="{x:Static p:Resources.buttonBrowse_ToolTip}" />
-                </Grid>
+            <!-- Options: discography switch; the destination is a read-only summary, edited in Settings. -->
+            <Grid Grid.Row="1" Margin="0,0,0,12" ColumnDefinitions="Auto,*" ColumnSpacing="20">
                 <ToggleSwitch
                     x:Name="CheckBoxDownloadDiscography"
                     ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
-            </StackPanel>
+                <TextBlock
+                    x:Name="LabelSaveTo"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Cursor="Hand"
+                    Foreground="{DynamicResource BcMuted}"
+                    PointerPressed="LabelSaveTo_PointerPressed"
+                    TextDecorations="Underline"
+                    TextTrimming="PathSegmentEllipsis" />
+            </Grid>
 
+            <!-- Tracks and log are separate tabs, so each gets the full height. -->
+            <TabControl x:Name="TabDetails" Grid.Row="2" Margin="0,0,0,12">
+            <TabItem x:Name="TabTracks" IsVisible="False">
             <Border
                 x:Name="TrackPanel"
-                Grid.Row="2"
                 Classes="region"
-                Margin="0,0,0,12"
-                IsVisible="False"
                 Background="{DynamicResource BcPanel}"
                 BorderThickness="1"
                 CornerRadius="4">
@@ -197,9 +188,9 @@
                     </ItemsControl>
                 </Grid>
             </Border>
-
+            </TabItem>
+            <TabItem x:Name="TabLog">
             <Border
-                Grid.Row="3"
                 Classes="region"
                 Background="{DynamicResource BcPanel}"
                 BorderThickness="1"
@@ -246,6 +237,8 @@
                     </StackPanel>
                 </Grid>
             </Border>
+            </TabItem>
+            </TabControl>
         </Grid>
         <!-- Footer: readouts left (they give way first when the window is narrow), actions right. -->
         <Grid Grid.Row="3" Margin="20,12,20,18" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
