@@ -57,6 +57,7 @@ internal sealed class AlbumInfoRetriever : IAlbumInfoRetriever
             try
             {
                 var album = _albumInfoParser.GetAlbumInfoFromAlbumPage(htmlContent, cancellationToken);
+                album.PageUrl = url;
 
                 if (album.Tracks.Count > 0)
                 {

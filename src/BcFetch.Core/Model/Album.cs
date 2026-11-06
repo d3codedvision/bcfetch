@@ -25,6 +25,9 @@ internal sealed class Album
     /// </summary>
     public string ArtworkUrl { get; set; }
 
+    /// <summary>The Bandcamp page the album was read from.</summary>
+    public string PageUrl { get; set; }
+
     /// <summary>
     /// True if the album has an artwork; false otherwise.
     /// </summary>

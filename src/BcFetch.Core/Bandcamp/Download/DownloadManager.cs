@@ -154,10 +154,10 @@ internal sealed class DownloadManager : IDownloadManager
             return false;
         }
 
-        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Skipping album \"{album.Title}\": already downloaded", DownloadProgressChangedLevel.Info));
+        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Skipping album \"{album.Title}\": already downloaded", DownloadProgressChangedLevel.Info, album.PageUrl));
         if (_userSettings.WriteDownloadLog)
         {
-            AlbumLog.Append(album.Path, [$"bcfetch {Constants.APP_VERSION_FORMATTED} | {album.Artist} - {album.Title}", "  album skipped: already downloaded"]);
+            AlbumLog.Append(album.Path, [$"bcfetch {Constants.APP_VERSION_FORMATTED} | {album.Artist} - {album.Title}", $"  page: {album.PageUrl}", "  album skipped: already downloaded"]);
         }
 
         return true;
@@ -167,6 +167,7 @@ internal sealed class DownloadManager : IDownloadManager
     private IEnumerable<string> DescribeAlbumRun(Album album)
     {
         yield return $"bcfetch {Constants.APP_VERSION_FORMATTED} | {album.Artist} - {album.Title}";
+        yield return $"  page: {album.PageUrl}";
 
         int downloaded = 0, skipped = 0, failed = 0, unfinished = 0;
         foreach (var track in album.Tracks)
@@ -267,18 +268,18 @@ internal sealed class DownloadManager : IDownloadManager
         if (_userSettings.CreatePlaylist)
         {
             await _playlistCreator.SavePlaylistToFileAsync(album, cancellationToken).ConfigureAwait(false);
-            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Saved playlist for album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Saved playlist for album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess, album.PageUrl));
         }
 
         var tracksOnDisk = album.Tracks.Count(t => _downloadingFiles.First(f => f.Url == t.Mp3Url).State is TrackFileState.Done or TrackFileState.Skipped);
         if (album.Tracks.Count == tracksOnDisk)
         {
             AlbumMarker.Mark(album.Path);
-            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Successfully downloaded album \"{album.Title}\"", DownloadProgressChangedLevel.Success));
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Successfully downloaded album \"{album.Title}\"", DownloadProgressChangedLevel.Success, album.PageUrl));
         }
         else
         {
-            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Finished downloading album \"{album.Title}\". Some tracks were not downloaded", DownloadProgressChangedLevel.Success));
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Finished downloading album \"{album.Title}\". Some tracks were not downloaded", DownloadProgressChangedLevel.Success, album.PageUrl));
         }
     }
 

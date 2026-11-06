@@ -40,7 +40,7 @@ internal sealed class TrackFileService : ITrackFileService
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Computing size for album \"{album.Title}\"...", DownloadProgressChangedLevel.Info));
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Computing size for album \"{album.Title}\"...", DownloadProgressChangedLevel.Info, album.PageUrl));
 
             // Artwork
             if ((_userSettings.SaveCoverArtInTags || _userSettings.SaveCoverArtInFolder) && album.HasArtwork)
