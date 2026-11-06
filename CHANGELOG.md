@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1
+
+Keyboard shortcuts, and the chosen folder shown during a run.
+
+* Ctrl+Enter starts the download, Esc cancels a running one (with the usual confirmation) and Ctrl+L clears. Each shortcut is shown in the tooltip of its button.
+* With "Ask for a folder before each download", the "Saving to" line shows the folder you picked while the run is in progress, then goes back to the reminder that you will be asked.
+
 ## 0.6.0
 
 Smaller conveniences.
