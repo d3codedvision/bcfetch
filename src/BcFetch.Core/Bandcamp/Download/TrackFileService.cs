@@ -73,7 +73,7 @@ internal sealed class TrackFileService : ITrackFileService
                     async (track, ct) =>
                     {
                         var size = await GetFileSizeAsync(track.Mp3Url, track.Title, FileType.Track, ct).ConfigureAwait(false);
-                        var trackFile = new TrackFile(track.Mp3Url, 0, size, TrackName(album, track));
+                        var trackFile = new TrackFile(track.Mp3Url, 0, size, TrackName(album, track)) { Album = album.Title, Folder = album.Path, Title = $"{track.Number:00} {track.Title}" };
 
                         lock (filesLock)
                         {
@@ -85,7 +85,7 @@ internal sealed class TrackFileService : ITrackFileService
             {
                 foreach (var track in album.Tracks)
                 {
-                    var trackFile = new TrackFile(track.Mp3Url, 0, 0, TrackName(album, track));
+                    var trackFile = new TrackFile(track.Mp3Url, 0, 0, TrackName(album, track)) { Album = album.Title, Folder = album.Path, Title = $"{track.Number:00} {track.Title}" };
                     files.Add(trackFile);
                 }
             }

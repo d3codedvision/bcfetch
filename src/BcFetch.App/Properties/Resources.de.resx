@@ -712,4 +712,7 @@ herunterzuladen.</value>
   <data name="buttonUndoClear" xml:space="preserve">
     <value>Rückgängig</value>
   </data>
+  <data name="buttonOpenFolder" xml:space="preserve">
+    <value>Ordner öffnen</value>
+  </data>
 </root>

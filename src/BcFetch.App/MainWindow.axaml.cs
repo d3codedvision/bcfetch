@@ -29,6 +29,7 @@ internal sealed partial class MainWindow : Window
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
     private readonly DispatcherTimer _rowsTimer = new() { Interval = TimeSpan.FromMilliseconds(250) };
     private List<TrackRowViewModel> _trackRows = [];
+    private List<TrackRowViewModel> _items = []; // what the list shows: an album header, then its tracks, album after album
     private bool _logScrollPending;
     private int _logErrors;
     private ScrollViewer _trackScroll;
@@ -83,6 +84,7 @@ internal sealed partial class MainWindow : Window
         TabLog.Header = Tr.Get("tabLog");
         ButtonClear.Content = Tr.Get("buttonClear");
         LabelQueueHint.Text = Tr.Get("queueHint");
+        ButtonOpenFolder.Content = Tr.Get("buttonOpenFolder");
         UpdateStartLabel();
         UpdateEmptyState();
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
@@ -506,9 +508,64 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     {
         TrackSummary.IsVisible = false;
         _trackRows = files.Select(f => new TrackRowViewModel(f)).ToList();
-        TrackList.ItemsSource = _trackRows;
+        ButtonOpenFolder.IsVisible = false;
+        ShowItems(failedFirst: false);
         ShowTrackPanel(_trackRows.Count > 0);
         UpdateTrackRows(force: true);
+    }
+
+    /// <summary>
+    /// Builds the list: tracks grouped by album under a header that counts them. At the end of a batch the albums
+    /// with failures come first, and the failed tracks first within an album, so none hides below the fold.
+    /// </summary>
+    private void ShowItems(bool failedFirst)
+    {
+        var groups = _trackRows.GroupBy(r => r.Album).ToList(); // GroupBy keeps first-appearance order
+        if (failedFirst)
+        {
+            groups = groups.OrderBy(g => g.Any(r => r.Failed) ? 0 : 1).ToList();
+        }
+
+        _items = [];
+        foreach (var group in groups)
+        {
+            var tracks = group.OrderBy(r => failedFirst && r.Failed ? 0 : 1).ThenBy(r => r.Display, StringComparer.OrdinalIgnoreCase).ToList();
+            _items.Add(new TrackRowViewModel(group.Key, tracks));
+            _items.AddRange(tracks);
+        }
+
+        TrackList.ItemsSource = _items;
+    }
+
+    /// <summary>The folder the batch wrote to: the album folder, or the folder all the album folders share.</summary>
+    private string ResultFolder()
+    {
+        var folders = _trackRows.Select(r => r.Folder).Where(f => !string.IsNullOrEmpty(f) && Directory.Exists(f)).Distinct().ToList();
+        if (folders.Count == 0)
+        {
+            return null;
+        }
+
+        var common = folders[0];
+        foreach (var folder in folders.Skip(1))
+        {
+            while (common != null && !folder.StartsWith(common.TrimEnd('/') + "/", StringComparison.Ordinal))
+            {
+                common = Path.GetDirectoryName(common);
+            }
+        }
+
+        return string.IsNullOrEmpty(common) ? null : common;
+    }
+
+    private void ButtonOpenFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (ResultFolder() is { } folder)
+        {
+            var start = new ProcessStartInfo("xdg-open") { UseShellExecute = false };
+            start.ArgumentList.Add(folder);
+            try { Process.Start(start); } catch (Exception ex) { _logger.Warn(ex, "Could not open the folder"); }
+        }
     }
 
     private void ShowTrackPanel(bool show)
@@ -517,6 +574,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         {
             TrackList.ItemsSource = null;
             _trackRows = [];
+            _items = [];
+            ButtonOpenFolder.IsVisible = false;
         }
 
         TrackSummary.IsVisible = false;
@@ -534,9 +593,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     /// </summary>
     private void FinishTrackList()
     {
-        _trackRows = _trackRows.OrderBy(r => r.Failed ? 0 : 1).ToList();
-        TrackList.ItemsSource = _trackRows;
+        ShowItems(failedFirst: true);
         TrackSummary.IsVisible = true;
+        ButtonOpenFolder.IsVisible = ResultFolder() != null;
         RefreshTrackSummary();
     }
 
@@ -569,7 +628,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void UpdateTrackRows(bool force = false)
     {
-        foreach (var row in _trackRows)
+        foreach (var row in _items)
         {
             row.Update(this.Token, force);
         }
@@ -583,18 +642,18 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     /// </summary>
     private void FollowActiveTrack()
     {
-        if (!_activeDownloads || _trackScroll == null || _trackRows.Count == 0)
+        if (!_activeDownloads || _trackScroll == null || _items.Count == 0)
         {
             return;
         }
 
-        var index = _trackRows.FindLastIndex(r => r.State == TrackFileState.Downloading);
+        var index = _items.FindLastIndex(r => !r.IsHeader && r.State == TrackFileState.Downloading);
         if (index < 0)
         {
-            index = _trackRows.FindIndex(r => r.State == TrackFileState.Waiting);
+            index = _items.FindIndex(r => !r.IsHeader && r.State == TrackFileState.Waiting);
         }
 
-        var rowHeight = _trackScroll.Extent.Height / _trackRows.Count;
+        var rowHeight = _trackScroll.Extent.Height / _items.Count;
         if (index < 0 || index == _followIndex || rowHeight <= 0)
         {
             return;

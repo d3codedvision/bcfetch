@@ -134,12 +134,24 @@
                 BorderThickness="1"
                 CornerRadius="4">
                 <Grid RowDefinitions="Auto,*">
-                    <!-- Result of the batch, shown when it ends: how many are done, skipped and failed. -->
-                    <TextBlock
-                        x:Name="TrackSummary"
+                    <!-- Result of the batch, shown when it ends: how many are done, skipped and failed, and the way to the files. -->
+                    <Grid
+                        Grid.Row="0"
                         Margin="12,8,12,0"
-                        FontSize="12.5"
-                        IsVisible="False" />
+                        ColumnDefinitions="*,Auto"
+                        IsVisible="{Binding #TrackSummary.IsVisible}">
+                        <TextBlock
+                            x:Name="TrackSummary"
+                            VerticalAlignment="Center"
+                            FontSize="12.5"
+                            IsVisible="False" />
+                        <Button
+                            x:Name="ButtonOpenFolder"
+                            Grid.Column="1"
+                            Classes="quiet"
+                            Click="ButtonOpenFolder_Click"
+                            IsVisible="False" />
+                    </Grid>
                     <ItemsControl x:Name="TrackList" Grid.Row="1" AutomationProperties.Name="{x:Static p:Resources.labelTracks}">
                         <ItemsControl.Template>
                             <ControlTemplate>
@@ -159,12 +171,20 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="local:TrackRowViewModel">
-                                <Grid Margin="0,3" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        Text="{Binding Name}"
-                                        TextTrimming="CharacterEllipsis"
-                                        ToolTip.Tip="{Binding Name}" />
+                                <Grid Margin="{Binding RowMargin}" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12" ToolTip.Tip="{Binding Detail}">
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontWeight="{Binding DisplayWeight}"
+                                            Text="{Binding Display}"
+                                            TextTrimming="CharacterEllipsis"
+                                            ToolTip.Tip="{Binding Name}" />
+                                        <TextBlock
+                                            FontSize="12"
+                                            Foreground="{DynamicResource BcDanger}"
+                                            IsVisible="{Binding HasDetail}"
+                                            Text="{Binding Detail}"
+                                            TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
                                     <ProgressBar
                                         Grid.Column="1"
                                         Width="120"
@@ -172,6 +192,7 @@
                                         AutomationProperties.Name="{Binding Name}"
                                         Classes="line"
                                         IsIndeterminate="{Binding Indeterminate}"
+                                        IsVisible="{Binding !IsHeader}"
                                         Maximum="{Binding Maximum}"
                                         Minimum="0"
                                         ShowProgressText="False"
