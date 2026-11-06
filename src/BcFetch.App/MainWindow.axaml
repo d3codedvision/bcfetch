@@ -104,6 +104,16 @@
                 TextWrapping="Wrap"
                 PlaceholderText="{x:Static p:Resources.urlsPlaceholder}" />
 
+            <!-- Offered when the clipboard holds Bandcamp links that are not in the box yet. -->
+            <Button
+                x:Name="ButtonPasteLinks"
+                Grid.Row="0"
+                Margin="0,0,10,22"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="ButtonPasteLinks_Click"
+                IsVisible="False" />
+
             <!-- Options: discography switch; the destination is a read-only summary, edited in Settings. -->
             <Grid Grid.Row="1" Margin="0,0,0,12" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
                 <ToggleSwitch

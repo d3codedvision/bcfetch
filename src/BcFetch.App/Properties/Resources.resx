@@ -714,4 +714,13 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   <data name="buttonOpenFolder" xml:space="preserve">
     <value>Open folder</value>
   </data>
+  <data name="buttonPasteLink" xml:space="preserve">
+    <value>Paste the link from the clipboard</value>
+  </data>
+  <data name="buttonPasteLinks" xml:space="preserve">
+    <value>Paste {0} links from the clipboard</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder_Hint" xml:space="preserve">
+    <value>The folder above is still used when bcfetch runs from the command line.</value>
+  </data>
 </root>

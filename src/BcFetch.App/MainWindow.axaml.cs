@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using System.Globalization;
 using Avalonia.Automation;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
+using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Platform.Storage;
@@ -81,7 +83,7 @@ internal sealed partial class MainWindow : Window
         CheckBoxDownloadDiscography.OnContent = CheckBoxDownloadDiscography.OffContent = Res.checkBoxDownloadDiscography.Replace("_", "");
         UpdateSaveTo();
         TabTracks.Header = Tr.Get("tabTracks");
-        TabLog.Header = Tr.Get("tabLog");
+        SetLogHeader();
         ButtonClear.Content = Tr.Get("buttonClear");
         LabelQueueHint.Text = Tr.Get("queueHint");
         ButtonOpenFolder.Content = Tr.Get("buttonOpenFolder");
@@ -92,6 +94,8 @@ internal sealed partial class MainWindow : Window
 
 Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
+        Activated += async (_, _) => await OfferClipboardAsync();
+        RestoreWindowGeometry();
 
         // The TextBox template fades its placeholder to 50% on the element itself, which a style cannot override and
         // which halves its contrast (2:1); the placeholder colour token is already the quiet tone.
@@ -128,6 +132,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
             UpdateTrackRows(force: true);
             RefreshTrackSummary();
+            SetLogHeader();
         };
 
         // AllowDrop is inherited, so one setting on the window makes the whole window a drop target; the events
@@ -217,6 +222,53 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         AutomationProperties.SetName(ButtonSaveTo, LabelSaveTo.Text + ". " + Tr.Get("labelSaveToTip"));
     }
 
+    // Bandcamp links on the clipboard that are not in the box yet; offered as a button over the box.
+    private List<string> _clipboardLinks = [];
+    private string _clipboardDismissed;
+
+    private async Task OfferClipboardAsync()
+    {
+        ButtonPasteLinks.IsVisible = false;
+        if (_activeDownloads || Clipboard == null)
+        {
+            return;
+        }
+
+        string text;
+        try
+        {
+            text = await Clipboard.TryGetTextAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.Debug(ex, "Could not read the clipboard");
+            return;
+        }
+
+        if (text == null || text == _clipboardDismissed)
+        {
+            return;
+        }
+
+        var present = UrlHelper.ExtractUrls(TextBoxUrls.Text);
+        _clipboardLinks = UrlHelper.ExtractUrls(text)
+            .Where(u => Uri.TryCreate(u, UriKind.Absolute, out var uri) && uri.Host.EndsWith("bandcamp.com", StringComparison.OrdinalIgnoreCase) && !present.Contains(u))
+            .ToList();
+        if (_clipboardLinks.Count > 0)
+        {
+            ButtonPasteLinks.Content = Tr.Get(_clipboardLinks.Count == 1 ? "buttonPasteLink" : "buttonPasteLinks", _clipboardLinks.Count);
+            _clipboardDismissed = text; // offered once per clipboard content: after a click, or after it was ignored and the window lost focus
+            ButtonPasteLinks.IsVisible = true;
+        }
+    }
+
+    private void ButtonPasteLinks_Click(object sender, RoutedEventArgs e)
+    {
+        TextBoxUrls.Text = (string.IsNullOrWhiteSpace(TextBoxUrls.Text) ? "" : TextBoxUrls.Text.TrimEnd() + "\n") + string.Join('\n', _clipboardLinks);
+        ButtonPasteLinks.IsVisible = false;
+        TextBoxUrls.Focus();
+    }
+
     private async void ButtonSaveTo_Click(object sender, RoutedEventArgs e) => await OpenSettingsAsync("Downloads");
 
     /// <summary>Empties the links box, the track list and the log.</summary>
@@ -244,11 +296,17 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LogText.Inlines.Clear();
         _logLines.Clear();
         _logErrors = 0;
-        TabLog.Header = Tr.Get("tabLog");
+        SetLogHeader();
         LabelProgress.Text = "";
         LabelDownloadSpeed.Text = "";
         TabDetails.SelectedItem = TabTracks;
         UpdateStartLabel();
+    }
+
+    // The Log tab title turns into the danger colour once the run has logged errors, and counts them.
+    private void SetLogHeader()
+    {
+        TabLog.Header = _logErrors == 0 ? Tr.Get("tabLog") : new TextBlock { Text = Tr.Get("tabLogErrors", _logErrors), Foreground = this.Token("BcDanger") };
     }
 
     private void ExpireUndo()
@@ -368,6 +426,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         _activeDownloads = false;
         SetDownloading(false);
+        if (_trackRows.Count == 0 && _logErrors > 0)
+        {
+            TabDetails.SelectedItem = TabLog; // the run failed before any track was listed: the reason is in the log
+        }
+
         RefreshLanguage();
         if (!cancelled)
         {
@@ -493,7 +556,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             ShowTrackPanel(false);
             TabDetails.SelectedItem = TabTracks;
             _logErrors = 0;
-            TabLog.Header = Tr.Get("tabLog");
+            SetLogHeader();
+            ButtonPasteLinks.IsVisible = false;
             LabelProgress.Text = "";
         }
         else
@@ -738,7 +802,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _logLines.Add((stamp, text, level));
         if (level == DownloadProgressChangedLevel.Error)
         {
-            TabLog.Header = Tr.Get("tabLogErrors", ++_logErrors);
+            _logErrors++;
+            SetLogHeader();
         }
 
         ColorLogLine(stamp, text, level);
@@ -785,8 +850,44 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         Process.Start(new ProcessStartInfo(Constants.URL_LATEST_RELEASE) { UseShellExecute = true });
     }
 
+    // Size, position and maximized state come back at the next start; a position outside every screen is ignored.
+    private void RestoreWindowGeometry()
+    {
+        if (_userSettings.WindowWidth <= 0 || _userSettings.WindowHeight <= 0)
+        {
+            return;
+        }
+
+        Width = Math.Max(MinWidth, _userSettings.WindowWidth);
+        Height = Math.Max(MinHeight, _userSettings.WindowHeight);
+        var point = new PixelPoint(_userSettings.WindowX, _userSettings.WindowY);
+        if (Screens.All.Any(s => s.WorkingArea.Contains(new PixelPoint(point.X + 40, point.Y + 20))))
+        {
+            WindowStartupLocation = WindowStartupLocation.Manual;
+            Position = point;
+        }
+
+        if (_userSettings.WindowMaximized)
+        {
+            WindowState = WindowState.Maximized;
+        }
+    }
+
+    private void SaveWindowGeometry()
+    {
+        _userSettings.WindowMaximized = WindowState == WindowState.Maximized;
+        if (WindowState == WindowState.Normal) // a maximized or minimized window has no useful size to keep
+        {
+            _userSettings.WindowWidth = (int)Width;
+            _userSettings.WindowHeight = (int)Height;
+            _userSettings.WindowX = Position.X;
+            _userSettings.WindowY = Position.Y;
+        }
+    }
+
     private async void OnClosing(object sender, WindowClosingEventArgs e)
     {
+        SaveWindowGeometry();
         if (!_quitting && _userSettings.ShowTrayIcon && _userSettings.CloseToTray)
         {
             e.Cancel = true;

@@ -167,7 +167,10 @@ internal sealed class SettingsWindow : Window
         cancel.Click += (_, _) => Close();
         _saveButton.Click += (_, _) => { Save(); Close(); };
 
-        var footer = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Right, Margin = new(20, 8, 20, 18), Children = { reset, _saveButton, cancel } };
+        // Reset sits apart on the left, away from Save, so a slip of the mouse cannot reach it
+        var actions = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Right, Children = { _saveButton, cancel } };
+        Grid.SetColumn(actions, 1);
+        var footer = new Grid { ColumnDefinitions = new("Auto,*"), Margin = new(20, 8, 20, 18), Children = { reset, actions } };
         var root = new DockPanel();
         DockPanel.SetDock(footer, Dock.Bottom);
         root.Children.Add(footer);
@@ -229,6 +232,13 @@ internal sealed class SettingsWindow : Window
 
         if (type == typeof(bool))
         {
+            if (T(prop is "AskDownloadsFolderEveryTime" ? "checkBoxAskDownloadsFolder_Hint" : "-") is { } hint)
+            {
+                var note = new TextBlock { Text = hint, FontSize = 12, TextWrapping = TextWrapping.Wrap, Margin = new(28, 0, 0, 0) };
+                note.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("BcMuted"));
+                return new StackPanel { Spacing = 2, Children = { editor, note } };
+            }
+
             return editor;
         }
 

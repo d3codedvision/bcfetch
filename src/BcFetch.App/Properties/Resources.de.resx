@@ -715,4 +715,13 @@ herunterzuladen.</value>
   <data name="buttonOpenFolder" xml:space="preserve">
     <value>Ordner öffnen</value>
   </data>
+  <data name="buttonPasteLink" xml:space="preserve">
+    <value>Link aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="buttonPasteLinks" xml:space="preserve">
+    <value>{0} Links aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="checkBoxAskDownloadsFolder_Hint" xml:space="preserve">
+    <value>Der Ordner oben wird weiterhin verwendet, wenn bcfetch von der Kommandozeile läuft.</value>
+  </data>
 </root>

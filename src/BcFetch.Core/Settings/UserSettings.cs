@@ -187,6 +187,22 @@ public interface IUserSettings
     [Option(DefaultValue = "")]
     string DownloadsPath { get; set; }
 
+    // Last window geometry; a width of 0 means "nothing saved yet"
+    [Option(DefaultValue = 0)]
+    int WindowWidth { get; set; }
+
+    [Option(DefaultValue = 0)]
+    int WindowHeight { get; set; }
+
+    [Option(DefaultValue = 0)]
+    int WindowX { get; set; }
+
+    [Option(DefaultValue = 0)]
+    int WindowY { get; set; }
+
+    [Option(DefaultValue = false)]
+    bool WindowMaximized { get; set; }
+
     // Pick a folder at every download instead of using DownloadsPath
     [Option(DefaultValue = false)]
     bool AskDownloadsFolderEveryTime { get; set; }
