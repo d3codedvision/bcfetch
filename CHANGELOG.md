@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0
+
+Smaller conveniences.
+
+* The window remembers its size, position and maximized state. A saved position that is outside every screen (for example a monitor that is gone) is ignored.
+* When the clipboard holds Bandcamp links that are not in the box yet, a "Paste N links from the clipboard" button appears over the links box when the window gets focus. It is offered once per clipboard content.
+* The Log tab title turns red and counts errors ("Log (2 errors)"). When a run fails before any track is listed, the Log tab is shown so the reason is visible.
+* Settings: Reset moved to the left edge, away from Save. "Ask for a folder before each download" says that the saved folder is still used from the command line.
+
 ## 0.5.0
 
 The result of a run is easier to read and to reach.
