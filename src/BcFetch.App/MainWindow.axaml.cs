@@ -30,6 +30,8 @@ internal sealed partial class MainWindow : Window
     private List<TrackRowViewModel> _trackRows = [];
     private bool _logScrollPending;
     private int _logErrors;
+    private ScrollViewer _trackScroll;
+    private int _followIndex = -1;
     private const int MaxLogLines = 500;
     private const int LogTrimBatch = 50;
     private CancellationTokenSource _downloadCts;
@@ -75,6 +77,8 @@ internal sealed partial class MainWindow : Window
         UpdateSaveTo();
         TabTracks.Header = Tr.Get("tabTracks");
         TabLog.Header = Tr.Get("tabLog");
+        TabDetails.SelectedItem = TabLog; // the first-steps hint lives in the log until a run starts
+        ButtonClear.Content = Tr.Get("buttonClear");
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         CheckBoxDownloadDiscography.IsCheckedChanged += (_, _) => _userSettings.DownloadArtistDiscography = CheckBoxDownloadDiscography.IsChecked == true;
 
@@ -96,6 +100,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         {
             if (e.NameScope.Find<ScrollViewer>("PART_TrackScroll") is { } trackScroll)
             {
+                _trackScroll = trackScroll;
                 KeyboardScrolling.Enable(trackScroll);
             }
         };
@@ -203,19 +208,38 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         ToolTip.SetTip(LabelSaveTo, Tr.Get("labelSaveToTip"));
     }
 
-    private void LabelSaveTo_PointerPressed(object sender, PointerPressedEventArgs e)
+    private async void LabelSaveTo_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         if (!_activeDownloads)
         {
-            ButtonOpenSettingsWindow_Click(sender, e);
+            await OpenSettingsAsync("Downloads");
         }
+    }
+
+    /// <summary>Empties the links box, the track list and the log.</summary>
+    private void ButtonClear_Click(object sender, RoutedEventArgs e)
+    {
+        SetUrlsText("");
+        _retryInput = null;
+        ShowTrackPanel(false);
+        LogText.Inlines.Clear();
+        _logLines.Clear();
+        _logErrors = 0;
+        TabLog.Header = Tr.Get("tabLog");
+        EmptyState.IsVisible = true;
+        LabelProgress.Text = "";
+        LabelDownloadSpeed.Text = "";
+        TabDetails.SelectedItem = TabLog;
+        UpdateStartLabel();
     }
 
     private void ButtonAbout_Click(object sender, RoutedEventArgs e) => new AboutWindow().ShowDialog(this);
 
-    private async void ButtonOpenSettingsWindow_Click(object sender, RoutedEventArgs e)
+    private async void ButtonOpenSettingsWindow_Click(object sender, RoutedEventArgs e) => await OpenSettingsAsync(null);
+
+    private async Task OpenSettingsAsync(string tab)
     {
-        await new SettingsWindow(_settingsService, _activeDownloads).ShowDialog(this);
+        await new SettingsWindow(_settingsService, _activeDownloads, tab).ShowDialog(this);
         // The window edits the same settings object; refresh the controls shown on this window.
         UpdateSaveTo();
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
@@ -300,9 +324,6 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _activeDownloads = true;
         SetDownloading(true);
 
-        // The box is free for more links to queue during the run; what was started comes back afterwards.
-        var startedWith = inputUrls;
-        SetUrlsText("");
         var totalFailed = 0;
         var cancelled = false;
 
@@ -334,11 +355,6 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         _activeDownloads = false;
         SetDownloading(false);
-        if (string.IsNullOrWhiteSpace(TextBoxUrls.Text))
-        {
-            SetUrlsText(startedWith);
-        }
-
         RefreshLanguage();
         if (!cancelled)
         {
@@ -448,6 +464,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void SetDownloading(bool downloading)
     {
+        TextBoxUrls.IsEnabled = !downloading;
+        ButtonClear.IsEnabled = !downloading;
+        ButtonStart.IsEnabled = !downloading; // links are added before a run (or dropped on the window to queue them)
         ButtonStop.IsVisible = downloading; // nothing to cancel otherwise, so no disabled button
         ButtonStop.IsEnabled = downloading;
         CheckBoxDownloadDiscography.IsEnabled = !downloading;
@@ -460,6 +479,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             LogText.Inlines.Clear();
             _logLines.Clear();
             ShowTrackPanel(false);
+            TabDetails.SelectedItem = TabTracks;
             _logErrors = 0;
             TabLog.Header = Tr.Get("tabLog");
             LabelProgress.Text = "";
@@ -490,9 +510,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
         TrackSummary.IsVisible = false;
 
-        // The Tracks tab exists only while a run shows it, and takes the focus then; otherwise the Log is shown.
-        TabTracks.IsVisible = show;
-        TabDetails.SelectedItem = show ? TabTracks : TabLog;
+        _followIndex = -1;
     }
 
     /// <summary>
@@ -539,6 +557,45 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         foreach (var row in _trackRows)
         {
             row.Update(this.Token, force);
+        }
+
+        FollowActiveTrack();
+    }
+
+    /// <summary>
+    /// While a run is active the list scrolls to keep the newest track in progress (else the next waiting one) in view.
+    /// It moves only when that track changes, so scrolling by hand in between is not fought.
+    /// </summary>
+    private void FollowActiveTrack()
+    {
+        if (!_activeDownloads || _trackScroll == null || _trackRows.Count == 0)
+        {
+            return;
+        }
+
+        var index = _trackRows.FindLastIndex(r => r.State == TrackFileState.Downloading);
+        if (index < 0)
+        {
+            index = _trackRows.FindIndex(r => r.State == TrackFileState.Waiting);
+        }
+
+        var rowHeight = _trackScroll.Extent.Height / _trackRows.Count;
+        if (index < 0 || index == _followIndex || rowHeight <= 0)
+        {
+            return;
+        }
+
+        _followIndex = index;
+        var top = index * rowHeight;
+        var offset = _trackScroll.Offset.Y;
+        var view = _trackScroll.Viewport.Height;
+        if (top < offset)
+        {
+            _trackScroll.Offset = new Avalonia.Vector(0, top);
+        }
+        else if (top + rowHeight > offset + view)
+        {
+            _trackScroll.Offset = new Avalonia.Vector(0, top + rowHeight - view);
         }
     }
 

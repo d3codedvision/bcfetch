@@ -123,7 +123,7 @@ internal sealed class SettingsWindow : Window
     private bool _loading;
     private Button _browse;
 
-    public SettingsWindow(ISettingsService settingsService, bool activeDownloads)
+    public SettingsWindow(ISettingsService settingsService, bool activeDownloads, string openTab = null)
     {
         _settingsService = settingsService;
         Title = T("windowSettings_Title");
@@ -145,6 +145,8 @@ internal sealed class SettingsWindow : Window
             // Only General can change while downloading.
             tabs.Items.Add(new TabItem { Header = T(TabTitleKeys[tab]) ?? tab, Content = new ScrollViewer { Content = panel }, IsEnabled = !activeDownloads || tab == "General" });
         }
+
+        tabs.SelectedIndex = Math.Max(0, Array.FindIndex(Tabs, t => t.Tab == openTab));
 
         var reset = new Button { Content = T("labelButtonResetSettings") };
         reset.SetValue(ToolTip.TipProperty, T("buttonResetSettings_ToolTip"));
@@ -200,7 +202,7 @@ internal sealed class SettingsWindow : Window
         }
         else
         {
-            var box = new TextBox { Width = prop == "DownloadsPath" ? 300 : 200, HorizontalAlignment = HorizontalAlignment.Left };
+            var box = new TextBox { Width = prop == "DownloadsPath" ? double.NaN : 200, HorizontalAlignment = prop == "DownloadsPath" ? HorizontalAlignment.Stretch : HorizontalAlignment.Left };
             box.TextChanged += (_, _) => OnText(prop, type, box);
             editor = box;
             if (prop == "DownloadsPath")
@@ -235,11 +237,16 @@ internal sealed class SettingsWindow : Window
         var message = new TextBlock { FontSize = 12, TextWrapping = TextWrapping.Wrap, IsVisible = false, Margin = new Thickness(LabelWidth + 10, 0, 0, 0) };
         message.Bind(TextBlock.ForegroundProperty, this.GetResourceObservable("BcDanger"));
         _messages[prop] = message;
-        var line = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { label, editor } };
         if (prop == "DownloadsPath")
         {
-            line.Children.Add(_browse);
+            // A path is long: label above, the box takes the full width, Browse beside it
+            label.Width = double.NaN;
+            message.Margin = default;
+            Grid.SetColumn(_browse, 1);
+            return new StackPanel { Spacing = 4, Children = { label, new Grid { ColumnDefinitions = new("*,Auto"), ColumnSpacing = 8, Children = { editor, _browse } }, message } };
         }
+
+        var line = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 10, Children = { label, editor } };
 
         return new StackPanel
         {

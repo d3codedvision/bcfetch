@@ -702,4 +702,7 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   <data name="checkBoxAskDownloadsFolder_ToolTip" xml:space="preserve">
     <value>The folder you pick applies to that download only; the folder above stays the default.</value>
   </data>
+  <data name="buttonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 </root>

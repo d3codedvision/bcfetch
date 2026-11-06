@@ -105,7 +105,7 @@
                 PlaceholderText="{x:Static p:Resources.urlsPlaceholder}" />
 
             <!-- Options: discography switch; the destination is a read-only summary, edited in Settings. -->
-            <Grid Grid.Row="1" Margin="0,0,0,12" ColumnDefinitions="Auto,*" ColumnSpacing="20">
+            <Grid Grid.Row="1" Margin="0,0,0,12" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
                 <ToggleSwitch
                     x:Name="CheckBoxDownloadDiscography"
                     ToolTip.Tip="{x:Static p:Resources.checkBoxDownloadDiscography_ToolTip}" />
@@ -119,11 +119,16 @@
                     PointerPressed="LabelSaveTo_PointerPressed"
                     TextDecorations="Underline"
                     TextTrimming="PathSegmentEllipsis" />
+                <Button
+                    x:Name="ButtonClear"
+                    Grid.Column="2"
+                    Classes="quiet"
+                    Click="ButtonClear_Click" />
             </Grid>
 
             <!-- Tracks and log are separate tabs, so each gets the full height. -->
             <TabControl x:Name="TabDetails" Grid.Row="2" Margin="0,0,0,12">
-            <TabItem x:Name="TabTracks" IsVisible="False">
+            <TabItem x:Name="TabTracks">
             <Border
                 x:Name="TrackPanel"
                 Classes="region"

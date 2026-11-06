@@ -703,4 +703,7 @@ herunterzuladen.</value>
   <data name="checkBoxAskDownloadsFolder_ToolTip" xml:space="preserve">
     <value>Der gewählte Ordner gilt nur für diesen Download; der Ordner oben bleibt die Vorgabe.</value>
   </data>
+  <data name="buttonClear" xml:space="preserve">
+    <value>Leeren</value>
+  </data>
 </root>
