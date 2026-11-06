@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+Two more dark themes, and the download link in the log.
+
+* Settings, General, Theme: besides Light and Dark there are now Midnight (deep blue with a sky-blue accent) and Mocha (warm brown with an amber accent). Both inherit the Dark theme, and their text, accent and status colours keep at least 4.5:1 contrast on the panels.
+* The log file always has the download link: every line about a track or a cover art file (downloaded, skipped, retried, failed, tag errors) ends with the link in brackets, and so does every track line of the per-album download log (`bcfetch-download.log`, after `<-`). The window keeps showing the short messages without the link.
+
 ## 0.6.1
 
 Keyboard shortcuts, and the chosen folder shown during a run.
