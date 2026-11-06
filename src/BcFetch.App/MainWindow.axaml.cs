@@ -36,6 +36,7 @@ internal sealed partial class MainWindow : Window
     private int _logErrors;
     private ScrollViewer _trackScroll;
     private string _undoUrls;
+    private string _runFolder;
     private readonly DispatcherTimer _undoTimer = new() { Interval = TimeSpan.FromSeconds(5) };
     private int _followIndex = -1;
     private const int MaxLogLines = 500;
@@ -95,6 +96,10 @@ internal sealed partial class MainWindow : Window
 Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpdatesAsync(); };
         Closing += OnClosing;
         Activated += async (_, _) => await OfferClipboardAsync();
+        AddHandler(KeyDownEvent, OnShortcut, RoutingStrategies.Tunnel); // tunnel: the links box would otherwise take Ctrl+Enter
+        ToolTip.SetTip(ButtonStart, Tr.Get("shortcutStart"));
+        ToolTip.SetTip(ButtonStop, Tr.Get("shortcutCancel"));
+        ToolTip.SetTip(ButtonClear, Tr.Get("shortcutClear"));
         RestoreWindowGeometry();
 
         // The TextBox template fades its placeholder to 50% on the element itself, which a style cannot override and
@@ -217,7 +222,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void UpdateSaveTo()
     {
-        LabelSaveTo.Text = _userSettings.AskDownloadsFolderEveryTime ? Tr.Get("labelSaveToAsk") : Tr.Get("labelSaveTo", _userSettings.DownloadsPath);
+        // In "ask" mode the folder picked for the run in progress is shown while it runs
+        LabelSaveTo.Text = !_userSettings.AskDownloadsFolderEveryTime ? Tr.Get("labelSaveTo", _userSettings.DownloadsPath)
+            : _runFolder != null ? Tr.Get("labelSaveTo", _runFolder) : Tr.Get("labelSaveToAsk");
         ToolTip.SetTip(ButtonSaveTo, Tr.Get("labelSaveToTip"));
         AutomationProperties.SetName(ButtonSaveTo, LabelSaveTo.Text + ". " + Tr.Get("labelSaveToTip"));
     }
@@ -386,6 +393,8 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
                 return;
             }
 
+            _runFolder = picked;
+            UpdateSaveTo();
             savedPath = _userSettings.DownloadsPath;
             _userSettings.DownloadsPath = Path.Combine(picked, "{artist}", "{album}");
         }
@@ -423,6 +432,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         {
             _userSettings.DownloadsPath = savedPath;
         }
+
+        _runFolder = null;
+        UpdateSaveTo();
 
         _activeDownloads = false;
         SetDownloading(false);
@@ -848,6 +860,30 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     private void LabelNewVersion_PointerPressed(object sender, PointerPressedEventArgs e)
     {
         Process.Start(new ProcessStartInfo(Constants.URL_LATEST_RELEASE) { UseShellExecute = true });
+    }
+
+    // Ctrl+Enter starts, Esc cancels a run (after the usual confirmation), Ctrl+L clears.
+    private void OnShortcut(object sender, KeyEventArgs e)
+    {
+        var ctrl = e.KeyModifiers == KeyModifiers.Control;
+        if (ctrl && e.Key == Key.Enter && ButtonStart.IsVisible && ButtonStart.IsEnabled)
+        {
+            ButtonStart_Click(this, e);
+        }
+        else if (e.KeyModifiers == KeyModifiers.None && e.Key == Key.Escape && ButtonStop.IsVisible && ButtonStop.IsEnabled)
+        {
+            ButtonStop_Click(this, e);
+        }
+        else if (ctrl && e.Key == Key.L && ButtonClear.IsEnabled)
+        {
+            ButtonClear_Click(this, e);
+        }
+        else
+        {
+            return;
+        }
+
+        e.Handled = true;
     }
 
     // Size, position and maximized state come back at the next start; a position outside every screen is ignored.

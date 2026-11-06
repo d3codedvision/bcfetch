@@ -724,4 +724,13 @@ herunterzuladen.</value>
   <data name="checkBoxAskDownloadsFolder_Hint" xml:space="preserve">
     <value>Der Ordner oben wird weiterhin verwendet, wenn bcfetch von der Kommandozeile läuft.</value>
   </data>
+  <data name="shortcutStart" xml:space="preserve">
+    <value>Strg+Eingabe</value>
+  </data>
+  <data name="shortcutCancel" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="shortcutClear" xml:space="preserve">
+    <value>Strg+L</value>
+  </data>
 </root>

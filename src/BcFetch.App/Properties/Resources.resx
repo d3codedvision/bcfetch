@@ -723,4 +723,13 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   <data name="checkBoxAskDownloadsFolder_Hint" xml:space="preserve">
     <value>The folder above is still used when bcfetch runs from the command line.</value>
   </data>
+  <data name="shortcutStart" xml:space="preserve">
+    <value>Ctrl+Enter</value>
+  </data>
+  <data name="shortcutCancel" xml:space="preserve">
+    <value>Esc</value>
+  </data>
+  <data name="shortcutClear" xml:space="preserve">
+    <value>Ctrl+L</value>
+  </data>
 </root>
