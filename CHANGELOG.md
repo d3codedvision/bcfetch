@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.1
+
+Fixes and polish for the 0.4.0 main window.
+
+* The track list follows the download: it scrolls to the newest track in progress, and only moves when that track changes, so scrolling by hand still works.
+* Clicking "Saving to" opens Settings on the Downloads tab.
+* Settings, Downloads: the "Save albums to" box now has the full width (label above, Browse beside it) instead of overflowing the window.
+* The Tracks tab is always shown, not only after a run starts.
+* The links box (and Download) is disabled during a run. Links dropped on the window are still queued.
+* New "Clear" button next to the "Saving to" line: empties the links box, the track list and the log. Disabled during a run.
+
 ## 0.4.0
 
 Where files go is now a setting, and the track list and the log have a tab each.
