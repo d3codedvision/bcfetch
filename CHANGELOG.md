@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.2
+
+Usability fixes for the main window.
+
+* "Saving to" is a real button now: reachable with Tab, announced by screen readers, opens Settings on the Downloads tab.
+* Download is disabled until there is a link to download (Retry failed stays available after a run with failures), so a click can no longer fail silently in a tab you are not looking at.
+* The first-steps hint is in the Tracks tab, which is the first tab and the one shown at start. Step 2 now says to check the destination and change it in Settings.
+* During a run Cancel takes the place of Download, and a hint says that links dropped on the window are queued.
+* Clear turns into Undo for 5 seconds, so pasted links are not lost by one click. Undo brings back the links only; the track list and log stay cleared.
+
 ## 0.4.1
 
 Fixes and polish for the 0.4.0 main window.
