@@ -640,7 +640,7 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
     <value>Paste album, track or artist links above, one per line.</value>
   </data>
   <data name="emptyStep2" xml:space="preserve">
-    <value>Choose where to save them.</value>
+    <value>Check where they will be saved (change it in Settings).</value>
   </data>
   <data name="emptyStep3" xml:space="preserve">
     <value>Press “{0}”.</value>
@@ -704,5 +704,11 @@ Paste artist pages: http://[artist].bandcamp.com and check "☑ Download artist 
   </data>
   <data name="buttonClear" xml:space="preserve">
     <value>Clear</value>
+  </data>
+  <data name="queueHint" xml:space="preserve">
+    <value>Drop more links on the window to queue them</value>
+  </data>
+  <data name="buttonUndoClear" xml:space="preserve">
+    <value>Undo</value>
   </data>
 </root>

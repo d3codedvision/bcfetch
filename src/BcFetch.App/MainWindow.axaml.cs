@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Globalization;
+using Avalonia.Automation;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
@@ -31,6 +32,8 @@ internal sealed partial class MainWindow : Window
     private bool _logScrollPending;
     private int _logErrors;
     private ScrollViewer _trackScroll;
+    private string _undoUrls;
+    private readonly DispatcherTimer _undoTimer = new() { Interval = TimeSpan.FromSeconds(5) };
     private int _followIndex = -1;
     private const int MaxLogLines = 500;
     private const int LogTrimBatch = 50;
@@ -60,6 +63,7 @@ internal sealed partial class MainWindow : Window
         _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
         _timer.Tick += (_, _) => UpdateProgress();
         _rowsTimer.Tick += (_, _) => UpdateTrackRows();
+        _undoTimer.Tick += (_, _) => ExpireUndo();
 
         TextBoxUrls.TextChanged += (_, _) =>
         {
@@ -77,8 +81,10 @@ internal sealed partial class MainWindow : Window
         UpdateSaveTo();
         TabTracks.Header = Tr.Get("tabTracks");
         TabLog.Header = Tr.Get("tabLog");
-        TabDetails.SelectedItem = TabLog; // the first-steps hint lives in the log until a run starts
         ButtonClear.Content = Tr.Get("buttonClear");
+        LabelQueueHint.Text = Tr.Get("queueHint");
+        UpdateStartLabel();
+        UpdateEmptyState();
         CheckBoxDownloadDiscography.IsChecked = _userSettings.DownloadArtistDiscography;
         CheckBoxDownloadDiscography.IsCheckedChanged += (_, _) => _userSettings.DownloadArtistDiscography = CheckBoxDownloadDiscography.IsChecked == true;
 
@@ -205,20 +211,31 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     private void UpdateSaveTo()
     {
         LabelSaveTo.Text = _userSettings.AskDownloadsFolderEveryTime ? Tr.Get("labelSaveToAsk") : Tr.Get("labelSaveTo", _userSettings.DownloadsPath);
-        ToolTip.SetTip(LabelSaveTo, Tr.Get("labelSaveToTip"));
+        ToolTip.SetTip(ButtonSaveTo, Tr.Get("labelSaveToTip"));
+        AutomationProperties.SetName(ButtonSaveTo, LabelSaveTo.Text + ". " + Tr.Get("labelSaveToTip"));
     }
 
-    private async void LabelSaveTo_PointerPressed(object sender, PointerPressedEventArgs e)
-    {
-        if (!_activeDownloads)
-        {
-            await OpenSettingsAsync("Downloads");
-        }
-    }
+    private async void ButtonSaveTo_Click(object sender, RoutedEventArgs e) => await OpenSettingsAsync("Downloads");
 
     /// <summary>Empties the links box, the track list and the log.</summary>
     private void ButtonClear_Click(object sender, RoutedEventArgs e)
     {
+        // The button turns into Undo for a few seconds, so pasted links are never lost by one click
+        if (_undoUrls != null)
+        {
+            TextBoxUrls.Text = _undoUrls;
+            ExpireUndo();
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(TextBoxUrls.Text))
+        {
+            _undoUrls = TextBoxUrls.Text;
+            ButtonClear.Content = Tr.Get("buttonUndoClear");
+            _undoTimer.Stop();
+            _undoTimer.Start();
+        }
+
         SetUrlsText("");
         _retryInput = null;
         ShowTrackPanel(false);
@@ -226,11 +243,17 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         _logLines.Clear();
         _logErrors = 0;
         TabLog.Header = Tr.Get("tabLog");
-        EmptyState.IsVisible = true;
         LabelProgress.Text = "";
         LabelDownloadSpeed.Text = "";
-        TabDetails.SelectedItem = TabLog;
+        TabDetails.SelectedItem = TabTracks;
         UpdateStartLabel();
+    }
+
+    private void ExpireUndo()
+    {
+        _undoTimer.Stop();
+        _undoUrls = null;
+        ButtonClear.Content = Tr.Get("buttonClear");
     }
 
     private void ButtonAbout_Click(object sender, RoutedEventArgs e) => new AboutWindow().ShowDialog(this);
@@ -284,18 +307,6 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
     private async void ButtonStart_Click(object sender, RoutedEventArgs e)
     {
         var inputUrls = TextBoxUrls.Text;
-
-        // While a run is active the button adds the pasted URLs to the queue instead.
-        if (_activeDownloads)
-        {
-            if (string.IsNullOrWhiteSpace(inputUrls))
-            {
-                return;
-            }
-
-            EnqueueUrls(inputUrls);
-            return;
-        }
 
         // "Retry failed" re-runs the batches that had failures, whatever is in the box now.
         inputUrls = _retryInput ?? inputUrls;
@@ -441,7 +452,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LabelAnnouncement.Text = message;
     }
 
-    // The one button is Start, Retry failed or (during a run) Add to queue.
+    // The one button is Download or Retry failed; it is hidden during a run and disabled while there is nothing to start.
     private void SetUrlsText(string text)
     {
         if ((TextBoxUrls.Text ?? "") == text)
@@ -455,27 +466,26 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
 
     private void UpdateStartLabel()
     {
-        ButtonStart.Content = _activeDownloads ? Tr.Get("buttonAddToQueue") : _retryInput != null ? Tr.Get("buttonRetryFailed") : Res.buttonStart;
-
-        // During a run the button only queues more links: a quiet button, so no filled primary competes with Cancel
-        ButtonStart.Classes.Set("primary", !_activeDownloads);
-        TextBoxUrls.PlaceholderText = _activeDownloads ? Tr.Get("urlsPlaceholderQueue") : Res.urlsPlaceholder;
+        ButtonStart.Content = _retryInput != null ? Tr.Get("buttonRetryFailed") : Res.buttonStart;
+        ButtonStart.IsEnabled = _retryInput != null || !string.IsNullOrWhiteSpace(TextBoxUrls.Text);
+        ButtonStart.IsVisible = !_activeDownloads; // Cancel takes its place; links dropped on the window are queued
+        LabelQueueHint.IsVisible = _activeDownloads;
     }
 
     private void SetDownloading(bool downloading)
     {
         TextBoxUrls.IsEnabled = !downloading;
         ButtonClear.IsEnabled = !downloading;
-        ButtonStart.IsEnabled = !downloading; // links are added before a run (or dropped on the window to queue them)
         ButtonStop.IsVisible = downloading; // nothing to cancel otherwise, so no disabled button
         ButtonStop.IsEnabled = downloading;
         CheckBoxDownloadDiscography.IsEnabled = !downloading;
-        LabelSaveTo.Opacity = downloading ? 0.6 : 1;
+        ButtonSaveTo.IsEnabled = !downloading;
         UpdateStartLabel();
         ProgressBar.IsIndeterminate = downloading;
         ProgressBar.Value = 0;
         if (downloading)
         {
+            ExpireUndo();
             LogText.Inlines.Clear();
             _logLines.Clear();
             ShowTrackPanel(false);
@@ -489,6 +499,7 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
             _tray.ToolTipText = "bcfetch";
             LabelDownloadSpeed.Text = "";
         }
+        UpdateEmptyState();
     }
 
     private void BuildTrackRows(IEnumerable<TrackFile> files)
@@ -511,7 +522,11 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         TrackSummary.IsVisible = false;
 
         _followIndex = -1;
+        UpdateEmptyState();
     }
+
+    // The first-steps hint shows in the Tracks tab until a run puts something there.
+    private void UpdateEmptyState() => EmptyState.IsVisible = !_activeDownloads && _trackRows.Count == 0 && !TrackSummary.IsVisible;
 
     /// <summary>
     /// At the end of a batch: failed tracks move to the top, so they are never hidden below the fold of a long
@@ -662,7 +677,6 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         LogText.Inlines.Add(stamp);
         LogText.Inlines.Add(text);
         _logLines.Add((stamp, text, level));
-        EmptyState.IsVisible = false;
         if (level == DownloadProgressChangedLevel.Error)
         {
             TabLog.Header = Tr.Get("tabLogErrors", ++_logErrors);

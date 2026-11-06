@@ -641,7 +641,7 @@ herunterzuladen.</value>
     <value>Füge oben Album-, Titel- oder Interpretenlinks ein, einen pro Zeile.</value>
   </data>
   <data name="emptyStep2" xml:space="preserve">
-    <value>Wähle, wo sie gespeichert werden sollen.</value>
+    <value>Prüfe, wo sie gespeichert werden (Änderung in den Einstellungen).</value>
   </data>
   <data name="emptyStep3" xml:space="preserve">
     <value>Klicke auf „{0}“.</value>
@@ -705,5 +705,11 @@ herunterzuladen.</value>
   </data>
   <data name="buttonClear" xml:space="preserve">
     <value>Leeren</value>
+  </data>
+  <data name="queueHint" xml:space="preserve">
+    <value>Weitere Links auf das Fenster ziehen, um sie einzureihen</value>
+  </data>
+  <data name="buttonUndoClear" xml:space="preserve">
+    <value>Rückgängig</value>
   </data>
 </root>
