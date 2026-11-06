@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0
+
+The result of a run is easier to read and to reach.
+
+* "Open folder" in the result strip opens the folder the run wrote to (the album folder, or the folder that holds all the album folders) in the file manager.
+* A failed track shows why it failed under its name (and as a tooltip), so the reason no longer needs a trip to the log.
+* The track list is grouped by album: a header per album with a "done/total" count, then its tracks in track order. When a run ends, albums with failures move to the top and failed tracks lead within an album.
+
 ## 0.4.2
 
 Usability fixes for the main window.

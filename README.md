@@ -4,7 +4,7 @@ Linux-native Bandcamp album downloader with an [Avalonia](https://avaloniaui.net
 
 A port of [Otiel/BandcampDownloader](https://github.com/Otiel/BandcampDownloader) (WPF, Windows-only) to .NET + Avalonia. It downloads the 128 kbps MP3 files Bandcamp streams freely on its site. Nothing more.
 
-> **Status:** release 0.4.2. Main window, settings and About page are ported. Linux x64 only; not yet tested on Wayland-only or non-Debian systems.
+> **Status:** release 0.5.0. Main window, settings and About page are ported. Linux x64 only; not yet tested on Wayland-only or non-Debian systems.
 
 ## Features
 
