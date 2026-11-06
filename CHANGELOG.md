@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1
+
+The album page link is in the logs.
+
+* The log file has the Bandcamp page of the album on every album line (computing size, playlist saved, finished, skipped), next to the download links of its tracks.
+* The per-album download log (`bcfetch-download.log`) starts each run with a `page:` line.
+
 ## 0.7.0
 
 Two more dark themes, and the download link in the log.
