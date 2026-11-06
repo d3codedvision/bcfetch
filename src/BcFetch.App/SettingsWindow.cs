@@ -387,7 +387,7 @@ internal sealed class SettingsWindow : Window
 
         if (Application.Current is { } app)
         {
-            app.RequestedThemeVariant = settings.Theme == Skin.Dark ? ThemeVariant.Dark : ThemeVariant.Light;
+            app.RequestedThemeVariant = ThemeTokens.VariantOf(settings.Theme);
         }
 
         App.ApplyLanguage(settings.Language);

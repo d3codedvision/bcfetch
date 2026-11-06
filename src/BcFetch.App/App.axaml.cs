@@ -25,7 +25,7 @@ public sealed class App : Application
 
             var settings = container.GetService<ISettingsService>().InitializeSettings();
             ApplyLanguage(settings.Language);
-            RequestedThemeVariant = settings.Theme == Skin.Dark ? ThemeVariant.Dark : ThemeVariant.Light;
+            RequestedThemeVariant = ThemeTokens.VariantOf(settings.Theme);
 
             LogManager.GetCurrentClassLogger().Info($"bcfetch {Core.Constants.APP_VERSION_FORMATTED}, settings: {container.GetService<ISettingsService>().GetUserSettingsInJson()}");
 

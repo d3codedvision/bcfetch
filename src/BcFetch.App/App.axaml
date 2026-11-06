@@ -2,6 +2,7 @@
     x:Class="BcFetch.App.App"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BcFetch.App"
     RequestedThemeVariant="Default">
 
     <Application.Resources>
@@ -13,6 +14,7 @@
                     <!-- Decorative hairlines (panels, progress track) versus the boundary of an input, which needs 3:1. -->
                     <SolidColorBrush x:Key="BcLine" Color="#CBD4D2" />
                     <SolidColorBrush x:Key="BcInputBorder" Color="#7F8D8B" />
+                    <SolidColorBrush x:Key="BcWindow" Color="#F1F4F3" />
                     <SolidColorBrush x:Key="BcPanel" Color="#FFFFFF" />
                     <SolidColorBrush x:Key="BcAccent" Color="#0C7781" />
                     <SolidColorBrush x:Key="BcOnAccent" Color="#FFFFFF" />
@@ -29,6 +31,7 @@
                     <SolidColorBrush x:Key="BcMuted" Color="#8A9A97" />
                     <SolidColorBrush x:Key="BcLine" Color="#2C373D" />
                     <SolidColorBrush x:Key="BcInputBorder" Color="#5F7078" />
+                    <SolidColorBrush x:Key="BcWindow" Color="#141A1E" />
                     <SolidColorBrush x:Key="BcPanel" Color="#0D1114" />
                     <SolidColorBrush x:Key="BcAccent" Color="#3FB8C4" />
                     <SolidColorBrush x:Key="BcOnAccent" Color="#0A1B1D" />
@@ -38,6 +41,54 @@
                     <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#8A9A97" />
                     <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#8A9A97" />
                     <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#8A9A97" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="{x:Static local:ThemeTokens.Midnight}">
+                    <SolidColorBrush x:Key="BcText" Color="#E4E9F7" />
+                    <SolidColorBrush x:Key="BcMuted" Color="#97A3C4" />
+                    <SolidColorBrush x:Key="BcLine" Color="#26304D" />
+                    <SolidColorBrush x:Key="BcInputBorder" Color="#6677A3" />
+                    <SolidColorBrush x:Key="BcWindow" Color="#12182B" />
+                    <SolidColorBrush x:Key="BcPanel" Color="#0B1020" />
+                    <SolidColorBrush x:Key="BcAccent" Color="#7AA2FF" />
+                    <SolidColorBrush x:Key="BcOnAccent" Color="#0A1230" />
+                    <SolidColorBrush x:Key="BcSuccess" Color="#6FD39A" />
+                    <SolidColorBrush x:Key="BcWarning" Color="#E8B84A" />
+                    <SolidColorBrush x:Key="BcDanger" Color="#FF8A80" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#97A3C4" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#97A3C4" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#97A3C4" />
+                                    <!-- Fluent derives its accent shades from the palette, which cannot hold a custom variant; set them here. -->
+                    <Color x:Key="SystemAccentColor">#7AA2FF</Color>
+                    <Color x:Key="SystemAccentColorLight1">#A3BFFF</Color>
+                    <Color x:Key="SystemAccentColorLight2">#CCDBFF</Color>
+                    <Color x:Key="SystemAccentColorLight3">#F4F8FF</Color>
+                    <Color x:Key="SystemAccentColorDark1">#5185FF</Color>
+                    <Color x:Key="SystemAccentColorDark2">#2869FF</Color>
+                    <Color x:Key="SystemAccentColorDark3">#004DFF</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="{x:Static local:ThemeTokens.Mocha}">
+                    <SolidColorBrush x:Key="BcText" Color="#EFE6DD" />
+                    <SolidColorBrush x:Key="BcMuted" Color="#AE9C8D" />
+                    <SolidColorBrush x:Key="BcLine" Color="#3A2E26" />
+                    <SolidColorBrush x:Key="BcInputBorder" Color="#7D6A5B" />
+                    <SolidColorBrush x:Key="BcWindow" Color="#1D1612" />
+                    <SolidColorBrush x:Key="BcPanel" Color="#15100D" />
+                    <SolidColorBrush x:Key="BcAccent" Color="#E0A458" />
+                    <SolidColorBrush x:Key="BcOnAccent" Color="#26170A" />
+                    <SolidColorBrush x:Key="BcSuccess" Color="#8CCB7A" />
+                    <SolidColorBrush x:Key="BcWarning" Color="#F0C060" />
+                    <SolidColorBrush x:Key="BcDanger" Color="#FF8C74" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="#AE9C8D" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="#AE9C8D" />
+                    <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="#AE9C8D" />
+                                    <!-- Fluent derives its accent shades from the palette, which cannot hold a custom variant; set them here. -->
+                    <Color x:Key="SystemAccentColor">#E0A458</Color>
+                    <Color x:Key="SystemAccentColorLight1">#E6B77A</Color>
+                    <Color x:Key="SystemAccentColorLight2">#EDCA9D</Color>
+                    <Color x:Key="SystemAccentColorLight3">#F3DCBF</Color>
+                    <Color x:Key="SystemAccentColorDark1">#DA9136</Color>
+                    <Color x:Key="SystemAccentColorDark2">#C27D24</Color>
+                    <Color x:Key="SystemAccentColorDark3">#A0661E</Color>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <FontFamily x:Key="BcMono">avares://bcfetch/Assets/Fonts#JetBrains Mono</FontFamily>
@@ -54,6 +105,7 @@
 
         <Style Selector="Window">
             <Setter Property="FontSize" Value="14" />
+            <Setter Property="Background" Value="{DynamicResource BcWindow}" />
         </Style>
 
         <!-- Inputs: flat, one hairline, no inner glow. -->

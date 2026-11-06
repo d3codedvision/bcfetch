@@ -178,19 +178,19 @@ internal sealed class DownloadManager : IDownloadManager
                 case TrackFileState.Done:
                     downloaded++;
                     var size = File.Exists(track.Path) ? $" ({new FileInfo(track.Path).Length / (1024.0 * 1024):0.0} MB)" : "";
-                    yield return $"  downloaded  {name}{size}";
+                    yield return $"  downloaded  {name}{size}  <- {track.Mp3Url}";
                     break;
                 case TrackFileState.Skipped:
                     skipped++;
-                    yield return $"  skipped     {name} (already on disk)";
+                    yield return $"  skipped     {name} (already on disk)  <- {track.Mp3Url}";
                     break;
                 case TrackFileState.Failed:
                     failed++;
-                    yield return $"  FAILED      {name}{(file.Error == null ? "" : ": " + file.Error)}";
+                    yield return $"  FAILED      {name}{(file.Error == null ? "" : ": " + file.Error)}  <- {track.Mp3Url}";
                     break;
                 default:
                     unfinished++;
-                    yield return $"  unfinished  {name} (cancelled or not started)";
+                    yield return $"  unfinished  {name} (cancelled or not started)  <- {track.Mp3Url}";
                     break;
             }
         }
@@ -343,7 +343,7 @@ internal sealed class DownloadManager : IDownloadManager
             if (currentFile.Size > length - currentFile.Size * _userSettings.AllowedFileSizeDifference &&
                 currentFile.Size < length + currentFile.Size * _userSettings.AllowedFileSizeDifference)
             {
-                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Track already exists within allowed file size range: track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\" - Skipping download!", DownloadProgressChangedLevel.IntermediateSuccess));
+                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Track already exists within allowed file size range: track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\" - Skipping download!", DownloadProgressChangedLevel.IntermediateSuccess, track.Mp3Url));
                 currentFile.State = TrackFileState.Skipped;
                 return false;
             }
@@ -392,11 +392,11 @@ internal sealed class DownloadManager : IDownloadManager
 
                 if (tries + 1 < _userSettings.DownloadMaxTries)
                 {
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\". Try {tries + 1} of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Warning));
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\". Try {tries + 1} of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Warning, track.Mp3Url));
                 }
                 else
                 {
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\". Hit max retries of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Error));
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\". Hit max retries of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Error, track.Mp3Url));
                 }
             }
 
@@ -408,7 +408,7 @@ internal sealed class DownloadManager : IDownloadManager
                     try
                     {
                         _tagService.SaveTagsInTrack(track, album, artwork, cancellationToken);
-                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Tags saved for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.VerboseInfo));
+                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Tags saved for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.VerboseInfo, track.Mp3Url));
                     }
                     catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
                     {
@@ -416,7 +416,7 @@ internal sealed class DownloadManager : IDownloadManager
                         _logger.Error(ex);
                         currentFile.Error = "tags: " + ex.Message;
                         trackDownloaded = false;
-                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to save tags for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\": {ex.Message}", DownloadProgressChangedLevel.Warning));
+                        DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to save tags for track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\": {ex.Message}", DownloadProgressChangedLevel.Warning, track.Mp3Url));
                     }
                 }
 
@@ -425,7 +425,7 @@ internal sealed class DownloadManager : IDownloadManager
                     // Note the file as downloaded
                     currentFile.Downloaded = true;
                     currentFile.State = TrackFileState.Done;
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded track \"{Path.GetFileName(track.Path)}\" from album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess, track.Mp3Url));
                 }
             }
 
@@ -498,18 +498,18 @@ internal sealed class DownloadManager : IDownloadManager
 
                 if (tries < _userSettings.DownloadMaxTries)
                 {
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download artwork for album \"{album.Title}\". Try {tries + 1} of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Warning));
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download artwork for album \"{album.Title}\". Try {tries + 1} of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Warning, album.ArtworkUrl));
                 }
                 else
                 {
-                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download artwork for album \"{album.Title}\". Hit max retries of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Error));
+                    DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Unable to download artwork for album \"{album.Title}\". Hit max retries of {_userSettings.DownloadMaxTries}", DownloadProgressChangedLevel.Error, album.ArtworkUrl));
                 }
             }
 
             if (artworkDownloaded)
             {
                 currentFile.Downloaded = true;
-                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded artwork for album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess));
+                DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs($"Downloaded artwork for album \"{album.Title}\"", DownloadProgressChangedLevel.IntermediateSuccess, album.ArtworkUrl));
             }
 
             tries++;

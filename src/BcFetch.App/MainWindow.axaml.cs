@@ -64,7 +64,7 @@ internal sealed partial class MainWindow : Window
         LabelAppVersion.Text = Constants.APP_VERSION_FORMATTED;
         _downloadManager = downloadManager;
         _updatesService = updatesService;
-        _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level));
+        _downloadManager.DownloadProgressChanged += (_, e) => Dispatcher.UIThread.Post(() => Log(e.Message, e.Level, e.Url));
         _timer.Tick += (_, _) => UpdateProgress();
         _rowsTimer.Tick += (_, _) => UpdateTrackRows();
         _undoTimer.Tick += (_, _) => ExpireUndo();
@@ -798,9 +798,9 @@ Opened += async (_, _) => { if (_userSettings.CheckForUpdates) await CheckForUpd
         });
     }
 
-    private void Log(string message, DownloadProgressChangedLevel level)
+    private void Log(string message, DownloadProgressChangedLevel level, string url = null)
     {
-        _logger.Log(level.ToNLogLevel(), message);
+        _logger.Log(level.ToNLogLevel(), url == null || message.Contains(url, StringComparison.Ordinal) ? message : $"{message} [{url}]");
 
         if (!_userSettings.ShowVerboseLog && level is DownloadProgressChangedLevel.VerboseInfo or DownloadProgressChangedLevel.Warning)
         {

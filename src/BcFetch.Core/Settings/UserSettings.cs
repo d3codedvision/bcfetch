@@ -114,6 +114,13 @@ public enum Skin
 
     [Description("Light")]
     Light,
+
+    // Dark variations (they inherit everything they do not set from Dark)
+    [Description("Midnight")]
+    Midnight,
+
+    [Description("Mocha")]
+    Mocha,
 }
 
 public enum TagEditAction
